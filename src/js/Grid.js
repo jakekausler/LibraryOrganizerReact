@@ -5,6 +5,7 @@ import GridView from './GridView'
 import BookView from './BookView'
 
 import books from '../SampleData/books.json'
+import book from '../SampleData/book.json'
 
 class Grid extends React.Component {
 	constructor() {
@@ -96,14 +97,33 @@ class Grid extends React.Component {
 	}
 
 	openBookEditor(bookid) {
+		//todo load book
+		let b = JSON.parse(JSON.stringify(book))
+		b.authors = ""
+		b.contributors.forEach(a => {
+			b.authors += a.name.first + " " + a.name.middles + " " + a.name.last + ":" + a.role + "---"
+		})
+		console.log(b.authors)
+		b.authors = b.authors.replace(/---/g, "\n")
 		this.setState({
-			currentBook: books.books.filter(book => {
-				return book.bookid === bookid
-			})[0]
+			currentBook: b
 		})
 	}
 
-	saveBook(book) {
+	saveBook(b) {
+		b.authors = b.authors.trim()
+		b.contributors = b.authors.split("\n")
+		b.contributors = b.contributors.map((contrib) => {
+			return {
+				name: {
+					first: contrib.substring(0, contrib.indexOf(' ')),
+					middles: contrib.substring(contrib.indexOf(' ') + 1, contrib.indexOf(' ', contrib.indexOf(' ') + 1)),
+					last: contrib.substring(contrib.indexOf(' ', contrib.indexOf(' ') + 1) + 1, contrib.indexOf(":"))
+				},
+				role: contrib.substring(contrib.indexOf(":")+1)
+			}
+		})
+		console.log(b);
 		console.log("TODO: SAVE BOOK")
 		this.setState({
 			currentBook: null

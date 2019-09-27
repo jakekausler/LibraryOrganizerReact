@@ -1,5 +1,5 @@
 import React from 'react'
-import {Formik, Form, Field, ErrorMessage} from 'formik'
+import {Formik, Form, Field, FieldArray, ErrorMessage} from 'formik'
 
 class BookView extends React.Component {
 	constructor() {
@@ -37,10 +37,358 @@ class BookView extends React.Component {
 						setFieldValue
 					}) => (
 						<Form>
-							<div
-								className="book-form-main"
-							>
-
+							<div className="book-form-main">
+								<div className="form-field-left">
+									<div className="form-field-left-top">
+										<div className="form-field-left-top-left">
+											<div className="book-form-field-container">
+												<label className="form-field-label">
+													Library
+												</label>
+												<Field
+													className="form-field-long"
+													type="text"
+													name="library.name"
+												>
+												</Field>
+											</div>
+											<div className="book-form-field-container">
+												<label className="form-field-label">
+													Title
+												</label>
+												<Field
+													className="form-field-long"
+													type="text"
+													name="title"
+												>
+												</Field>
+											</div>
+											<div className="book-form-field-container">
+												<label className="form-field-label">
+													Subtitle
+												</label>
+												<Field
+													className="form-field-long"
+													type="text"
+													name="subtitle"
+												>
+												</Field>
+											</div>
+										</div>
+										<div className="form-field-left-top-right">
+											<img src={this.props.book.imageurl} />
+											<div className="book-form-field-container">
+												<label className="form-field-label">
+													Image URL
+												</label>
+												<Field
+													className="form-field-long"
+													type="text"
+													name="imageurl"
+												>
+												</Field>
+											</div>
+											<div className="book-image-buttons">
+												<button
+													className="book-image-button"
+													type="button"
+												>
+													Save
+												</button>
+												<button
+													className="book-image-button"
+													type="button"
+												>
+													Remove
+												</button>
+											</div>
+										</div>
+									</div>
+									<div className="form-field-left-middle">
+										<div className="book-form-field-container">
+											<label className="form-field-label">
+												Series
+											</label>
+											<Field
+												className="form-field-long"
+												type="text"
+												name="series"
+											>
+											</Field>
+										</div>
+										<div className="book-form-field-container">
+											<label className="form-field-label">
+												Volume
+											</label>
+											<Field
+												className="form-field-long"
+												type="number"
+												name="volume"
+											>
+											</Field>
+										</div>
+									</div>
+									<div className="form-field-left-bottom">
+										<div className="book-form-field-container">
+											<label className="form-field-label">
+												Authors
+											</label>
+											<Field
+												className="form-field-long"
+												component="textarea"
+												name="authors"
+											>
+											</Field>
+										</div>
+									</div>
+								</div>
+								<div className="form-field-right">
+									<div className="form-field-row">
+										<div className="book-form-field-container">
+											<label className="form-field-label">
+												Publisher
+											</label>
+											<Field
+												className="form-field-long"
+												type="text"
+												name="publisher.publisher"
+											>
+											</Field>
+										</div>
+									</div>
+									<div className="form-field-row">
+										<div className="book-form-field-container">
+											<label className="form-field-label">
+												City
+											</label>
+											<Field
+												className="form-field-long"
+												type="text"
+												name="publisher.city"
+											>
+											</Field>
+										</div>
+										<div className="book-form-field-container">
+											<label className="form-field-label">
+												State
+											</label>
+											<Field
+												className="form-field-long"
+												type="text"
+												name="publisher.state"
+											>
+											</Field>
+										</div>
+										<div className="book-form-field-container">
+											<label className="form-field-label">
+												Country
+											</label>
+											<Field
+												className="form-field-long"
+												type="text"
+												name="publisher.country"
+											>
+											</Field>
+										</div>
+									</div>
+									<div className="form-field-row">
+										<div className="book-form-field-container">
+											<label className="form-field-label">
+												Originally Published
+											</label>
+											<Field
+												className="form-field-long"
+												type="number"
+												name="originallypublished"
+											>
+											</Field>
+										</div>
+										<div className="book-form-field-container">
+											<label className="form-field-label">
+												Edition Published
+											</label>
+											<Field
+												className="form-field-long"
+												type="number"
+												name="editionpublished"
+											>
+											</Field>
+										</div>
+										<div className="book-form-field-container">
+											<label className="form-field-label">
+												Edition
+											</label>
+											<Field
+												className="form-field-long"
+												type="number"
+												name="edition"
+											>
+											</Field>
+										</div>
+									</div>
+									<div className="form-field-row">
+										<div className="book-form-field-container">
+											<label className="form-field-label">
+												ISBN
+											</label>
+											<Field
+												className="form-field-long"
+												type="text"
+												name="isbn"
+											>
+											</Field>
+										</div>
+										<div className="book-form-field-container">
+											<label className="form-field-label">
+												Dewey
+											</label>
+											<Field
+												className="form-field-long"
+												type="text"
+												name="dewey"
+											>
+											</Field>
+										</div>
+										<div className="book-form-field-container">
+											<label className="form-field-label">
+												Binding
+											</label>
+											<Field
+												className="form-field-long"
+												type="text"
+												name="format"
+											>
+											</Field>
+										</div>
+									</div>
+									<div className="form-field-row">
+										<div className="book-form-field-container">
+											<label className="form-field-label">
+												Pages
+											</label>
+											<Field
+												className="form-field-long"
+												type="number"
+												name="pages"
+											>
+											</Field>
+										</div>
+										<div className="book-form-field-container">
+											<label className="form-field-label">
+												Width
+											</label>
+											<Field
+												className="form-field-long"
+												type="number"
+												name="width"
+											>
+											</Field>
+										</div>
+										<div className="book-form-field-container">
+											<label className="form-field-label">
+												Height
+											</label>
+											<Field
+												className="form-field-long"
+												type="number"
+												name="height"
+											>
+											</Field>
+										</div>
+										<div className="book-form-field-container">
+											<label className="form-field-label">
+												Depth
+											</label>
+											<Field
+												className="form-field-long"
+												type="number"
+												name="depth"
+											>
+											</Field>
+										</div>
+										<div className="book-form-field-container">
+											<label className="form-field-label">
+												Weight
+											</label>
+											<Field
+												className="form-field-long"
+												type="number"
+												name="weight"
+											>
+											</Field>
+										</div>
+									</div>
+									<div className="form-field-row">
+										<div className="book-form-field-container">
+											<label className="book-form-radio-label">
+												Owned
+											</label>
+											<Field
+												className="form-radio"
+												type="checkbox"
+												name="isowned"
+											>
+											</Field>
+										</div>
+										<div className="book-form-field-container">
+											<label className="book-form-radio-label">
+												Read
+											</label>
+											<Field
+												className="form-radio"
+												type="checkbox"
+												name="isread"
+											>
+											</Field>
+										</div>
+										<div className="book-form-field-container">
+											<label className="book-form-radio-label">
+												Reference
+											</label>
+											<Field
+												className="form-radio"
+												type="checkbox"
+												name="isreference"
+											>
+											</Field>
+										</div>
+									</div>
+									<div className="form-field-row">
+										<div className="book-form-field-container">
+											<label className="book-form-radio-label">
+												Anthology
+											</label>
+											<Field
+												className="form-radio"
+												type="checkbox"
+												name="isanthology"
+											>
+											</Field>
+										</div>
+										<div className="book-form-field-container">
+											<label className="book-form-radio-label">
+												Reading
+											</label>
+											<Field
+												className="form-radio"
+												type="checkbox"
+												name="isreading"
+											>
+											</Field>
+										</div>
+										<div className="book-form-field-container">
+											<label className="book-form-radio-label">
+												Shipping
+											</label>
+											<Field
+												className="form-radio"
+												type="checkbox"
+												name="isshipping"
+											>
+											</Field>
+										</div>
+									</div>
+								</div>
 							</div>
 							<div
 								className="book-form-buttons"

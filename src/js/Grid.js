@@ -51,6 +51,7 @@ class Grid extends React.Component {
 				toreadingrecovery:''
 			},
 			books: [],
+			numberOfBooks: 0,
 			loading: false,
 			currentBook: null
 		}
@@ -60,6 +61,8 @@ class Grid extends React.Component {
 		this.saveBook = this.saveBook.bind(this)
 		this.cancelBook = this.cancelBook.bind(this)
 		this.removeBook = this.removeBook.bind(this)
+		this.nextPage = this.nextPage.bind(this)
+		this.prevPage = this.prevPage.bind(this)
 	}
 
 	componentDidMount() {
@@ -80,6 +83,9 @@ class Grid extends React.Component {
 				<Filters
 					filters={this.state.filters}
 					updateFilters={this.updateFilters}
+					numBooks={this.state.numberOfBooks}
+					nextPage={this.nextPage}
+					prevPage={this.prevPage}
 				/>
 				<GridView
 					books={this.state.books}
@@ -96,18 +102,38 @@ class Grid extends React.Component {
 		)
 	}
 
+	nextPage() {
+		this.setState(prevState => ({
+			filters: {
+				...prevState.filters,
+				page: prevState.filters.page + 1
+			}
+		}), () => this.loadBooks())
+	}
+
+	prevPage() {
+		this.setState(prevState => ({
+			filters: {
+				...prevState.filters,
+				page: prevState.filters.page - 1
+			}
+		}), () => this.loadBooks())
+	}
+
 	openBookEditor(bookid) {
-		//todo load book
-		let b = JSON.parse(JSON.stringify(book))
-		b.authors = ""
-		b.contributors.forEach(a => {
-			b.authors += a.name.first + " " + a.name.middles + " " + a.name.last + ":" + a.role + "---"
+		fetch("/books/" + bookid)
+		.then(res => res.json())
+		.then((data) => {
+			data.authors = ""
+			data.contributors.forEach(a => {
+				data.authors += a.name.first + " " + a.name.middles + " " + a.name.last + ":" + a.role + "---"
+			})
+			data.authors = data.authors.replace(/---/g, "\n")
+			this.setState({
+				currentBook: data
+			})
 		})
-		console.log(b.authors)
-		b.authors = b.authors.replace(/---/g, "\n")
-		this.setState({
-			currentBook: b
-		})
+		.catch(console.log)
 	}
 
 	saveBook(b) {
@@ -123,7 +149,6 @@ class Grid extends React.Component {
 				role: contrib.substring(contrib.indexOf(":")+1)
 			}
 		})
-		console.log(b);
 		console.log("TODO: SAVE BOOK")
 		this.setState({
 			currentBook: null
@@ -147,29 +172,29 @@ class Grid extends React.Component {
 		this.setState({
 			filters: filters
 		})
-		console.log(this.state.filters);
 		this.loadBooks()
 		setSubmitting(false)
 	}
 
 	loadBooks() {
-		// fetch("http://library.jakekausler.com/books?" + $.param(this.state.filters))
-		// 	.then(res => res.json())
-		// 	.then((data) => {
-		// 		this.setState({
-		// 			books: data.books
-		// 		})
-		// 	})
-		// 	.catch(console.log)
-		this.setState({
-			books: books.books.slice(this.state.filters.numbertoget*(this.state.filters.page-1), this.state.filters.numbertoget*this.state.filters.page).map(book => {
-				return {
-					imageurl: book.imageurl,
-					id: book.bookid
-				}
+		fetch("/books?" + $.param(this.state.filters))
+			.then(res => res.json())
+			.then((data) => {
+				this.setState({
+					books: data.books,
+					numberOfBooks: data.numbooks
+				})
+				console.log(data)
 			})
-		})
-		console.log(books)
+			.catch(console.log)
+		// this.setState({
+		// 	books: books.books.slice(this.state.filters.numbertoget*(this.state.filters.page-1), this.state.filters.numbertoget*this.state.filters.page).map(book => {
+		// 		return {
+		// 			imageurl: book.imageurl,
+		// 			id: book.bookid
+		// 		}
+		// 	})
+		// })
 	}
 }
 

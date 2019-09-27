@@ -11,9 +11,9 @@ class GridView extends React.Component {
 		let gridObjects = this.props.books.map((book) => {
 			return (
 				<GridObject
-					imageurl={'https://about.canva.com/wp-content/uploads/sites/3/2015/01/art_bookcover.png'/*book.imageurl*/}
-					id={book.id}
-					key={book.id}
+					imageurl={'/web/' + book.imageurl}
+					bookid={book.bookid}
+					key={book.bookid}
 					openBookEditor={this.props.openBookEditor}
 				/>
 			)

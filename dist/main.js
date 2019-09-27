@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "0947715b4f81aa06ae27";
+/******/ 	var hotCurrentHash = "791444177574c3a2af6f";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -784,7 +784,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/";
+/******/ 	__webpack_require__.p = "web/";
 /******/
 /******/ 	// __webpack_hash__
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
@@ -1227,7 +1227,7 @@ module.exports = exports['default'];
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\r\n/*\r\n\tColors\r\n\thttp://paletton.com/#uid=53s0u0kllllaFw0g0qFqFg0w0aF\r\n*/\r\n\r\n:root {\r\n/*\tPrimary */\r\n\t--Primary-Light: #6E91A1;\r\n\t--Primary-MidLight: #477286;\r\n\t--Primary-Mid: #27556C;\r\n\t--Primary-MidDark: #113C51;\r\n\t--Primary-Dark: #032536;\r\n\r\n/*\tSecondary */\r\n\t--Secondary-Light: #7D83B0;\r\n\t--Secondary-MidLight: #535A92;\r\n\t--Secondary-Mid: #313975;\r\n\t--Secondary-MidDark: #182058;\r\n\t--Secondary-Dark: #080E3B;\r\n\r\n/*\tTertiary */\r\n\t--Tertiary-Light: #78B494;\r\n\t--Tertiary-MidLight: #4B966E;\r\n\t--Tertiary-Mid: #28784D;\r\n\t--Tertiary-MidDark: #0F5A32;\r\n\t--Tertiary-Dark: #003C1C;\r\n}\r\n\r\nhtml,body {\r\n\tpadding: 0;\r\n\tmargin: 0;\r\n}\r\n\r\nbody {\r\n\tfont-family: 'Roboto', sans-serif;\r\n\tfont-size: 16px;\r\n\theight: 100%;\r\n\toverflow: hidden;\r\n}\r\n\r\n.gridObject {\r\n\tpadding: 5px;\r\n\tmargin-top: 10px;\r\n}\r\n\r\n.gridObject img {\r\n\twidth: 150px;\r\n\theight: auto;\r\n}\r\n\r\n.grid {\r\n\tdisplay: flex;\r\n\tflex-flow: row wrap;\r\n\tjustify-content: space-around;\r\n\tpadding: 0;\r\n  \tmargin: 0;\r\n  \toverflow: auto;\r\n}\r\n\r\n.filter {\r\n\theight: 100%;\r\n\tdisplay: inline-block;\r\n\tbackground-color: var(--Primary-Light);\r\n\toverflow: auto;\r\n}\r\n\r\n.filter.hidden {\r\n\twidth: 0px;\r\n\tpadding: 0px;\r\n\t-webkit-transition:width, 0.2s linear;\r\n    -moz-transition: width, 0.2s linear;\r\n    -ms-transition: width, 0.2s linear;\r\n    -o-transition: width, 0.2s linear;\r\n    transition: width, 0.2s linear;\r\n}\r\n.filter.visible {\r\n\twidth: 400px;\r\n\tpadding: 8px;\r\n\t-webkit-transition:width, 0.2s linear;\r\n    -moz-transition: width, 0.2s linear;\r\n    -ms-transition: width, 0.2s linear;\r\n    -o-transition: width, 0.2s linear;\r\n    transition: width, 0.2s linear;\r\n}\r\n\r\n.filter-showhide {\r\n\twidth: 30px;\r\n\theight: 200px;\r\n\r\n\tborder: 0.1em solid var(--Secondary-Dark);\r\n\tborder-radius: 0.12em;\r\n\tbox-sizing: border-box;\r\n\ttext-decoration: none;\r\n\ttext-transform: uppercase;\r\n\tfont-weight: 300;\r\n\ttext-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);\r\n\ttext-align: center;\r\n\ttransition: all 0.15s;\r\n\r\n\tfont-size: 24px;\r\n\r\n\tcolor: var(--Secondary-Dark);\r\n\tbackground-color: var(--Secondary-Light);\r\n}\r\n\r\n.filter-showhide:hover {\r\n\tcolor: var(--Secondary-Light);\r\n\tbackground-color: var(--Secondary-Dark);\r\n}\r\n\r\n.filters {\r\n\theight: 100%;\r\n\tdisplay: flex;\r\n}\r\n\r\n.form-button {\r\n\tborder: 0.1em solid var(--Secondary-Dark);\r\n\tborder-radius: 0.12em;\r\n\tbox-sizing: border-box;\r\n\ttext-decoration: none;\r\n\ttext-transform: uppercase;\r\n\tfont-weight: 300;\r\n\ttext-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);\r\n\ttext-align: center;\r\n\ttransition: all 0.15s;\r\n\r\n\tfont-size: 24px;\r\n\r\n\tcolor: var(--Secondary-Dark);\r\n\tbackground-color: var(--Secondary-Light);\r\n\r\n\twidth: 100%;\r\n}\r\n\r\n.form-button:hover {\r\n\tcolor: var(--Secondary-Light);\r\n\tbackground-color: var(--Secondary-Dark);\r\n}\r\n\r\n.form-field-container {\r\n\tmargin: 4px;\r\n\tdisplay: inline-block;\r\n\tposition: relative;\r\n\tmargin-bottom: 10px;\r\n\twidth: 100%;\r\n}\r\n.form-field-long {\r\n\twidth: 100%;\r\n}\r\n.form-field-short {\r\n\twidth: 100%;\r\n}\r\n.form-field-long, .form-field-short {\r\n\tborder: none;\r\n\tborder-bottom: solid 1px rgba(0,0,0,0.1);\r\n\tbackground: #f1f1f1;\r\n\tbox-sizing: border-box;\r\n\ttransition: all .15s linear;\r\n\tbackground-color: var(--Primary-Light);\r\n}\r\n.form-field-long:focus, .form-field-short:focus {\r\n\tborder-bottom: solid 1px var(--Secondary-Mid);\r\n}\r\n.form-field-label {\r\n\tfont-size: 12.5px;\r\n\topacity: .8;\r\n\r\n\tposition: absolute;\r\n\ttop: calc(50%-7px);\r\n\t/*opacity: 0;*/\r\n\ttransition: all .15s ease;\r\n}\r\n.form-field-long, .form-field-short {\r\n\tpadding: 28px 0px 12px 0px;\r\n}\r\n\r\n.form-radio-group {\r\n\tmargin: 4px;\r\n\tdisplay: flex;\r\n}\r\n.form-radio-group label {\r\n\twidth: 25%;\r\n}\r\n.form-radio\r\n{\r\n     -webkit-appearance: none;\r\n     -moz-appearance: none;\r\n     appearance: none;\r\n     display: inline-block;\r\n     position: relative;\r\n     background-color: #f1f1f1;\r\n     color: #666;\r\n     top: 10px;\r\n     height: 30px;\r\n     width: 30px;\r\n     border: 0;\r\n     border-radius: 50px;\r\n     cursor: pointer;     \r\n     margin-right: 7px;\r\n     outline: none;\r\n}\r\n.form-radio:checked::before\r\n{\r\n     position: absolute;\r\n     font: 13px/1 'Roboto', sans-serif;\r\n     left: 11px;\r\n     top: 7px;\r\n     content: '\\02143';\r\n     transform: rotate(40deg);\r\n}\r\n.form-radio:hover\r\n{\r\n     background-color: #f7f7f7;\r\n}\r\n.form-radio:checked\r\n{\r\n     background-color: #f1f1f1;\r\n}\r\n.form-radio-group-label {\r\n\tmargin-top: 18px;\r\n}\r\n\r\n.grid-view {\r\n\tdisplay: flex;\r\n\toverflow: hidden;\r\n\theight: 100vh;\r\n\tmargin-top: -80px;\r\n\tpadding-top: 80px;\r\n\tposition: relative;\r\n\twidth: 100%;\r\n\tbackface-visibility: hidden;\r\n\twill-change: overflow;\r\n}\r\n\r\n.grid, .filter {\r\n\toverflow: auto;\r\n\theight: auto;\r\n\tmargin-bottom: 80px;\r\n}\r\n\r\n.header {\r\n\tbackground-color: var(--Primary-Mid);\r\n\tcolor: var(--Primary-Light);\r\n\r\n\tdisplay: flex;\r\n\twidth: 100%;\r\n\theight: 80px;\r\n\tz-index: 10;\r\n\r\n\tfont-weight: 600;\r\n\r\n\tposition: relative;\r\n}\r\n\r\n.header span {\r\n\tfont-size: 48px;\r\n\tmargin: 12px 24px;\r\n\toverflow: hidden;\r\n}\r\n\r\n.header-button {\r\n\tmargin: 0.2em 0.2em 0.2em 0.2em;\r\n\tpadding: 0.46em 1.6em;\r\n\tflex-grow: 1;\r\n\r\n\tborder: 0.1em solid var(--Secondary-Dark);\r\n\tborder-radius: 0.12em;\r\n\tbox-sizing: border-box;\r\n\ttext-decoration: none;\r\n\ttext-transform: uppercase;\r\n\tfont-weight: 300;\r\n\ttext-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);\r\n\ttext-align: center;\r\n\ttransition: all 0.15s;\r\n\r\n\tfont-size: 24px;\r\n}\r\n\r\n.header-button.selected {\r\n\tcolor: var(--Secondary-Light);\r\n\tbackground-color: var(--Secondary-Dark);\r\n}\r\n\r\n.header-button.not-selected {\r\n\tcolor: var(--Secondary-Dark);\r\n\tbackground-color: var(--Secondary-Light);\r\n}\r\n\r\n.header-button.not-selected:hover {\r\n\tcolor: var(--Secondary-Light);\r\n\tbackground-color: var(--Secondary-Dark);\r\n}\r\n\r\n.bookView {\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\tz-index: 15;\r\n\tposition: absolute;\r\n\tbackground: var(--Primary-Light);\r\n}\r\n\r\n.bookView.hidden {\r\n\tdisplay: none;\r\n}\r\n.bookView.visible {\r\n\tdisplay: visible;\r\n}\r\n\r\n.book-form-buttons {\r\n\tbackground-color: var(--Primary-Mid);\r\n\tcolor: var(--Primary-Light);\r\n\r\n\tdisplay: flex;\r\n\r\n\twidth: 100%;\r\n\theight: 75px;\r\n}\r\n\r\n.book-form-button {\r\n\tmargin: 0.2em 0.2em 0.2em 0.2em;\r\n\tpadding: 0.46em 1.6em;\r\n\tflex-grow: 1;\r\n\r\n\tborder: 0.1em solid var(--Secondary-Dark);\r\n\tborder-radius: 0.12em;\r\n\tbox-sizing: border-box;\r\n\ttext-decoration: none;\r\n\ttext-transform: uppercase;\r\n\tfont-weight: 300;\r\n\ttext-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);\r\n\ttext-align: center;\r\n\ttransition: all 0.15s;\r\n\r\n\tfont-size: 16px;\r\n\r\n\tcolor: var(--Secondary-Dark);\r\n\tbackground-color: var(--Secondary-Light);\r\n}\r\n.book-form-button:hover {\r\n\tcolor: var(--Secondary-Light);\r\n\tbackground-color: var(--Secondary-Dark);\r\n}", ""]);
+exports.push([module.i, "\n/*\n\tColors\n\thttp://paletton.com/#uid=53s0u0kllllaFw0g0qFqFg0w0aF\n*/\n\n:root {\n/*\tPrimary */\n\t--Primary-Light: #6E91A1;\n\t--Primary-MidLight: #477286;\n\t--Primary-Mid: #27556C;\n\t--Primary-MidDark: #113C51;\n\t--Primary-Dark: #032536;\n\n/*\tSecondary */\n\t--Secondary-Light: #7D83B0;\n\t--Secondary-MidLight: #535A92;\n\t--Secondary-Mid: #313975;\n\t--Secondary-MidDark: #182058;\n\t--Secondary-Dark: #080E3B;\n\n/*\tTertiary */\n\t--Tertiary-Light: #78B494;\n\t--Tertiary-MidLight: #4B966E;\n\t--Tertiary-Mid: #28784D;\n\t--Tertiary-MidDark: #0F5A32;\n\t--Tertiary-Dark: #003C1C;\n}\n\nhtml,body {\n\tpadding: 0;\n\tmargin: 0;\n}\n\nbody {\n\tfont-family: 'Roboto', sans-serif;\n\tfont-size: 16px;\n\theight: 100%;\n\toverflow: hidden;\n}\n\n.gridObject {\n\tmargin: 2px;\n}\n\n.gridObject img {\n\twidth: 150px;\n\theight: 225px;\n}\n\n.grid {\n\tdisplay: flex;\n\tflex-flow: row wrap;\n\tjustify-content: space-around;\n\tpadding: 0;\n  \tmargin: 0;\n  \toverflow: auto;\n}\n\n.filter {\n\theight: 100%;\n\tdisplay: inline-block;\n\tbackground-color: var(--Primary-Light);\n\toverflow-y: auto;\n}\n\n.filter.hidden {\n\twidth: 0px;\n\tpadding: 0px;\n\t-webkit-transition:width, 0.2s linear;\n    -moz-transition: width, 0.2s linear;\n    -ms-transition: width, 0.2s linear;\n    -o-transition: width, 0.2s linear;\n    transition: width, 0.2s linear;\n}\n.filter.visible {\n\twidth: 425px;\n\tpadding: 8px;\n\t-webkit-transition:width, 0.2s linear;\n    -moz-transition: width, 0.2s linear;\n    -ms-transition: width, 0.2s linear;\n    -o-transition: width, 0.2s linear;\n    transition: width, 0.2s linear;\n}\n\n.filter-buttons {\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n.filter-showhide {\n\twidth: 30px;\n\tflex-grow: 1;\n\n\tborder: 0.1em solid var(--Secondary-Dark);\n\tborder-radius: 0.12em;\n\tbox-sizing: border-box;\n\ttext-decoration: none;\n\ttext-transform: uppercase;\n\tfont-weight: 300;\n\ttext-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);\n\ttext-align: center;\n\ttransition: all 0.15s;\n\n\tfont-size: 24px;\n\n\tcolor: var(--Secondary-Dark);\n\tbackground-color: var(--Secondary-Light);\n}\n\n.filter-showhide[disabled] {\n\tcolor: var(--Secondary-Dark);\n\tbackground-color: var(--Secondary-Light);\n}\n\n.filter-showhide:hover, .filter-nextprevious:hover {\n\tcolor: var(--Secondary-Light);\n\tbackground-color: var(--Secondary-Dark);\n}\n\n.filter-nextprevious {\n\ttransform: rotate(-90deg)\n}\n\n.filters {\n\theight: 100%;\n\tdisplay: flex;\n}\n\n.form-button {\n\tborder: 0.1em solid var(--Secondary-Dark);\n\tborder-radius: 0.12em;\n\tbox-sizing: border-box;\n\ttext-decoration: none;\n\ttext-transform: uppercase;\n\tfont-weight: 300;\n\ttext-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);\n\ttext-align: center;\n\ttransition: all 0.15s;\n\n\tfont-size: 24px;\n\n\tcolor: var(--Secondary-Dark);\n\tbackground-color: var(--Secondary-Light);\n\n\twidth: 100%;\n}\n\n.form-button:hover {\n\tcolor: var(--Secondary-Light);\n\tbackground-color: var(--Secondary-Dark);\n}\n\n.form-field-container {\n\tmargin: 4px;\n\tdisplay: inline-block;\n\tposition: relative;\n\tmargin-bottom: 10px;\n\twidth: 100%;\n}\n.form-field-long {\n\twidth: 100%;\n}\n.form-field-short {\n\twidth: 100%;\n}\n.form-field-long, .form-field-short {\n\tborder: none;\n\tborder-bottom: solid 1px rgba(0,0,0,0.1);\n\tbackground: #f1f1f1;\n\tbox-sizing: border-box;\n\ttransition: all .15s linear;\n\tbackground-color: var(--Primary-Light);\n}\n.form-field-long:focus, .form-field-short:focus {\n\tborder-bottom: solid 1px var(--Secondary-Mid);\n}\n.form-field-label {\n\tfont-size: 12.5px;\n\topacity: .8;\n\n\tposition: absolute;\n\ttop: calc(50%-7px);\n\t/*opacity: 0;*/\n\ttransition: all .15s ease;\n}\n.form-field-long, .form-field-short {\n\tpadding: 28px 0px 12px 0px;\n}\n\n.form-radio-group {\n\tmargin: 4px;\n\tdisplay: flex;\n}\n.form-radio-group label {\n\twidth: 25%;\n}\n.form-radio\n{\n     -webkit-appearance: none;\n     -moz-appearance: none;\n     appearance: none;\n     display: inline-block;\n     position: relative;\n     background-color: #f1f1f1;\n     color: #666;\n     top: 10px;\n     height: 30px;\n     width: 30px;\n     border: 0;\n     border-radius: 50px;\n     cursor: pointer;     \n     margin-right: 7px;\n     outline: none;\n}\n.form-radio:checked::before\n{\n     position: absolute;\n     font: 13px/1 'Roboto', sans-serif;\n     left: 11px;\n     top: 7px;\n     content: '\\02143';\n     transform: rotate(40deg);\n}\n.form-radio:hover\n{\n     background-color: #f7f7f7;\n}\n.form-radio:checked\n{\n     background-color: #f1f1f1;\n}\n.form-radio-group-label, .book-form-field-container {\n\tmargin-top: 18px;\n}\n\n.grid-view {\n\tdisplay: flex;\n\toverflow: hidden;\n\theight: 100vh;\n\tmargin-top: -80px;\n\tpadding-top: 80px;\n\tposition: relative;\n\twidth: 100%;\n\tbackface-visibility: hidden;\n\twill-change: overflow;\n}\n\n.grid, .filter {\n\toverflow: auto;\n\theight: auto;\n\tmargin-bottom: 80px;\n}\n\n.header {\n\tbackground-color: var(--Primary-Mid);\n\tcolor: var(--Primary-Light);\n\n\tdisplay: flex;\n\twidth: 100%;\n\theight: 80px;\n\tz-index: 10;\n\n\tfont-weight: 600;\n\n\tposition: relative;\n}\n\n.header span {\n\tfont-size: 48px;\n\tmargin: 12px 24px;\n\toverflow: hidden;\n}\n\n.header-button {\n\tmargin: 0.2em 0.2em 0.2em 0.2em;\n\tpadding: 0.46em 1.6em;\n\tflex-grow: 1;\n\n\tborder: 0.1em solid var(--Secondary-Dark);\n\tborder-radius: 0.12em;\n\tbox-sizing: border-box;\n\ttext-decoration: none;\n\ttext-transform: uppercase;\n\tfont-weight: 300;\n\ttext-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);\n\ttext-align: center;\n\ttransition: all 0.15s;\n\n\tfont-size: 24px;\n}\n\n.header-button.selected {\n\tcolor: var(--Secondary-Light);\n\tbackground-color: var(--Secondary-Dark);\n}\n\n.header-button.not-selected {\n\tcolor: var(--Secondary-Dark);\n\tbackground-color: var(--Secondary-Light);\n}\n\n.header-button.not-selected:hover {\n\tcolor: var(--Secondary-Light);\n\tbackground-color: var(--Secondary-Dark);\n}\n\n.bookView {\n\twidth: 100%;\n\theight: calc(100vh - 80px);\n\tz-index: 15;\n\tposition: absolute;\n\tbackground: var(--Primary-Light);\n\n\tdisplay: flex;\n\talign-items: stretch;\n\tflex-direction: column;\n}\n\n.bookView form {\n\tflex: 1;\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n.bookView div {\n\tpadding: 4px;\n}\n\n.bookView.hidden {\n\tdisplay: none;\n}\n.bookView.visible {\n\tdisplay: flex;\n}\n\n.book-form-buttons, .book-image-buttons {\n\tbackground-color: var(--Primary-Mid);\n\tcolor: var(--Primary-Light);\n\n\tdisplay: flex;\n\n\tflex: 0 0 75px;\n}\n\n.book-form-button, .book-image-button {\n\tmargin: 0.2em 0.2em 0.2em 0.2em;\n\tpadding: 0.46em 1.6em;\n\tflex-grow: 1;\n\n\tborder: 0.1em solid var(--Secondary-Dark);\n\tborder-radius: 0.12em;\n\tbox-sizing: border-box;\n\ttext-decoration: none;\n\ttext-transform: uppercase;\n\tfont-weight: 300;\n\ttext-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);\n\ttext-align: center;\n\ttransition: all 0.15s;\n\n\tfont-size: 16px;\n\n\tcolor: var(--Secondary-Dark);\n\tbackground-color: var(--Secondary-Light);\n}\n.book-form-button:hover, .book-image-button:hover {\n\tcolor: var(--Secondary-Light);\n\tbackground-color: var(--Secondary-Dark);\n}\n\n.book-form-main {\n\tflex: 1;\n\tdisplay: flex;\n}\n.form-field-left {\n\tflex: 1;\n\tdisplay: flex;\n\tflex-direction: column;\n}\n.form-field-left-top {\n\tflex: 1;\n\tdisplay: flex;\n}\n.form-field-left-top-left {\n\tflex: 1;\n\tdisplay: flex;\n\tflex-direction: column;\n}\n.form-field-left-top-right {\n\tflex: 1;\n\tdisplay: flex;\n\tflex-direction: column;\n}\n.form-field-left-middle {\n\tflex: 1;\n\tdisplay: flex;\n}\n.form-field-left-bottom {\n\tflex: 1;\n\tdisplay: flex;\n}\n.form-field-right {\n\tflex: 1;\n\tdisplay: flex;\n\tflex-direction: column;\n}\n.book-form-field-container {\n\tflex: 1;\n}\n.form-field-row {\n\tflex: 1;\n\tdisplay: flex;\n}\ntextarea {\n\twidth: 100%;\n\theight: 100%;\n}", ""]);
 
 
 /***/ }),
@@ -40040,6 +40040,17 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./src/SampleData/book.json":
+/*!**********************************!*\
+  !*** ./src/SampleData/book.json ***!
+  \**********************************/
+/*! exports provided: bookid, title, subtitle, originallypublished, publisher, isread, isreference, isowned, isbn, loanee, dewey, pages, width, height, depth, weight, primarylanguage, secondarylanguage, originallanguage, series, volume, format, edition, isreading, isshipping, imageurl, spinecolor, spinecoloroverridden, cheapestnew, cheapestused, editionpublished, contributors, library, lexile, lexilecode, interestlevel, ar, learningaz, guidedreading, dra, grade, fountaspinnell, age, readingrecovery, pmreaders, awards, notes, tags, isanthology, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"bookid\":\"13439\",\"title\":\"Computer Networking\",\"subtitle\":\"A Top-Down Approach\",\"originallypublished\":\"2013\",\"publisher\":{\"id\":\"19203\",\"publisher\":\"Pearson Education\",\"city\":\"London\",\"state\":\"\",\"country\":\"England\",\"parentcompany\":\"Pearson Education\"},\"isread\":true,\"isreference\":false,\"isowned\":true,\"isbn\":\"9780132856201\",\"loanee\":{\"id\":-1,\"username\":\"\",\"first\":\"\",\"last\":\"\",\"fullname\":\"\",\"email\":\"\"},\"dewey\":\"004.6\",\"pages\":890,\"width\":38,\"height\":240,\"depth\":192,\"weight\":46.1,\"primarylanguage\":\"English\",\"secondarylanguage\":\"\",\"originallanguage\":\"English\",\"series\":\"\",\"volume\":0,\"format\":\"Hardcover\",\"edition\":6,\"isreading\":false,\"isshipping\":false,\"imageurl\":\"res/bookimages/13439.jpg\",\"spinecolor\":\"#C4C7C8\",\"spinecoloroverridden\":false,\"cheapestnew\":99999999.99,\"cheapestused\":99999999.99,\"editionpublished\":\"2013\",\"contributors\":[{\"id\":\"7229\",\"name\":{\"first\":\"Keith\",\"middles\":\"W\",\"last\":\"Ross\"},\"role\":\"Author\"},{\"id\":\"7230\",\"name\":{\"first\":\"James\",\"middles\":\"F\",\"last\":\"Kurose\"},\"role\":\"Author\"}],\"library\":{\"id\":43,\"name\":\"default\",\"permissions\":7,\"owner\":\"jakekausler\"},\"lexile\":{\"Int64\":0,\"Valid\":false},\"lexilecode\":\"\",\"interestlevel\":{\"Int64\":0,\"Valid\":false},\"ar\":{\"Float64\":0,\"Valid\":false},\"learningaz\":{\"Int64\":0,\"Valid\":false},\"guidedreading\":{\"Int64\":0,\"Valid\":false},\"dra\":{\"Int64\":0,\"Valid\":false},\"grade\":{\"Int64\":0,\"Valid\":false},\"fountaspinnell\":{\"Int64\":0,\"Valid\":false},\"age\":{\"Int64\":0,\"Valid\":false},\"readingrecovery\":{\"Int64\":0,\"Valid\":false},\"pmreaders\":{\"Int64\":0,\"Valid\":false},\"awards\":null,\"notes\":\"\",\"tags\":null,\"isanthology\":false}");
+
+/***/ }),
+
 /***/ "./src/SampleData/books.json":
 /*!***********************************!*\
   !*** ./src/SampleData/books.json ***!
@@ -40193,6 +40204,57 @@ class App extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
 
 /***/ }),
 
+/***/ "./src/js/BookCases.js":
+/*!*****************************!*\
+  !*** ./src/js/BookCases.js ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+class Shelves extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  constructor() {
+    super();
+    this.state = {
+      cases: [],
+      libraryid: 43
+    };
+    this.loadCases.bind(this.loadCases);
+    this.loadCases();
+  }
+
+  render() {
+    if (!this.state.cases) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "bookcases"
+      });
+    }
+
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      id: "bookcases"
+    }, "Bookcases");
+  }
+
+  loadCases() {
+    fetch("/libraries/" + this.state.libraryid + "/cases").then(res => res.json()).then(data => {
+      this.setState({
+        cases: data
+      });
+      console.log(data);
+    }).catch(console.log);
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Shelves);
+
+/***/ }),
+
 /***/ "./src/js/BookView.js":
 /*!****************************!*\
   !*** ./src/js/BookView.js ***!
@@ -40214,8 +40276,6 @@ class BookView extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   }
 
   render() {
-    console.log(this.props.book);
-
     if (this.props.visible === "hidden") {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "bookView " + this.props.visible
@@ -40248,7 +40308,269 @@ class BookView extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       setFieldValue
     }) => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Form"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "book-form-main"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form-field-left"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form-field-left-top"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form-field-left-top-left"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "book-form-field-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "form-field-label"
+    }, "Library"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: "form-field-long",
+      type: "text",
+      name: "library.name"
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "book-form-field-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "form-field-label"
+    }, "Title"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: "form-field-long",
+      type: "text",
+      name: "title"
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "book-form-field-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "form-field-label"
+    }, "Subtitle"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: "form-field-long",
+      type: "text",
+      name: "subtitle"
+    }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form-field-left-top-right"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      src: "/web/" + this.props.book.imageurl
     }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "book-form-field-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "form-field-label"
+    }, "Image URL"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: "form-field-long",
+      type: "text",
+      name: "imageurl"
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "book-image-buttons"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      className: "book-image-button",
+      type: "button"
+    }, "Save"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      className: "book-image-button",
+      type: "button"
+    }, "Remove")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form-field-left-middle"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "book-form-field-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "form-field-label"
+    }, "Series"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: "form-field-long",
+      type: "text",
+      name: "series"
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "book-form-field-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "form-field-label"
+    }, "Volume"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: "form-field-long",
+      type: "number",
+      name: "volume"
+    }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form-field-left-bottom"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "book-form-field-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "form-field-label"
+    }, "Authors"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: "form-field-long",
+      component: "textarea",
+      name: "authors"
+    })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form-field-right"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form-field-row"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "book-form-field-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "form-field-label"
+    }, "Publisher"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: "form-field-long",
+      type: "text",
+      name: "publisher.publisher"
+    }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form-field-row"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "book-form-field-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "form-field-label"
+    }, "City"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: "form-field-long",
+      type: "text",
+      name: "publisher.city"
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "book-form-field-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "form-field-label"
+    }, "State"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: "form-field-long",
+      type: "text",
+      name: "publisher.state"
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "book-form-field-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "form-field-label"
+    }, "Country"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: "form-field-long",
+      type: "text",
+      name: "publisher.country"
+    }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form-field-row"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "book-form-field-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "form-field-label"
+    }, "Originally Published"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: "form-field-long",
+      type: "number",
+      name: "originallypublished"
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "book-form-field-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "form-field-label"
+    }, "Edition Published"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: "form-field-long",
+      type: "number",
+      name: "editionpublished"
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "book-form-field-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "form-field-label"
+    }, "Edition"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: "form-field-long",
+      type: "number",
+      name: "edition"
+    }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form-field-row"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "book-form-field-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "form-field-label"
+    }, "ISBN"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: "form-field-long",
+      type: "text",
+      name: "isbn"
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "book-form-field-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "form-field-label"
+    }, "Dewey"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: "form-field-long",
+      type: "text",
+      name: "dewey"
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "book-form-field-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "form-field-label"
+    }, "Binding"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: "form-field-long",
+      type: "text",
+      name: "format"
+    }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form-field-row"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "book-form-field-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "form-field-label"
+    }, "Pages"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: "form-field-long",
+      type: "number",
+      name: "pages"
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "book-form-field-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "form-field-label"
+    }, "Width"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: "form-field-long",
+      type: "number",
+      name: "width"
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "book-form-field-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "form-field-label"
+    }, "Height"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: "form-field-long",
+      type: "number",
+      name: "height"
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "book-form-field-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "form-field-label"
+    }, "Depth"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: "form-field-long",
+      type: "number",
+      name: "depth"
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "book-form-field-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "form-field-label"
+    }, "Weight"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: "form-field-long",
+      type: "number",
+      name: "weight"
+    }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form-field-row"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "book-form-field-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "book-form-radio-label"
+    }, "Owned"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: "form-radio",
+      type: "checkbox",
+      name: "isowned"
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "book-form-field-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "book-form-radio-label"
+    }, "Read"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: "form-radio",
+      type: "checkbox",
+      name: "isread"
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "book-form-field-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "book-form-radio-label"
+    }, "Reference"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: "form-radio",
+      type: "checkbox",
+      name: "isreference"
+    }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form-field-row"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "book-form-field-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "book-form-radio-label"
+    }, "Anthology"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: "form-radio",
+      type: "checkbox",
+      name: "isanthology"
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "book-form-field-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "book-form-radio-label"
+    }, "Reading"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: "form-radio",
+      type: "checkbox",
+      name: "isreading"
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "book-form-field-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "book-form-radio-label"
+    }, "Shipping"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: "form-radio",
+      type: "checkbox",
+      name: "isshipping"
+    }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "book-form-buttons"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       type: "submit",
@@ -40313,6 +40635,8 @@ class Filters extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       buttonText = '<';
     }
 
+    let nextDisabled = this.props.filters.page === Math.ceil(this.props.numBooks / this.props.filters.numbertoget);
+    let previousDisabled = this.props.filters.page === 1;
     let result = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "filters"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -40580,6 +40904,7 @@ class Filters extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       type: "number",
       name: "page",
       min: "1",
+      max: Math.ceil(this.props.numBooks / this.props.filters.numbertoget),
       step: "1"
     })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "form-field-container"
@@ -40603,10 +40928,24 @@ class Filters extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       className: "form-button",
       type: "submit",
       disabled: isSubmitting
-    }, "Submit")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    }, "Submit")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "filter-buttons"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: "filter-showhide",
       onClick: this.onClick
-    }, buttonText));
+    }, buttonText), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      className: "filter-showhide",
+      disabled: nextDisabled,
+      onClick: this.props.nextPage
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "filter-nextprevious"
+    }, "Next")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      className: "filter-showhide",
+      disabled: previousDisabled,
+      onClick: this.props.prevPage
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "filter-nextprevious"
+    }, "Previous"))));
     return result;
   }
 
@@ -40632,6 +40971,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _BookView__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./BookView */ "./src/js/BookView.js");
 /* harmony import */ var _SampleData_books_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../SampleData/books.json */ "./src/SampleData/books.json");
 var _SampleData_books_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../SampleData/books.json */ "./src/SampleData/books.json", 1);
+/* harmony import */ var _SampleData_book_json__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../SampleData/book.json */ "./src/SampleData/book.json");
+var _SampleData_book_json__WEBPACK_IMPORTED_MODULE_5___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../SampleData/book.json */ "./src/SampleData/book.json", 1);
+
 
 
 
@@ -40682,6 +41024,7 @@ class Grid extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
         toreadingrecovery: ''
       },
       books: [],
+      numberOfBooks: 0,
       loading: false,
       currentBook: null
     };
@@ -40691,6 +41034,8 @@ class Grid extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     this.saveBook = this.saveBook.bind(this);
     this.cancelBook = this.cancelBook.bind(this);
     this.removeBook = this.removeBook.bind(this);
+    this.nextPage = this.nextPage.bind(this);
+    this.prevPage = this.prevPage.bind(this);
   }
 
   componentDidMount() {
@@ -40709,7 +41054,10 @@ class Grid extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       className: "grid-view"
     }, this.state.loading && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "LOADING"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Filters__WEBPACK_IMPORTED_MODULE_1__["default"], {
       filters: this.state.filters,
-      updateFilters: this.updateFilters
+      updateFilters: this.updateFilters,
+      numBooks: this.state.numberOfBooks,
+      nextPage: this.nextPage,
+      prevPage: this.prevPage
     }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GridView__WEBPACK_IMPORTED_MODULE_2__["default"], {
       books: this.state.books,
       openBookEditor: this.openBookEditor
@@ -40722,15 +41070,48 @@ class Grid extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     }));
   }
 
-  openBookEditor(bookid) {
-    this.setState({
-      currentBook: _SampleData_books_json__WEBPACK_IMPORTED_MODULE_4__.books.filter(book => {
-        return book.bookid === bookid;
-      })[0]
-    });
+  nextPage() {
+    this.setState(prevState => ({
+      filters: { ...prevState.filters,
+        page: prevState.filters.page + 1
+      }
+    }), () => this.loadBooks());
   }
 
-  saveBook(book) {
+  prevPage() {
+    this.setState(prevState => ({
+      filters: { ...prevState.filters,
+        page: prevState.filters.page - 1
+      }
+    }), () => this.loadBooks());
+  }
+
+  openBookEditor(bookid) {
+    fetch("/books/" + bookid).then(res => res.json()).then(data => {
+      data.authors = "";
+      data.contributors.forEach(a => {
+        data.authors += a.name.first + " " + a.name.middles + " " + a.name.last + ":" + a.role + "---";
+      });
+      data.authors = data.authors.replace(/---/g, "\n");
+      this.setState({
+        currentBook: data
+      });
+    }).catch(console.log);
+  }
+
+  saveBook(b) {
+    b.authors = b.authors.trim();
+    b.contributors = b.authors.split("\n");
+    b.contributors = b.contributors.map(contrib => {
+      return {
+        name: {
+          first: contrib.substring(0, contrib.indexOf(' ')),
+          middles: contrib.substring(contrib.indexOf(' ') + 1, contrib.indexOf(' ', contrib.indexOf(' ') + 1)),
+          last: contrib.substring(contrib.indexOf(' ', contrib.indexOf(' ') + 1) + 1, contrib.indexOf(":"))
+        },
+        role: contrib.substring(contrib.indexOf(":") + 1)
+      };
+    });
     console.log("TODO: SAVE BOOK");
     this.setState({
       currentBook: null
@@ -40754,29 +41135,25 @@ class Grid extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     this.setState({
       filters: filters
     });
-    console.log(this.state.filters);
     this.loadBooks();
     setSubmitting(false);
   }
 
   loadBooks() {
-    // fetch("http://library.jakekausler.com/books?" + $.param(this.state.filters))
-    // 	.then(res => res.json())
-    // 	.then((data) => {
-    // 		this.setState({
-    // 			books: data.books
-    // 		})
+    fetch("/books?" + $.param(this.state.filters)).then(res => res.json()).then(data => {
+      this.setState({
+        books: data.books,
+        numberOfBooks: data.numbooks
+      });
+      console.log(data);
+    }).catch(console.log); // this.setState({
+    // 	books: books.books.slice(this.state.filters.numbertoget*(this.state.filters.page-1), this.state.filters.numbertoget*this.state.filters.page).map(book => {
+    // 		return {
+    // 			imageurl: book.imageurl,
+    // 			id: book.bookid
+    // 		}
     // 	})
-    // 	.catch(console.log)
-    this.setState({
-      books: _SampleData_books_json__WEBPACK_IMPORTED_MODULE_4__.books.slice(this.state.filters.numbertoget * (this.state.filters.page - 1), this.state.filters.numbertoget * this.state.filters.page).map(book => {
-        return {
-          imageurl: book.imageurl,
-          id: book.bookid
-        };
-      })
-    });
-    console.log(_SampleData_books_json__WEBPACK_IMPORTED_MODULE_4__);
+    // })
   }
 
 }
@@ -40807,8 +41184,9 @@ class GridObject extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component 
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "gridObject"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      onError: event => event.target.src = 'https://d827xgdhgqbnd.cloudfront.net/wp-content/uploads/2016/04/09121712/book-cover-placeholder.png',
       src: this.props.imageurl,
-      onClick: () => this.props.openBookEditor(this.props.id)
+      onClick: () => this.props.openBookEditor(this.props.bookid)
     }));
   }
 
@@ -40841,11 +41219,9 @@ class GridView extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   render() {
     let gridObjects = this.props.books.map(book => {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GridObject__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        imageurl: 'https://about.canva.com/wp-content/uploads/sites/3/2015/01/art_bookcover.png'
-        /*book.imageurl*/
-        ,
-        id: book.id,
-        key: book.id,
+        imageurl: '/web/' + book.imageurl,
+        bookid: book.bookid,
+        key: book.bookid,
         openBookEditor: this.props.openBookEditor
       });
     });
@@ -40949,6 +41325,8 @@ class HeaderButton extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Componen
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _BookCases__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BookCases */ "./src/js/BookCases.js");
+
 
 
 class Shelves extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
@@ -40957,7 +41335,7 @@ class Shelves extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   }
 
   render() {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Shelves");
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BookCases__WEBPACK_IMPORTED_MODULE_1__["default"], null));
   }
 
 }

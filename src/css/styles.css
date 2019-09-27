@@ -40,13 +40,12 @@ body {
 }
 
 .gridObject {
-	padding: 5px;
-	margin-top: 10px;
+	margin: 2px;
 }
 
 .gridObject img {
 	width: 150px;
-	height: auto;
+	height: 225px;
 }
 
 .grid {
@@ -84,9 +83,14 @@ body {
     transition: width, 0.2s linear;
 }
 
+.filter-buttons {
+	display: flex;
+	flex-direction: column;
+}
+
 .filter-showhide {
 	width: 30px;
-	height: 200px;
+	flex-grow: 1;
 
 	border: 0.1em solid var(--Secondary-Dark);
 	border-radius: 0.12em;
@@ -104,9 +108,18 @@ body {
 	background-color: var(--Secondary-Light);
 }
 
-.filter-showhide:hover {
+.filter-showhide[disabled] {
+	color: var(--Secondary-Dark);
+	background-color: var(--Secondary-Light);
+}
+
+.filter-showhide:hover, .filter-nextprevious:hover {
 	color: var(--Secondary-Light);
 	background-color: var(--Secondary-Dark);
+}
+
+.filter-nextprevious {
+	transform: rotate(-90deg)
 }
 
 .filters {

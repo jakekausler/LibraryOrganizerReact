@@ -8,7 +8,11 @@ class GridObject extends React.Component {
 	render() {
 		return (
 			<div className="gridObject">
-				<img src={this.props.imageurl} onClick={() => this.props.openBookEditor(this.props.id)} />
+				<img
+					onError={(event) => event.target.src='https://d827xgdhgqbnd.cloudfront.net/wp-content/uploads/2016/04/09121712/book-cover-placeholder.png'}
+					src={this.props.imageurl}
+					onClick={() => this.props.openBookEditor(this.props.bookid)}
+				/>
 			</div>
 		)
 	}

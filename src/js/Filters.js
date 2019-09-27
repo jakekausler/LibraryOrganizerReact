@@ -26,6 +26,8 @@ class Filters extends React.Component {
 			filterClass = 'visible';
 			buttonText = '<';
 		}
+		let nextDisabled = this.props.filters.page === (Math.ceil(this.props.numBooks/this.props.filters.numbertoget));
+		let previousDisabled = this.props.filters.page === 1;
 		let result = (
 		<div className='filters'>
 			<div className={"filter " + filterClass}>
@@ -409,6 +411,7 @@ class Filters extends React.Component {
 									type="number"
 									name="page"
 									min="1"
+									max={Math.ceil(this.props.numBooks/this.props.filters.numbertoget)}
 									step="1"
 								/>
 							</div>
@@ -453,9 +456,17 @@ class Filters extends React.Component {
 					)}
 				</Formik>
 			</div>
-			<button className="filter-showhide" onClick={this.onClick}>
-				{buttonText}
-			</button>
+			<div className="filter-buttons">
+				<button className="filter-showhide" onClick={this.onClick}>
+					{buttonText}
+				</button>
+				<button className="filter-showhide" disabled={nextDisabled} onClick={this.props.nextPage}>
+					<div className="filter-nextprevious">Next</div>
+				</button>
+				<button className="filter-showhide" disabled={previousDisabled} onClick={this.props.prevPage}>
+					<div className="filter-nextprevious">Previous</div>
+				</button>
+			</div>
 		</div>
 		)
 		return result

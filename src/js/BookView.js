@@ -7,7 +7,6 @@ class BookView extends React.Component {
 	}
 
 	render() {
-		console.log(this.props.book)
 		if (this.props.visible==="hidden") {
 			return(<div className={"bookView " + this.props.visible}></div>)
 		}
@@ -76,7 +75,7 @@ class BookView extends React.Component {
 											</div>
 										</div>
 										<div className="form-field-left-top-right">
-											<img src={this.props.book.imageurl} />
+											<img src={"/web/" + this.props.book.imageurl} />
 											<div className="book-form-field-container">
 												<label className="form-field-label">
 													Image URL

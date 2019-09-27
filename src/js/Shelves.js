@@ -1,5 +1,7 @@
 import React from 'react'
 
+import Bookcases from './BookCases'
+
 class Shelves extends React.Component {
 	constructor() {
 		super()
@@ -8,7 +10,7 @@ class Shelves extends React.Component {
 	render() {
 		return (
 			<div>
-				Shelves
+				<Bookcases />
 			</div>
 		)
 	}

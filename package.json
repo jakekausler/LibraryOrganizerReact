@@ -15,7 +15,8 @@
     "express": "^4.17.1",
     "formik": "^1.5.8",
     "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react-dom": "^16.9.0",
+    "react-vis": "^1.11.7"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",

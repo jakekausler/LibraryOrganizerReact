@@ -411,7 +411,6 @@ class Filters extends React.Component {
 									type="number"
 									name="page"
 									min="1"
-									max={Math.ceil(this.props.numBooks/this.props.filters.numbertoget)}
 									step="1"
 								/>
 							</div>

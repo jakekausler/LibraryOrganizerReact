@@ -11,10 +11,11 @@ class GridView extends React.Component {
 		let gridObjects = this.props.books.map((book) => {
 			return (
 				<GridObject
-					imageurl={'/web/' + book.imageurl}
 					bookid={book.bookid}
+					title={book.title}
 					key={book.bookid}
 					openBookEditor={this.props.openBookEditor}
+					newPastelColor={this.props.newPastelColor}
 				/>
 			)
 		})

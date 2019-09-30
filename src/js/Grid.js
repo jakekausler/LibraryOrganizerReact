@@ -4,9 +4,6 @@ import Filters from './Filters'
 import GridView from './GridView'
 import BookView from './BookView'
 
-import books from '../SampleData/books.json'
-import book from '../SampleData/book.json'
-
 class Grid extends React.Component {
 	constructor() {
 		super()
@@ -90,6 +87,7 @@ class Grid extends React.Component {
 				<GridView
 					books={this.state.books}
 					openBookEditor={this.openBookEditor}
+					newPastelColor={this.props.newPastelColor}
 				/>
 				<BookView
 					book={this.state.currentBook}
@@ -102,22 +100,26 @@ class Grid extends React.Component {
 		)
 	}
 
-	nextPage() {
+	nextPage(setPage) {
 		this.setState(prevState => ({
 			filters: {
 				...prevState.filters,
 				page: prevState.filters.page + 1
 			}
-		}), () => this.loadBooks())
+		}), () => {
+			this.loadBooks()
+		})
 	}
 
-	prevPage() {
+	prevPage(setPage) {
 		this.setState(prevState => ({
 			filters: {
 				...prevState.filters,
 				page: prevState.filters.page - 1
 			}
-		}), () => this.loadBooks())
+		}), () => {
+			this.loadBooks()
+		})
 	}
 
 	openBookEditor(bookid) {
@@ -149,7 +151,7 @@ class Grid extends React.Component {
 				role: contrib.substring(contrib.indexOf(":")+1)
 			}
 		})
-		console.log("TODO: SAVE BOOK")
+		this.props.saveBook(b)
 		this.setState({
 			currentBook: null
 		})
@@ -162,7 +164,7 @@ class Grid extends React.Component {
 	}
 
 	removeBook(bookid) {
-		console.log("TODO: REMOVE BOOK")
+		this.props.removeBook(bookid)
 		this.setState({
 			currentBook: null
 		})
@@ -184,17 +186,8 @@ class Grid extends React.Component {
 					books: data.books,
 					numberOfBooks: data.numbooks
 				})
-				console.log(data)
 			})
 			.catch(console.log)
-		// this.setState({
-		// 	books: books.books.slice(this.state.filters.numbertoget*(this.state.filters.page-1), this.state.filters.numbertoget*this.state.filters.page).map(book => {
-		// 		return {
-		// 			imageurl: book.imageurl,
-		// 			id: book.bookid
-		// 		}
-		// 	})
-		// })
 	}
 }
 

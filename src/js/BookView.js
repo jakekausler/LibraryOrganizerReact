@@ -75,7 +75,9 @@ class BookView extends React.Component {
 											</div>
 										</div>
 										<div className="form-field-left-top-right">
-											<img src={"/web/" + this.props.book.imageurl} />
+											<div className="book-form-image-container">
+												<img src={"/web/" + this.props.book.imageurl} />
+											</div>
 											<div className="book-form-field-container">
 												<label className="form-field-label">
 													Image URL
@@ -87,24 +89,10 @@ class BookView extends React.Component {
 												>
 												</Field>
 											</div>
-											<div className="book-image-buttons">
-												<button
-													className="book-image-button"
-													type="button"
-												>
-													Save
-												</button>
-												<button
-													className="book-image-button"
-													type="button"
-												>
-													Remove
-												</button>
-											</div>
 										</div>
 									</div>
 									<div className="form-field-left-middle">
-										<div className="book-form-field-container">
+										<div className="book-form-field-container-long">
 											<label className="form-field-label">
 												Series
 											</label>

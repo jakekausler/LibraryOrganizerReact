@@ -49,6 +49,7 @@ class Shelves extends React.Component {
                     saveBook={this.saveBook}
                     cancelBook={this.cancelBook}
                     removeBook={this.removeBook}
+                    reload={this.loadCases}
                 />
             </div>
         )
@@ -70,20 +71,8 @@ class Shelves extends React.Component {
         .catch(console.log)
     }
 
-    saveBook(b) {
-        b.authors = b.authors.trim()
-        b.contributors = b.authors.split("\n")
-        b.contributors = b.contributors.map((contrib) => {
-            return {
-                name: {
-                    first: contrib.substring(0, contrib.indexOf(' ')),
-                    middles: contrib.substring(contrib.indexOf(' ') + 1, contrib.indexOf(' ', contrib.indexOf(' ') + 1)),
-                    last: contrib.substring(contrib.indexOf(' ', contrib.indexOf(' ') + 1) + 1, contrib.indexOf(":"))
-                },
-                role: contrib.substring(contrib.indexOf(":")+1)
-            }
-        })
-        console.log("TODO: SAVE BOOK")
+    saveBook(b, reload) {
+        this.props.saveBook(b, reload)
         this.setState({
             currentBook: null
         })
@@ -95,8 +84,8 @@ class Shelves extends React.Component {
         })
     }
 
-    removeBook(bookid) {
-        console.log("TODO: REMOVE BOOK")
+    removeBook(bookid, reload) {
+        this.props.removeBook(bookid, reload)
         this.setState({
             currentBook: null
         })

@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "35b2c8b994f9fc171c1b";
+/******/ 	var hotCurrentHash = "6da57df9d72a3439d1bb";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -1241,7 +1241,7 @@ exports.push([module.i, ".react-vis-magic-css-import-rule{display:inherit}.rv-tr
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\r\n/*\r\n\tColors\r\n\thttp://paletton.com/#uid=53s0u0kllllaFw0g0qFqFg0w0aF\r\n*/\r\n\r\n:root {\r\n/*\tPrimary */\r\n\t--Primary-Light: #6E91A1;\r\n\t--Primary-MidLight: #477286;\r\n\t--Primary-Mid: #27556C;\r\n\t--Primary-MidDark: #113C51;\r\n\t--Primary-Dark: #032536;\r\n\r\n/*\tSecondary */\r\n\t--Secondary-Light: #7D83B0;\r\n\t--Secondary-MidLight: #535A92;\r\n\t--Secondary-Mid: #313975;\r\n\t--Secondary-MidDark: #182058;\r\n\t--Secondary-Dark: #080E3B;\r\n\r\n/*\tTertiary */\r\n\t--Tertiary-Light: #78B494;\r\n\t--Tertiary-MidLight: #4B966E;\r\n\t--Tertiary-Mid: #28784D;\r\n\t--Tertiary-MidDark: #0F5A32;\r\n\t--Tertiary-Dark: #003C1C;\r\n}\r\n\r\nhtml,body {\r\n\tpadding: 0;\r\n\tmargin: 0;\r\n}\r\n\r\nbody {\r\n\tfont-family: georgia, serif;\r\n\tfont-size: 16px;\r\n\theight: 100%;\r\n\toverflow: hidden;\r\n}\r\n\r\nbutton, input, textarea {\r\n\tfont-family: georgia, serif;\r\n}\r\n\r\ncanvas {\r\n\tdisplay: inline-block;\r\n}\r\n\r\n.gridObject {\r\n\tmargin: 2px;\r\n}\r\n\r\n.gridObject img, .bookImage {\r\n\twidth: 150px;\r\n\theight: 225px;\r\n}\r\n\r\n.bookImage {\r\n  border: 1px solid black;\r\n  display: table-cell;\r\n  vertical-align: middle;\r\n  font: 20px georgia, sans-serif;\r\n  text-align: center;\r\n  word-break: break-word;\r\n}\r\n\r\n.grid {\r\n\tdisplay: flex;\r\n\tflex-flow: row wrap;\r\n\tjustify-content: space-around;\r\n\tpadding: 0;\r\n  \tmargin: 0;\r\n  \toverflow: auto;\r\n}\r\n\r\n.filter {\r\n\theight: 100%;\r\n\tdisplay: inline-block;\r\n\tbackground-color: var(--Primary-Light);\r\n\toverflow-y: auto;\r\n}\r\n\r\n.filter.hidden {\r\n\twidth: 0px;\r\n\tpadding: 0px;\r\n\t-webkit-transition:width, 0.2s linear;\r\n    -moz-transition: width, 0.2s linear;\r\n    -ms-transition: width, 0.2s linear;\r\n    -o-transition: width, 0.2s linear;\r\n    transition: width, 0.2s linear;\r\n}\r\n.filter.visible {\r\n\twidth: 425px;\r\n\tpadding: 8px;\r\n\t-webkit-transition:width, 0.2s linear;\r\n    -moz-transition: width, 0.2s linear;\r\n    -ms-transition: width, 0.2s linear;\r\n    -o-transition: width, 0.2s linear;\r\n    transition: width, 0.2s linear;\r\n}\r\n\r\n.filter-buttons {\r\n\tdisplay: flex;\r\n\tflex-direction: column;\r\n}\r\n\r\n.filter-showhide {\r\n\twidth: 30px;\r\n\tflex-grow: 1;\r\n\r\n\tborder: 0.1em solid var(--Secondary-Dark);\r\n\tborder-radius: 0.12em;\r\n\tbox-sizing: border-box;\r\n\ttext-decoration: none;\r\n\ttext-transform: uppercase;\r\n\tfont-weight: 300;\r\n\ttext-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);\r\n\ttext-align: center;\r\n\ttransition: all 0.15s;\r\n\r\n\tfont-size: 24px;\r\n\r\n\tcolor: var(--Secondary-Dark);\r\n\tbackground-color: var(--Secondary-Light);\r\n}\r\n\r\n.filter-showhide[disabled] {\r\n\tcolor: var(--Secondary-Dark);\r\n\tbackground-color: var(--Secondary-Light);\r\n}\r\n\r\n.filter-showhide:hover, .filter-nextprevious:hover {\r\n\tcolor: var(--Secondary-Light);\r\n\tbackground-color: var(--Secondary-Dark);\r\n}\r\n\r\n.filter-nextprevious {\r\n\ttransform: rotate(-90deg)\r\n}\r\n\r\n.filters {\r\n\theight: 100%;\r\n\tdisplay: flex;\r\n}\r\n\r\n.form-button {\r\n\tborder: 0.1em solid var(--Secondary-Dark);\r\n\tborder-radius: 0.12em;\r\n\tbox-sizing: border-box;\r\n\ttext-decoration: none;\r\n\ttext-transform: uppercase;\r\n\tfont-weight: 300;\r\n\ttext-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);\r\n\ttext-align: center;\r\n\ttransition: all 0.15s;\r\n\r\n\tfont-size: 24px;\r\n\r\n\tcolor: var(--Secondary-Dark);\r\n\tbackground-color: var(--Secondary-Light);\r\n\r\n\twidth: 100%;\r\n}\r\n\r\n.form-button:hover {\r\n\tcolor: var(--Secondary-Light);\r\n\tbackground-color: var(--Secondary-Dark);\r\n}\r\n\r\n.form-field-container {\r\n\tmargin: 4px;\r\n\tdisplay: inline-block;\r\n\tposition: relative;\r\n\tmargin-bottom: 10px;\r\n\twidth: 100%;\r\n}\r\n.form-field-long {\r\n\twidth: 100%;\r\n}\r\n.form-field-short {\r\n\twidth: 100%;\r\n}\r\n.form-field-long, .form-field-short {\r\n\tborder: none;\r\n\tborder-bottom: solid 1px rgba(0,0,0,0.1);\r\n\tbackground: #f1f1f1;\r\n\tbox-sizing: border-box;\r\n\ttransition: all .15s linear;\r\n\tbackground-color: var(--Primary-Light);\r\n}\r\n.form-field-long:focus, .form-field-short:focus {\r\n\tborder-bottom: solid 1px var(--Secondary-Mid);\r\n}\r\n.form-field-label {\r\n\tfont-size: 12.5px;\r\n\topacity: .8;\r\n\r\n\tposition: absolute;\r\n\ttop: calc(50%-7px);\r\n\t/*opacity: 0;*/\r\n\ttransition: all .15s ease;\r\n}\r\n.form-field-long, .form-field-short {\r\n\tpadding: 28px 0px 12px 0px;\r\n}\r\n\r\n.form-radio-group {\r\n\tmargin: 4px;\r\n\tdisplay: flex;\r\n}\r\n.form-radio-group label {\r\n\twidth: 25%;\r\n}\r\n.form-radio\r\n{\r\n     -webkit-appearance: none;\r\n     -moz-appearance: none;\r\n     appearance: none;\r\n     display: inline-block;\r\n     position: relative;\r\n     background-color: #f1f1f1;\r\n     color: #666;\r\n     top: 10px;\r\n     height: 30px;\r\n     width: 30px;\r\n     border: 0;\r\n     border-radius: 50px;\r\n     cursor: pointer;     \r\n     margin-right: 7px;\r\n     outline: none;\r\n}\r\n.form-radio:checked::before\r\n{\r\n     position: absolute;\r\n     font-size: 13px;\r\n     left: 11px;\r\n     top: 7px;\r\n     content: '\\02143';\r\n     transform: rotate(40deg);\r\n}\r\n.form-radio:hover\r\n{\r\n     background-color: #f7f7f7;\r\n}\r\n.form-radio:checked\r\n{\r\n     background-color: #f1f1f1;\r\n}\r\n.form-radio-group-label, .book-form-field-container {\r\n\tmargin-top: 18px;\r\n}\r\n\r\n.grid-view {\r\n\tdisplay: flex;\r\n\toverflow: hidden;\r\n\theight: 100vh;\r\n\tmargin-top: -80px;\r\n\tpadding-top: 80px;\r\n\tposition: relative;\r\n\twidth: 100%;\r\n\tbackface-visibility: hidden;\r\n\twill-change: overflow;\r\n}\r\n\r\n.bookcases-container {\r\n\tdisplay: flex;\r\n\toverflow: hidden;\r\n\theight: 100vh;\r\n\tmargin-top: -80px;\r\n\tpadding-top: 80px;\r\n\tposition: relative;\r\n\twidth: 100%;\r\n\tbackface-visibility: hidden;\r\n\twill-change: overflow;\r\n}\r\n\r\n.bookcases {\r\n\toverflow: auto;\r\n\theight: auto;\r\n\tmargin-bottom: 80px;\r\n\twhite-space: nowrap;\r\n}\r\n\r\n.grid, .filter {\r\n\toverflow: auto;\r\n\theight: auto;\r\n\tmargin-bottom: 80px;\r\n}\r\n\r\n.header {\r\n\tbackground-color: var(--Primary-Mid);\r\n\tcolor: var(--Primary-Light);\r\n\r\n\tdisplay: flex;\r\n\twidth: 100%;\r\n\theight: 80px;\r\n\tz-index: 10;\r\n\r\n\tfont-weight: 600;\r\n\r\n\tposition: relative;\r\n}\r\n\r\n.header span {\r\n\tfont-size: 48px;\r\n\tmargin: 12px 24px;\r\n\toverflow: hidden;\r\n}\r\n\r\n.header-button {\r\n\tmargin: .5em 1em;\r\n\tpadding: 0.46em 1.6em;\r\n\tflex-grow: 1;\r\n\r\n\tborder: 0.1em solid var(--Secondary-Dark);\r\n\tborder-radius: 0.12em;\r\n\tbox-sizing: border-box;\r\n\ttext-decoration: none;\r\n\ttext-transform: uppercase;\r\n\tfont-weight: 300;\r\n\ttext-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);\r\n\ttext-align: center;\r\n\ttransition: all 0.15s;\r\n\r\n\tfont-size: 24px;\r\n}\r\n\r\n.header-button.selected {\r\n\tcolor: var(--Secondary-Light);\r\n\tbackground-color: var(--Secondary-Dark);\r\n}\r\n\r\n.header-button.not-selected {\r\n\tcolor: var(--Secondary-Dark);\r\n\tbackground-color: var(--Secondary-Light);\r\n}\r\n\r\n.header-button.not-selected:hover {\r\n\tcolor: var(--Secondary-Light);\r\n\tbackground-color: var(--Secondary-Dark);\r\n}\r\n\r\n.bookView {\r\n\twidth: 100%;\r\n\theight: calc(100vh - 80px);\r\n\tz-index: 15;\r\n\tposition: absolute;\r\n\tbackground: var(--Primary-Light);\r\n\toverflow: auto;\r\n\r\n\tdisplay: flex;\r\n\talign-items: stretch;\r\n\tflex-direction: column;\r\n}\r\n\r\n.bookView form {\r\n\tflex: 1;\r\n\tdisplay: flex;\r\n\tflex-direction: column;\r\n}\r\n\r\n.bookView div {\r\n\tpadding: 4px;\r\n}\r\n\r\n.bookView.hidden {\r\n\tdisplay: none;\r\n}\r\n.bookView.visible {\r\n\tdisplay: flex;\r\n}\r\n\r\n.hidden {\r\n\tdisplay: none;\r\n}\r\n.visible {\r\n\tdisplay: inline-block;\r\n}\r\n\r\n.book-form-buttons, .book-image-buttons {\r\n\tbackground-color: var(--Primary-Mid);\r\n\tcolor: var(--Primary-Light);\r\n\r\n\tdisplay: flex;\r\n\r\n\tflex: 0 0 75px;\r\n}\r\n\r\n.book-form-button, .book-image-button {\r\n\tmargin: 0.5em 1em;\r\n\tpadding: 0.46em 1.6em;\r\n\tflex-grow: 1;\r\n\r\n\tborder: 0.1em solid var(--Secondary-Dark);\r\n\tborder-radius: 0.12em;\r\n\tbox-sizing: border-box;\r\n\ttext-decoration: none;\r\n\ttext-transform: uppercase;\r\n\tfont-weight: 300;\r\n\ttext-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);\r\n\ttext-align: center;\r\n\ttransition: all 0.15s;\r\n\r\n\tfont-size: 16px;\r\n\r\n\tcolor: var(--Secondary-Dark);\r\n\tbackground-color: var(--Secondary-Light);\r\n}\r\n.book-form-button:hover, .book-image-button:hover {\r\n\tcolor: var(--Secondary-Light);\r\n\tbackground-color: var(--Secondary-Dark);\r\n}\r\n\r\n.book-form-main {\r\n\tflex: 1;\r\n\tdisplay: flex;\r\n}\r\n.form-field-left {\r\n\tflex: 2;\r\n\tdisplay: flex;\r\n\tflex-direction: column;\r\n}\r\n.form-field-left-top {\r\n\tflex: 1;\r\n\tdisplay: flex;\r\n}\r\n.form-field-left-top-left {\r\n\tflex: 4;\r\n\tdisplay: flex;\r\n\tflex-direction: column;\r\n}\r\n.form-field-left-top-right {\r\n\tflex: 1;\r\n\tdisplay: flex;\r\n\tflex-direction: column;\r\n}\r\n.form-field-left-middle {\r\n\tflex: 1;\r\n\tdisplay: flex;\r\n}\r\n.form-field-left-bottom {\r\n\tflex: 4;\r\n\tdisplay: flex;\r\n}\r\n.form-field-right {\r\n\tflex: 1;\r\n\tdisplay: flex;\r\n\tflex-direction: column;\r\n}\r\n.book-form-field-container {\r\n\tflex: 1;\r\n}\r\n.book-form-field-container-long {\r\n\tflex: 4;\r\n}\r\n.form-field-row {\r\n\tflex: 1;\r\n\tdisplay: flex;\r\n}\r\ntextarea {\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\tfont-size: 14px;\r\n}\r\n.book-form-image-container img {\r\n\theight: 225px;\r\n}\r\n\r\ninput {\r\n}\r\n\r\n@media screen and (min-width: 767px) and (orientation: portrait) {\r\n\t.filter-showhide {\r\n\t\twidth: 60px;\r\n\t}\r\n\t.book-form-main {\r\n\t\tflex-direction: column;\r\n\t}\r\n\t.form-field-left {\r\n\t\tflex: 1;\r\n\t}\r\n\t.form-field-right {\r\n\t\tflex: 2;\r\n\t}\r\n\t.form-field-label {\r\n\t\tfont-size: 16px;\r\n\t}\r\n\t.book-form-main input {\r\n\t\tfont-size: 24px;\r\n\t}\r\n\t.book-form-radio-label {\r\n\t\tfont-size: 24px;\r\n\t}\r\n\t.bookView button {\r\n\t\tfont-size: 24px;\r\n\t}\r\n\ttextarea {\r\n\t\tfont-size: 24px;\r\n\t}\r\n}", ""]);
+exports.push([module.i, "\n/*\n\tColors\n\thttp://paletton.com/#uid=53s0u0kllllaFw0g0qFqFg0w0aF\n*/\n\n:root {\n/*\tPrimary */\n\t--Primary-Light: #6E91A1;\n\t--Primary-MidLight: #477286;\n\t--Primary-Mid: #27556C;\n\t--Primary-MidDark: #113C51;\n\t--Primary-Dark: #032536;\n\n/*\tSecondary */\n\t--Secondary-Light: #7D83B0;\n\t--Secondary-MidLight: #535A92;\n\t--Secondary-Mid: #313975;\n\t--Secondary-MidDark: #182058;\n\t--Secondary-Dark: #080E3B;\n\n/*\tTertiary */\n\t--Tertiary-Light: #78B494;\n\t--Tertiary-MidLight: #4B966E;\n\t--Tertiary-Mid: #28784D;\n\t--Tertiary-MidDark: #0F5A32;\n\t--Tertiary-Dark: #003C1C;\n}\n\nhtml,body {\n\tpadding: 0;\n\tmargin: 0;\n}\n\nbody {\n\tfont-family: georgia, serif;\n\tfont-size: 16px;\n\theight: 100%;\n\toverflow: hidden;\n}\n\nbutton, input, textarea {\n\tfont-family: georgia, serif;\n}\n\ncanvas {\n\tdisplay: inline-block;\n}\n\n.gridObject {\n\tmargin: 2px;\n}\n\n.gridObject img, .bookImage {\n\twidth: 150px;\n\theight: 225px;\n}\n\n.bookImage {\n  border: 1px solid black;\n  display: table-cell;\n  vertical-align: middle;\n  font: 20px georgia, sans-serif;\n  text-align: center;\n  word-break: break-word;\n}\n\n.grid {\n\tdisplay: flex;\n\tflex-flow: row wrap;\n\tjustify-content: space-around;\n\tpadding: 0;\n  \tmargin: 0;\n  \toverflow: auto;\n}\n\n.filter {\n\theight: 100%;\n\tdisplay: inline-block;\n\tbackground-color: var(--Primary-Light);\n\toverflow-y: auto;\n}\n\n.filter.hidden {\n\twidth: 0px;\n\tpadding: 0px;\n\t-webkit-transition:width, 0.2s linear;\n    -moz-transition: width, 0.2s linear;\n    -ms-transition: width, 0.2s linear;\n    -o-transition: width, 0.2s linear;\n    transition: width, 0.2s linear;\n}\n.filter.visible {\n\twidth: 425px;\n\tpadding: 8px;\n\t-webkit-transition:width, 0.2s linear;\n    -moz-transition: width, 0.2s linear;\n    -ms-transition: width, 0.2s linear;\n    -o-transition: width, 0.2s linear;\n    transition: width, 0.2s linear;\n}\n\n.filter-buttons {\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n.filter-showhide {\n\twidth: 30px;\n\tflex-grow: 1;\n\n\tborder: 0.1em solid var(--Secondary-Dark);\n\tborder-radius: 0.12em;\n\tbox-sizing: border-box;\n\ttext-decoration: none;\n\ttext-transform: uppercase;\n\tfont-weight: 300;\n\ttext-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);\n\ttext-align: center;\n\ttransition: all 0.15s;\n\n\tfont-size: 24px;\n\n\tcolor: var(--Secondary-Dark);\n\tbackground-color: var(--Secondary-Light);\n}\n\n.filter-showhide[disabled] {\n\tcolor: var(--Secondary-Dark);\n\tbackground-color: var(--Secondary-Light);\n}\n\n.filter-showhide:hover, .filter-nextprevious:hover {\n\tcolor: var(--Secondary-Light);\n\tbackground-color: var(--Secondary-Dark);\n}\n\n.filter-nextprevious {\n\ttransform: rotate(-90deg)\n}\n\n.filters {\n\theight: 100%;\n\tdisplay: flex;\n}\n\n.form-button {\n\tborder: 0.1em solid var(--Secondary-Dark);\n\tborder-radius: 0.12em;\n\tbox-sizing: border-box;\n\ttext-decoration: none;\n\ttext-transform: uppercase;\n\tfont-weight: 300;\n\ttext-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);\n\ttext-align: center;\n\ttransition: all 0.15s;\n\n\tfont-size: 24px;\n\n\tcolor: var(--Secondary-Dark);\n\tbackground-color: var(--Secondary-Light);\n\n\twidth: 100%;\n}\n\n.form-button:hover {\n\tcolor: var(--Secondary-Light);\n\tbackground-color: var(--Secondary-Dark);\n}\n\n.form-field-container {\n\tmargin: 4px;\n\tdisplay: inline-block;\n\tposition: relative;\n\tmargin-bottom: 10px;\n\twidth: 100%;\n}\n.form-field-long {\n\twidth: 100%;\n}\n.form-field-short {\n\twidth: 100%;\n}\n.form-field-long, .form-field-short {\n\tborder: none;\n\tborder-bottom: solid 1px rgba(0,0,0,0.1);\n\tbackground: #f1f1f1;\n\tbox-sizing: border-box;\n\ttransition: all .15s linear;\n\tbackground-color: var(--Primary-Light);\n}\n.form-field-long:focus, .form-field-short:focus {\n\tborder-bottom: solid 1px var(--Secondary-Mid);\n}\n.form-field-label {\n\tfont-size: 12.5px;\n\topacity: .8;\n\n\tposition: absolute;\n\ttop: calc(50%-7px);\n\t/*opacity: 0;*/\n\ttransition: all .15s ease;\n}\n.form-field-long, .form-field-short {\n\tpadding: 28px 0px 12px 0px;\n}\n\n.form-radio-group {\n\tmargin: 4px;\n\tdisplay: flex;\n}\n.form-radio-group label {\n\twidth: 25%;\n}\n.form-radio\n{\n     -webkit-appearance: none;\n     -moz-appearance: none;\n     appearance: none;\n     display: inline-block;\n     position: relative;\n     background-color: #f1f1f1;\n     color: #666;\n     top: 10px;\n     height: 30px;\n     width: 30px;\n     border: 0;\n     border-radius: 50px;\n     cursor: pointer;     \n     margin-right: 7px;\n     outline: none;\n}\n.form-radio:checked::before\n{\n     position: absolute;\n     font-size: 13px;\n     left: 11px;\n     top: 7px;\n     content: '\\02143';\n     transform: rotate(40deg);\n}\n.form-radio:hover\n{\n     background-color: #f7f7f7;\n}\n.form-radio:checked\n{\n     background-color: #f1f1f1;\n}\n.form-radio-group-label, .book-form-field-container {\n\tmargin-top: 18px;\n}\n\n.grid-view {\n\tdisplay: flex;\n\toverflow: hidden;\n\theight: 100vh;\n\tmargin-top: -80px;\n\tpadding-top: 80px;\n\tposition: relative;\n\twidth: 100%;\n\tbackface-visibility: hidden;\n\twill-change: overflow;\n}\n\n.bookcases-container {\n\tdisplay: flex;\n\toverflow: hidden;\n\theight: 100vh;\n\tmargin-top: -80px;\n\tpadding-top: 80px;\n\tposition: relative;\n\twidth: 100%;\n\tbackface-visibility: hidden;\n\twill-change: overflow;\n}\n\n.bookcases {\n\toverflow: auto;\n\theight: auto;\n\tmargin-bottom: 80px;\n\twhite-space: nowrap;\n}\n\n.grid, .filter {\n\toverflow: auto;\n\theight: auto;\n\tmargin-bottom: 80px;\n}\n\n.header {\n\tbackground-color: var(--Primary-Mid);\n\tcolor: var(--Primary-Light);\n\n\tdisplay: flex;\n\twidth: 100%;\n\theight: 80px;\n\tz-index: 10;\n\n\tfont-weight: 600;\n\n\tposition: relative;\n}\n\n.header span {\n\tfont-size: 48px;\n\tmargin: 12px 24px;\n\toverflow: hidden;\n}\n\n.header-button {\n\tmargin: .5em 1em;\n\tpadding: 0.46em 1.6em;\n\tflex-grow: 1;\n\n\tborder: 0.1em solid var(--Secondary-Dark);\n\tborder-radius: 0.12em;\n\tbox-sizing: border-box;\n\ttext-decoration: none;\n\ttext-transform: uppercase;\n\tfont-weight: 300;\n\ttext-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);\n\ttext-align: center;\n\ttransition: all 0.15s;\n\n\tfont-size: 24px;\n}\n\n.header-button.selected {\n\tcolor: var(--Secondary-Light);\n\tbackground-color: var(--Secondary-Dark);\n}\n\n.header-button.not-selected {\n\tcolor: var(--Secondary-Dark);\n\tbackground-color: var(--Secondary-Light);\n}\n\n.header-button.not-selected:hover {\n\tcolor: var(--Secondary-Light);\n\tbackground-color: var(--Secondary-Dark);\n}\n\n.bookView {\n\twidth: 100%;\n\theight: calc(100vh - 80px);\n\tz-index: 15;\n\tposition: absolute;\n\tbackground: var(--Primary-Light);\n\toverflow: auto;\n\n\tdisplay: flex;\n\talign-items: stretch;\n\tflex-direction: column;\n}\n\n.bookView form {\n\tflex: 1;\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n.bookView div {\n\tpadding: 4px;\n}\n\n.bookView.hidden {\n\tdisplay: none;\n}\n.bookView.visible {\n\tdisplay: flex;\n}\n\n.hidden {\n\tdisplay: none;\n}\n.visible {\n\tdisplay: inline-block;\n}\n\n.book-form-buttons, .book-image-buttons {\n\tbackground-color: var(--Primary-Mid);\n\tcolor: var(--Primary-Light);\n\n\tdisplay: flex;\n\n\tflex: 0 0 75px;\n}\n\n.book-form-button, .book-image-button {\n\tmargin: 0.5em 1em;\n\tpadding: 0.46em 1.6em;\n\tflex-grow: 1;\n\n\tborder: 0.1em solid var(--Secondary-Dark);\n\tborder-radius: 0.12em;\n\tbox-sizing: border-box;\n\ttext-decoration: none;\n\ttext-transform: uppercase;\n\tfont-weight: 300;\n\ttext-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);\n\ttext-align: center;\n\ttransition: all 0.15s;\n\n\tfont-size: 16px;\n\n\tcolor: var(--Secondary-Dark);\n\tbackground-color: var(--Secondary-Light);\n}\n.book-form-button:hover, .book-image-button:hover {\n\tcolor: var(--Secondary-Light);\n\tbackground-color: var(--Secondary-Dark);\n}\n\n.book-form-main {\n\tflex: 1;\n\tdisplay: flex;\n}\n.form-field-left {\n\tflex: 2;\n\tdisplay: flex;\n\tflex-direction: column;\n}\n.form-field-left-top {\n\tflex: 1;\n\tdisplay: flex;\n}\n.form-field-left-top-left {\n\tflex: 4;\n\tdisplay: flex;\n\tflex-direction: column;\n}\n.form-field-left-top-right {\n\tflex: 1;\n\tdisplay: flex;\n\tflex-direction: column;\n}\n.form-field-left-middle {\n\tflex: 1;\n\tdisplay: flex;\n}\n.form-field-left-bottom {\n\tflex: 4;\n\tdisplay: flex;\n}\n.form-field-right {\n\tflex: 1;\n\tdisplay: flex;\n\tflex-direction: column;\n}\n.book-form-field-container {\n\tflex: 1;\n}\n.book-form-field-container-long {\n\tflex: 4;\n}\n.form-field-row {\n\tflex: 1;\n\tdisplay: flex;\n}\ntextarea {\n\twidth: 100%;\n\theight: 100%;\n\tfont-size: 14px;\n}\n.book-form-image-container img {\n\theight: 225px;\n}\n\ninput {\n}\n\n@media screen and (min-width: 767px) and (orientation: portrait) {\n\t.filter-showhide {\n\t\twidth: 60px;\n\t}\n\t.book-form-main {\n\t\tflex-direction: column;\n\t}\n\t.form-field-left {\n\t\tflex: 1;\n\t}\n\t.form-field-right {\n\t\tflex: 2;\n\t}\n\t.form-field-label {\n\t\tfont-size: 16px;\n\t}\n\t.book-form-main input {\n\t\tfont-size: 24px;\n\t}\n\t.book-form-radio-label {\n\t\tfont-size: 24px;\n\t}\n\t.bookView button {\n\t\tfont-size: 24px;\n\t}\n\ttextarea {\n\t\tfont-size: 24px;\n\t}\n}", ""]);
 
 
 /***/ }),
@@ -75321,16 +75321,64 @@ class App extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     this.changePage = this.changePage.bind(this);
     this.saveBook = this.saveBook.bind(this);
     this.removeBook = this.removeBook.bind(this);
+    this.addBook = this.addBook.bind(this);
+    this.getBlankBook = this.getBlankBook.bind(this);
     this.newPastelColor = this.newPastelColor.bind(this);
     this.HSLtoRGB = this.HSLtoRGB.bind(this);
   }
 
-  saveBook(book) {
-    console.log("TODO: SAVE BOOK");
+  getBlankBook(book) {//TODO: Fill in and implement
   }
 
-  removeBook(book) {
-    console.log("TODO: REMOVE BOOK");
+  addBook(book) {
+    //TODO: Implement
+    book.authors = book.authors.trim();
+    book.contributors = book.authors.split("\n");
+    book.contributors = book.contributors.map(contrib => {
+      return {
+        name: {
+          first: contrib.substring(0, contrib.indexOf(' ')),
+          middles: contrib.substring(contrib.indexOf(' ') + 1, contrib.indexOf(' ', contrib.indexOf(' ') + 1)),
+          last: contrib.substring(contrib.indexOf(' ', contrib.indexOf(' ') + 1) + 1, contrib.indexOf(":"))
+        },
+        role: contrib.substring(contrib.indexOf(":") + 1)
+      };
+    });
+    book.originallypublished += "-01-01";
+    book.editionpublished += "-01-01";
+    fetch("/books", {
+      method: 'POST',
+      body: JSON.stringify(book)
+    }).then(res => console.log(res)).catch(console.log); // TODO: Refresh grid and shelf views
+    // TODO: Save image and create thumbnail on save/add
+  }
+
+  saveBook(book, reload) {
+    book.authors = book.authors.trim();
+    book.contributors = book.authors.split("\n");
+    book.contributors = book.contributors.map(contrib => {
+      return {
+        name: {
+          first: contrib.substring(0, contrib.indexOf(' ')),
+          middles: contrib.substring(contrib.indexOf(' ') + 1, contrib.indexOf(' ', contrib.indexOf(' ') + 1)),
+          last: contrib.substring(contrib.indexOf(' ', contrib.indexOf(' ') + 1) + 1, contrib.indexOf(":"))
+        },
+        role: contrib.substring(contrib.indexOf(":") + 1)
+      };
+    });
+    book.originallypublished += "-01-01";
+    book.editionpublished += "-01-01";
+    fetch("/books", {
+      method: 'PUT',
+      body: JSON.stringify(book)
+    }).then(res => reload()).catch(console.log); // TODO: Refresh grid and shelf views
+    // TODO: Save image and create thumbnail on save/add
+  }
+
+  removeBook(bookid, reload) {
+    fetch("/books/" + bookid, {
+      method: 'DELETE'
+    }).then(res => reload()).catch(console.log); // TODO: Refresh grid and shelf views
   }
 
   render() {
@@ -75341,6 +75389,8 @@ class App extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
         mainContent = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Grid__WEBPACK_IMPORTED_MODULE_4__["default"], {
           saveBook: this.saveBook,
           removeBook: this.removeBook,
+          addBook: this.addBook,
+          getBlankBook: this.getBlankBook,
           newPastelColor: this.newPastelColor
         });
         break;
@@ -75348,7 +75398,9 @@ class App extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       case this.state.pages[1]:
         mainContent = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shelves__WEBPACK_IMPORTED_MODULE_5__["default"], {
           saveBook: this.saveBook,
-          removeBook: this.removeBook
+          removeBook: this.removeBook,
+          addBook: this.addBook,
+          getBlankBook: this.getBlankBook
         });
         break;
 
@@ -75476,7 +75528,8 @@ class Shelves extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       visible: visible,
       saveBook: this.saveBook,
       cancelBook: this.cancelBook,
-      removeBook: this.removeBook
+      removeBook: this.removeBook,
+      reload: this.loadCases
     }));
   }
 
@@ -75493,20 +75546,8 @@ class Shelves extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     }).catch(console.log);
   }
 
-  saveBook(b) {
-    b.authors = b.authors.trim();
-    b.contributors = b.authors.split("\n");
-    b.contributors = b.contributors.map(contrib => {
-      return {
-        name: {
-          first: contrib.substring(0, contrib.indexOf(' ')),
-          middles: contrib.substring(contrib.indexOf(' ') + 1, contrib.indexOf(' ', contrib.indexOf(' ') + 1)),
-          last: contrib.substring(contrib.indexOf(' ', contrib.indexOf(' ') + 1) + 1, contrib.indexOf(":"))
-        },
-        role: contrib.substring(contrib.indexOf(":") + 1)
-      };
-    });
-    console.log("TODO: SAVE BOOK");
+  saveBook(b, reload) {
+    this.props.saveBook(b, reload);
     this.setState({
       currentBook: null
     });
@@ -75518,8 +75559,8 @@ class Shelves extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     });
   }
 
-  removeBook(bookid) {
-    console.log("TODO: REMOVE BOOK");
+  removeBook(bookid, reload) {
+    this.props.removeBook(bookid, reload);
     this.setState({
       currentBook: null
     });
@@ -75753,6 +75794,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var formik__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! formik */ "./node_modules/formik/dist/formik.esm.js");
+/* harmony import */ var _Checkbox__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Checkbox */ "./src/js/Checkbox.js");
+
 
 
 
@@ -75762,6 +75805,8 @@ class BookView extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   }
 
   render() {
+    console.log(this.props.book);
+
     if (this.props.visible === "hidden") {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "bookView " + this.props.visible
@@ -75779,7 +75824,7 @@ class BookView extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       onSubmit: (values, {
         setSubmitting
       }) => {
-        this.props.saveBook(values, setSubmitting);
+        this.props.saveBook(values, this.props.reload);
       }
     }, ({
       values,
@@ -76005,9 +76050,10 @@ class BookView extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       className: "book-form-radio-label"
     }, "Owned"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
-      className: "form-radio",
       type: "checkbox",
-      name: "isowned"
+      name: "isowned",
+      checked: values.isowned,
+      component: _Checkbox__WEBPACK_IMPORTED_MODULE_2__["default"]
     })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "book-form-field-container"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -76015,7 +76061,9 @@ class BookView extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     }, "Read"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
       className: "form-radio",
       type: "checkbox",
-      name: "isread"
+      name: "isread",
+      checked: values.isread,
+      component: _Checkbox__WEBPACK_IMPORTED_MODULE_2__["default"]
     })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "book-form-field-container"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -76023,7 +76071,9 @@ class BookView extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     }, "Reference"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
       className: "form-radio",
       type: "checkbox",
-      name: "isreference"
+      name: "isreference",
+      checked: values.isreference,
+      component: _Checkbox__WEBPACK_IMPORTED_MODULE_2__["default"]
     }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "form-field-row"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -76033,7 +76083,9 @@ class BookView extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     }, "Anthology"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
       className: "form-radio",
       type: "checkbox",
-      name: "isanthology"
+      name: "isanthology",
+      checked: values.isanthology,
+      component: _Checkbox__WEBPACK_IMPORTED_MODULE_2__["default"]
     })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "book-form-field-container"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -76041,7 +76093,9 @@ class BookView extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     }, "Reading"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
       className: "form-radio",
       type: "checkbox",
-      name: "isreading"
+      name: "isreading",
+      checked: values.isreading,
+      component: _Checkbox__WEBPACK_IMPORTED_MODULE_2__["default"]
     })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "book-form-field-container"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -76049,7 +76103,9 @@ class BookView extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     }, "Shipping"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
       className: "form-radio",
       type: "checkbox",
-      name: "isshipping"
+      name: "isshipping",
+      checked: values.isshipping,
+      component: _Checkbox__WEBPACK_IMPORTED_MODULE_2__["default"]
     }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "book-form-buttons"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -76063,13 +76119,44 @@ class BookView extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       type: "button",
       className: "book-form-button",
-      onClick: () => this.props.removeBook(this.props.id)
+      onClick: () => this.props.removeBook(this.props.book.bookid, this.props.reload)
     }, "Remove")))));
   }
 
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (BookView);
+
+/***/ }),
+
+/***/ "./src/js/Checkbox.js":
+/*!****************************!*\
+  !*** ./src/js/Checkbox.js ***!
+  \****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+
+function Checkbox({
+  field,
+  type,
+  checked
+}) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _extends({}, field, {
+    className: "form-radio",
+    type: type,
+    checked: checked
+  }));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Checkbox);
 
 /***/ }),
 
@@ -76540,7 +76627,8 @@ class Grid extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       visible: visible,
       saveBook: this.saveBook,
       cancelBook: this.cancelBook,
-      removeBook: this.removeBook
+      removeBook: this.removeBook,
+      reload: this.loadBooks
     }));
   }
 
@@ -76577,20 +76665,8 @@ class Grid extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     }).catch(console.log);
   }
 
-  saveBook(b) {
-    b.authors = b.authors.trim();
-    b.contributors = b.authors.split("\n");
-    b.contributors = b.contributors.map(contrib => {
-      return {
-        name: {
-          first: contrib.substring(0, contrib.indexOf(' ')),
-          middles: contrib.substring(contrib.indexOf(' ') + 1, contrib.indexOf(' ', contrib.indexOf(' ') + 1)),
-          last: contrib.substring(contrib.indexOf(' ', contrib.indexOf(' ') + 1) + 1, contrib.indexOf(":"))
-        },
-        role: contrib.substring(contrib.indexOf(":") + 1)
-      };
-    });
-    this.props.saveBook(b);
+  saveBook(b, reload) {
+    this.props.saveBook(b, reload);
     this.setState({
       currentBook: null
     });
@@ -76602,8 +76678,8 @@ class Grid extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     });
   }
 
-  removeBook(bookid) {
-    this.props.removeBook(bookid);
+  removeBook(bookid, reload) {
+    this.props.removeBook(bookid, reload);
     this.setState({
       currentBook: null
     });

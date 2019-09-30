@@ -95,6 +95,7 @@ class Grid extends React.Component {
 					saveBook={this.saveBook}
 					cancelBook={this.cancelBook}
 					removeBook={this.removeBook}
+					reload={this.loadBooks}
 				/>
 			</div>
 		)
@@ -138,20 +139,8 @@ class Grid extends React.Component {
 		.catch(console.log)
 	}
 
-	saveBook(b) {
-		b.authors = b.authors.trim()
-		b.contributors = b.authors.split("\n")
-		b.contributors = b.contributors.map((contrib) => {
-			return {
-				name: {
-					first: contrib.substring(0, contrib.indexOf(' ')),
-					middles: contrib.substring(contrib.indexOf(' ') + 1, contrib.indexOf(' ', contrib.indexOf(' ') + 1)),
-					last: contrib.substring(contrib.indexOf(' ', contrib.indexOf(' ') + 1) + 1, contrib.indexOf(":"))
-				},
-				role: contrib.substring(contrib.indexOf(":")+1)
-			}
-		})
-		this.props.saveBook(b)
+	saveBook(b, reload) {
+		this.props.saveBook(b, reload)
 		this.setState({
 			currentBook: null
 		})
@@ -163,8 +152,8 @@ class Grid extends React.Component {
 		})
 	}
 
-	removeBook(bookid) {
-		this.props.removeBook(bookid)
+	removeBook(bookid, reload) {
+		this.props.removeBook(bookid, reload)
 		this.setState({
 			currentBook: null
 		})

@@ -18,16 +18,71 @@ class App extends React.Component {
 		this.changePage = this.changePage.bind(this)
         this.saveBook = this.saveBook.bind(this)
         this.removeBook = this.removeBook.bind(this)
+        this.addBook = this.addBook.bind(this)
+        this.getBlankBook = this.getBlankBook.bind(this)
         this.newPastelColor = this.newPastelColor.bind(this)
         this.HSLtoRGB = this.HSLtoRGB.bind(this)
 	}
 
-	saveBook(book) {
-		console.log("TODO: SAVE BOOK")
+	getBlankBook(book) {
+		//TODO: Fill in and implement
 	}
 
-	removeBook(book) {
-		console.log("TODO: REMOVE BOOK")
+	addBook(book) {
+		//TODO: Implement
+		book.authors = book.authors.trim()
+		book.contributors = book.authors.split("\n")
+		book.contributors = book.contributors.map((contrib) => {
+			return {
+				name: {
+					first: contrib.substring(0, contrib.indexOf(' ')),
+					middles: contrib.substring(contrib.indexOf(' ') + 1, contrib.indexOf(' ', contrib.indexOf(' ') + 1)),
+					last: contrib.substring(contrib.indexOf(' ', contrib.indexOf(' ') + 1) + 1, contrib.indexOf(":"))
+				},
+				role: contrib.substring(contrib.indexOf(":")+1)
+			}
+		})
+		book.originallypublished += "-01-01"
+		book.editionpublished += "-01-01"
+		fetch("/books", {
+			method: 'POST',
+			body: JSON.stringify(book)
+		}).then((res) => console.log(res))
+		.catch(console.log)
+		// TODO: Refresh grid and shelf views
+		// TODO: Save image and create thumbnail on save/add
+	}
+
+	saveBook(book, reload) {
+		book.authors = book.authors.trim()
+		book.contributors = book.authors.split("\n")
+		book.contributors = book.contributors.map((contrib) => {
+			return {
+				name: {
+					first: contrib.substring(0, contrib.indexOf(' ')),
+					middles: contrib.substring(contrib.indexOf(' ') + 1, contrib.indexOf(' ', contrib.indexOf(' ') + 1)),
+					last: contrib.substring(contrib.indexOf(' ', contrib.indexOf(' ') + 1) + 1, contrib.indexOf(":"))
+				},
+				role: contrib.substring(contrib.indexOf(":")+1)
+			}
+		})
+		book.originallypublished += "-01-01"
+		book.editionpublished += "-01-01"
+		fetch("/books", {
+			method: 'PUT',
+			body: JSON.stringify(book)
+		}).then((res) => reload())
+		.catch(console.log)
+		// TODO: Refresh grid and shelf views
+		// TODO: Save image and create thumbnail on save/add
+	}
+
+	removeBook(bookid, reload) {
+		fetch("/books/" + bookid, {
+			method: 'DELETE'
+		}).then((res) => reload())
+		.catch(console.log)
+		// TODO: Refresh grid and shelf views
 	}
 
 	render() {
@@ -37,6 +92,8 @@ class App extends React.Component {
 			mainContent = <Grid
 				saveBook={this.saveBook}
 				removeBook={this.removeBook}
+				addBook={this.addBook}
+				getBlankBook={this.getBlankBook}
 				newPastelColor={this.newPastelColor}
 			/>
 			break;
@@ -44,6 +101,8 @@ class App extends React.Component {
 			mainContent = <Shelves
 				saveBook={this.saveBook}
 				removeBook={this.removeBook}
+				addBook={this.addBook}
+				getBlankBook={this.getBlankBook}
 			/>
 			break;
 		case this.state.pages[2]:

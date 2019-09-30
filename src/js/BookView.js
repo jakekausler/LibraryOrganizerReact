@@ -1,12 +1,15 @@
 import React from 'react'
 import {Formik, Form, Field, FieldArray, ErrorMessage} from 'formik'
 
+import Checkbox from './Checkbox'
+
 class BookView extends React.Component {
 	constructor() {
 		super()
 	}
 
 	render() {
+		console.log(this.props.book)
 		if (this.props.visible==="hidden") {
 			return(<div className={"bookView " + this.props.visible}></div>)
 		}
@@ -20,7 +23,7 @@ class BookView extends React.Component {
 						return errors;
 					}}
 					onSubmit={(values, { setSubmitting }) => {
-						this.props.saveBook(values, setSubmitting)
+						this.props.saveBook(values, this.props.reload)
 					}}
 				>
 					{({
@@ -311,9 +314,10 @@ class BookView extends React.Component {
 												Owned
 											</label>
 											<Field
-												className="form-radio"
 												type="checkbox"
 												name="isowned"
+												checked={values.isowned}
+												component={Checkbox}
 											>
 											</Field>
 										</div>
@@ -325,6 +329,8 @@ class BookView extends React.Component {
 												className="form-radio"
 												type="checkbox"
 												name="isread"
+												checked={values.isread}
+												component={Checkbox}
 											>
 											</Field>
 										</div>
@@ -336,6 +342,8 @@ class BookView extends React.Component {
 												className="form-radio"
 												type="checkbox"
 												name="isreference"
+												checked={values.isreference}
+												component={Checkbox}
 											>
 											</Field>
 										</div>
@@ -349,6 +357,8 @@ class BookView extends React.Component {
 												className="form-radio"
 												type="checkbox"
 												name="isanthology"
+												checked={values.isanthology}
+												component={Checkbox}
 											>
 											</Field>
 										</div>
@@ -360,6 +370,8 @@ class BookView extends React.Component {
 												className="form-radio"
 												type="checkbox"
 												name="isreading"
+												checked={values.isreading}
+												component={Checkbox}
 											>
 											</Field>
 										</div>
@@ -371,6 +383,8 @@ class BookView extends React.Component {
 												className="form-radio"
 												type="checkbox"
 												name="isshipping"
+												checked={values.isshipping}
+												component={Checkbox}
 											>
 											</Field>
 										</div>
@@ -397,7 +411,7 @@ class BookView extends React.Component {
 								<button
 									type="button"
 									className="book-form-button"
-									onClick={() => this.props.removeBook(this.props.id)}
+									onClick={() => this.props.removeBook(this.props.book.bookid, this.props.reload)}
 								>
 									Remove
 								</button>

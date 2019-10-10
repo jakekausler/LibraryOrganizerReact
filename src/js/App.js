@@ -9,11 +9,13 @@ import Shelves from './Shelves'
 import Stats from './Stats'
 import LoginPage from './LoginPage'
 
+import BlankBook from './blankbook.json'
+
 class App extends React.Component {
 	constructor() {
 		super()
 		this.state = {
-			currentPage: 'grid',
+			currentPage: 'stats',
 			pages: ['grid', 'shelves', 'stats'],
 			loggedIn: false
 		}
@@ -24,16 +26,7 @@ class App extends React.Component {
         this.getBlankBook = this.getBlankBook.bind(this)
         this.newPastelColor = this.newPastelColor.bind(this)
         this.HSLtoRGB = this.HSLtoRGB.bind(this)
-        this.login = this.login.bind(this)
         this.logout = this.logout.bind(this)
-	}
-
-	login(values) {
-		console.log(values)
-		//TODO: Send login request to server
-		// this.setState({
-		// 	loggedIn: true
-		// })
 	}
 
 	logout() {
@@ -49,12 +42,11 @@ class App extends React.Component {
 		})
 	}
 
-	getBlankBook(book) {
-		//TODO: Fill in and implement
+	getBlankBook() {
+		return BlankBook
 	}
 
 	addBook(book) {
-		//TODO: Implement
 		book.authors = book.authors.trim()
 		book.contributors = book.authors.split("\n")
 		book.contributors = book.contributors.map((contrib) => {

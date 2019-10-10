@@ -7,13 +7,15 @@ import Header from './Header'
 import Grid from './Grid'
 import Shelves from './Shelves'
 import Stats from './Stats'
+import LoginPage from './LoginPage'
 
 class App extends React.Component {
 	constructor() {
 		super()
 		this.state = {
 			currentPage: 'grid',
-			pages: ['grid', 'shelves', 'stats']
+			pages: ['grid', 'shelves', 'stats'],
+			loggedIn: false
 		}
 		this.changePage = this.changePage.bind(this)
         this.saveBook = this.saveBook.bind(this)
@@ -22,6 +24,29 @@ class App extends React.Component {
         this.getBlankBook = this.getBlankBook.bind(this)
         this.newPastelColor = this.newPastelColor.bind(this)
         this.HSLtoRGB = this.HSLtoRGB.bind(this)
+        this.login = this.login.bind(this)
+        this.logout = this.logout.bind(this)
+	}
+
+	login(values) {
+		console.log(values)
+		//TODO: Send login request to server
+		// this.setState({
+		// 	loggedIn: true
+		// })
+	}
+
+	logout() {
+		//TODO: Send logout request to server
+		// this.setState({
+		// 	loggedIn: false
+		// })
+	}
+
+	componentDidMount() {
+		this.setState({
+			loggedIn: !window.location.pathname.includes('unregistered')
+		})
 	}
 
 	getBlankBook(book) {
@@ -87,35 +112,39 @@ class App extends React.Component {
 
 	render() {
 		let mainContent
-		switch (this.state.currentPage) {
-		case this.state.pages[0]:
-			mainContent = <Grid
-				saveBook={this.saveBook}
-				removeBook={this.removeBook}
-				addBook={this.addBook}
-				getBlankBook={this.getBlankBook}
-				newPastelColor={this.newPastelColor}
-			/>
-			break;
-		case this.state.pages[1]:
-			mainContent = <Shelves
-				saveBook={this.saveBook}
-				removeBook={this.removeBook}
-				addBook={this.addBook}
-				getBlankBook={this.getBlankBook}
-			/>
-			break;
-		case this.state.pages[2]:
-			mainContent = <Stats />
-			break;
+		if (this.state.loggedIn) {
+	 		switch (this.state.currentPage) {
+			case this.state.pages[0]:
+				mainContent = <Grid
+					saveBook={this.saveBook}
+					removeBook={this.removeBook}
+					addBook={this.addBook}
+					getBlankBook={this.getBlankBook}
+					newPastelColor={this.newPastelColor}
+				/>
+				break;
+			case this.state.pages[1]:
+				mainContent = <Shelves
+					saveBook={this.saveBook}
+					removeBook={this.removeBook}
+					addBook={this.addBook}
+					getBlankBook={this.getBlankBook}
+				/>
+				break;
+			case this.state.pages[2]:
+				mainContent = <Stats />
+				break;
+			}
+		} else {
+			mainContent = <LoginPage Login={this.login} />
 		}
 		return (
 			<div>
-				<Header
+				{this.state.loggedIn ? <Header
 					currentPage={this.state.currentPage}
 					pages={this.state.pages}
 					changePage={this.changePage}
-				/>
+				/> : ""}
 				{mainContent}
 			</div>
 		)

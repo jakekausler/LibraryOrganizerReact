@@ -12,7 +12,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.25",
+    "@fortawesome/free-solid-svg-icons": "^5.11.2",
+    "@fortawesome/react-fontawesome": "^0.1.6",
     "@nivo/bar": "^0.59.2",
+    "@nivo/pie": "^0.59.1",
     "express": "^4.17.1",
     "formik": "^1.5.8",
     "nivo": "^0.31.0",

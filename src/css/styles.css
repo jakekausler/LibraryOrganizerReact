@@ -569,3 +569,26 @@ input {
   background-color: var(--Secondary-Dark) !important;
   color: var(--Secondary-Light) !important;
 }
+
+.stats .totalLabel {
+	text-align: center;
+    font-size: 24px;
+    margin-top: 12px;
+}
+
+.stats table {
+	width: 100%;
+	text-align: center;
+}
+
+.stats table tr:not(:first-child) {
+	height: 60px;
+}
+
+.stats table tr th {
+	text-align: left;
+}
+
+.stats table tr:first-child th {
+	text-align: center;
+}

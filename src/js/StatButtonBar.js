@@ -16,7 +16,7 @@ class StatButtonBar extends React.Component {
 	}
 
 	changeStat(target) {
-		console.log(target)
+		console.log("CLICKING:", target)
 		if (this.state.active) {
 			$($("#" + this.state.active)[0]).parent().siblings(".dropdown-content").removeClass("active")
 			$($("#" + this.state.active)[0]).removeClass("active")
@@ -81,7 +81,7 @@ class StatButtonBar extends React.Component {
 						<a href="#" id='datespublication' onClick={(event) => this.changeStat(event.target)}>Publication</a>
 					</div>
 				</div>
-				<a href="#" id='' onClick={this.changeStat}>Dimensions</a>
+				<a href="#" id='dimensions' onClick={(event) => this.changeStat(event.target)}>Dimensions</a>
 			</div>
 		)
 	}

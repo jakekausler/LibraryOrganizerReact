@@ -15,7 +15,7 @@ class App extends React.Component {
 	constructor() {
 		super()
 		this.state = {
-			currentPage: 'stats',
+			currentPage: 'grid',
 			pages: ['grid', 'shelves', 'stats'],
 			loggedIn: false
 		}
@@ -69,8 +69,6 @@ class App extends React.Component {
 			body: JSON.stringify(book)
 		}).then((res) => console.log(res))
 		.catch(console.log)
-		// TODO: Refresh grid and shelf views
-		// TODO: Save image and create thumbnail on save/add
 	}
 
 	saveBook(book, reload) {
@@ -93,8 +91,6 @@ class App extends React.Component {
 			body: JSON.stringify(book)
 		}).then((res) => reload())
 		.catch(console.log)
-		// TODO: Refresh grid and shelf views
-		// TODO: Save image and create thumbnail on save/add
 	}
 
 	removeBook(bookid, reload) {
@@ -102,7 +98,6 @@ class App extends React.Component {
 			method: 'DELETE'
 		}).then((res) => reload())
 		.catch(console.log)
-		// TODO: Refresh grid and shelf views
 	}
 
 	render() {

@@ -193,9 +193,6 @@ class Shelves extends React.Component {
                 if (shelf.alignment == "right") {
                     x = canvas.width - bookcase.spacerheight * 2 - shelf.width
                 }
-                //todo:
-                // let wood = thisClass.woodRef.current
-                // ctx.drawImage(wood, x, y, shelf.width, caseHeights[caseIdx])
                 let ix = bookcase.paddingleft + x + bookcase.spacerheight
                 ctx.fillRect(x, y, bookcase.spacerheight, bookcase.spacerheight + shelf.height)
                 ctx.fillRect(x + shelf.width, y, bookcase.spacerheight, bookcase.spacerheight + shelf.height)

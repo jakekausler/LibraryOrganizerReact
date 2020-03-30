@@ -28,7 +28,6 @@ class StatButtonBar extends React.Component {
 		$(target).addClass("active")
 	}
 
-	//TODO: Dimensions
 	render() {
 		return (
 			<div className="NavBar">

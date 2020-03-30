@@ -1,8 +1,6 @@
 import React from 'react'
 import { ResponsiveBar } from '@nivo/bar'
 import { ResponsivePie } from '@nivo/pie'
-import { ResponsiveGeoMap } from '@nivo/geo'
-
 
 import StatButtonBar from './StatButtonBar'
 

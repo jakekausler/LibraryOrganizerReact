@@ -20,6 +20,11 @@ class Header extends React.Component {
 			<div className="header">
 				<span>Library Organizer</span>
 				{headerButtons}
+				<HeaderButton 
+					type="Logout"
+					selected={false}
+					changePage={this.props.logout}
+				/>
 			</div>
 		)
 	}

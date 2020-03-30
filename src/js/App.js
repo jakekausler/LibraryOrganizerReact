@@ -30,6 +30,13 @@ class App extends React.Component {
 	}
 
 	logout() {
+		fetch("/users/logout", {
+			method: 'GET'
+		}).then((res) => 
+			this.setState({
+				loggedIn: false
+			})
+		).catch(console.log)
 		//TODO: Send logout request to server
 		// this.setState({
 		// 	loggedIn: false
@@ -136,6 +143,7 @@ class App extends React.Component {
 					currentPage={this.state.currentPage}
 					pages={this.state.pages}
 					changePage={this.changePage}
+					logout={this.logout}
 				/> : ""}
 				{mainContent}
 			</div>

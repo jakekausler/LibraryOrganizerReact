@@ -1,6 +1,7 @@
 import React from 'react'
 import { ResponsiveBar } from '@nivo/bar'
 import { ResponsivePie } from '@nivo/pie'
+// import { ResponsiveGeoMap } from '@nivo/geo'
 
 import StatButtonBar from './StatButtonBar'
 
@@ -17,12 +18,10 @@ class Stats extends React.Component {
 	}
 
 	changeStat(newStat) {
-		console.log("CHANGING TO: " + newStat)
 		if (newStat == 'dimensions') {
 			fetch("/information/dimensions?" + $.param({libraryids: '43'}))
 			.then(res => res.json())
 			.then((data) => {
-				console.log(data)
 				this.setState({
 					current: newStat,
 					data: data,
@@ -50,12 +49,10 @@ class Stats extends React.Component {
 		}
 	}
 
-	// TODO: Tooltips with Amount and Percentage
 	// TODO: Publisher City Map
 	// TODO: Publisher Country Map
 	//TODO: Dive into deweys and dates (centuries/decades/years. Is there a timeline?)
 	render() {
-		console.log("RENDERING: " + this.state.current)
         let barChartVisible = (
         	this.state.current == 'generalbycounts' ||
         	this.state.current == 'generalbypages' ||
@@ -82,8 +79,6 @@ class Stats extends React.Component {
 		let dimensionChartVisible = (
 			this.state.current == 'dimensions'
 		)
-		console.log("barChartVisible: " + barChartVisible)
-		console.log("dimensionChartVisible: " + dimensionChartVisible)
 		return (
 			<div className="stats">
 				<StatButtonBar ChangeStat={this.changeStat} />
@@ -97,6 +92,7 @@ class Stats extends React.Component {
 		               margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
 		               colors={{"scheme": "set3"}}
 		               labelFormat={(d) => <tspan y={ -12 }>{ d.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") }</tspan>}
+		               tooltipFormat={value => (Math.round(parseFloat(value)/parseFloat(this.state.total)*1000)/10) + "%"}
 		            />
 	            </div>}
 				{pieChartVisible && <div className="pieChart" style={{width: "100%", height: "750px"}}>
@@ -107,6 +103,7 @@ class Stats extends React.Component {
 		               padding={0.3}
 		               margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
 		               colors={{"scheme": "pastel1"}}
+		               tooltipFormat={value => (Math.round(parseFloat(value)/parseFloat(this.state.total)*1000)/10) + "%"}
 		            />
 	            </div>}
 				{mapChartVisible && <div className="mapChart" style={{width: "100%", height: "750px"}}>

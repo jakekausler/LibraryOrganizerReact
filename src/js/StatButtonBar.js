@@ -16,7 +16,6 @@ class StatButtonBar extends React.Component {
 	}
 
 	changeStat(target) {
-		console.log("CLICKING:", target)
 		if (this.state.active) {
 			$($("#" + this.state.active)[0]).parent().siblings(".dropdown-content").removeClass("active")
 			$($("#" + this.state.active)[0]).removeClass("active")

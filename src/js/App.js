@@ -37,10 +37,6 @@ class App extends React.Component {
 				loggedIn: false
 			})
 		).catch(console.log)
-		//TODO: Send logout request to server
-		// this.setState({
-		// 	loggedIn: false
-		// })
 	}
 
 	componentDidMount() {

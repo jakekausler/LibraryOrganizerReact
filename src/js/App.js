@@ -30,10 +30,13 @@ class App extends React.Component {
 	}
 
 	logout() {
-		//TODO: Send logout request to server
-		// this.setState({
-		// 	loggedIn: false
-		// })
+		fetch("/users/logout", {
+			method: 'GET'
+		}).then((res) => 
+			this.setState({
+				loggedIn: false
+			})
+		).catch(console.log)
 	}
 
 	componentDidMount() {
@@ -74,8 +77,6 @@ class App extends React.Component {
 			body: JSON.stringify(book)
 		}).then((res) => reload())
 		.catch(console.log)
-		// TODO: Refresh grid and shelf views
-		// TODO: Save image and create thumbnail on save/add
 	}
 
 	saveBook(book, reload) {
@@ -102,8 +103,6 @@ class App extends React.Component {
 			body: JSON.stringify(book)
 		}).then((res) => reload())
 		.catch(console.log)
-		// TODO: Refresh grid and shelf views
-		// TODO: Save image and create thumbnail on save/add
 	}
 
 	removeBook(bookid, reload) {
@@ -111,7 +110,6 @@ class App extends React.Component {
 			method: 'DELETE'
 		}).then((res) => reload())
 		.catch(console.log)
-		// TODO: Refresh grid and shelf views
 	}
 
 	render() {
@@ -148,6 +146,7 @@ class App extends React.Component {
 					currentPage={this.state.currentPage}
 					pages={this.state.pages}
 					changePage={this.changePage}
+					logout={this.logout}
 				/> : ""}
 				{mainContent}
 			</div>

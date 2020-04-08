@@ -465,6 +465,9 @@ class Filters extends React.Component {
 				<button className="filter-showhide" disabled={previousDisabled} onClick={this.props.prevPage}>
 					<div className="filter-nextprevious">Previous</div>
 				</button>
+				<button className="filter-showhide" onClick={() => this.props.openBookEditor()}>
+					<div className="filter-nextprevious">New</div>
+				</button>
 			</div>
 		</div>
 		)

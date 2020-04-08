@@ -15,7 +15,7 @@ class App extends React.Component {
 	constructor() {
 		super()
 		this.state = {
-			currentPage: 'stats',
+			currentPage: 'grid',
 			pages: ['grid', 'shelves', 'stats'],
 			loggedIn: false
 		}
@@ -46,25 +46,33 @@ class App extends React.Component {
 		return BlankBook
 	}
 
-	addBook(book) {
-		book.authors = book.authors.trim()
-		book.contributors = book.authors.split("\n")
-		book.contributors = book.contributors.map((contrib) => {
-			return {
-				name: {
-					first: contrib.substring(0, contrib.indexOf(' ')),
-					middles: contrib.substring(contrib.indexOf(' ') + 1, contrib.indexOf(' ', contrib.indexOf(' ') + 1)),
-					last: contrib.substring(contrib.indexOf(' ', contrib.indexOf(' ') + 1) + 1, contrib.indexOf(":"))
-				},
-				role: contrib.substring(contrib.indexOf(":")+1)
+	addBook(book, reload) {
+		if (book.authors) {
+			book.authors = book.authors.trim()
+			book.contributors = book.authors.split("\n")
+			if (book.contributors.length == 1 && book.contributors[0] === "") {
+				book.contributors = []
+			} else {
+				book.contributors = book.contributors.map((contrib) => {
+					return {
+						name: {
+							first: contrib.substring(0, contrib.indexOf(' ')),
+							middles: contrib.substring(contrib.indexOf(' ') + 1, contrib.indexOf(' ', contrib.indexOf(' ') + 1)),
+							last: contrib.substring(contrib.indexOf(' ', contrib.indexOf(' ') + 1) + 1, contrib.indexOf(":"))
+						},
+						role: contrib.substring(contrib.indexOf(":")+1)
+					}
+				})
 			}
-		})
+		} else {
+			book.contributors = []
+		}
 		book.originallypublished += "-01-01"
 		book.editionpublished += "-01-01"
 		fetch("/books", {
 			method: 'POST',
 			body: JSON.stringify(book)
-		}).then((res) => console.log(res))
+		}).then((res) => reload())
 		.catch(console.log)
 		// TODO: Refresh grid and shelf views
 		// TODO: Save image and create thumbnail on save/add
@@ -73,16 +81,20 @@ class App extends React.Component {
 	saveBook(book, reload) {
 		book.authors = book.authors.trim()
 		book.contributors = book.authors.split("\n")
-		book.contributors = book.contributors.map((contrib) => {
-			return {
-				name: {
-					first: contrib.substring(0, contrib.indexOf(' ')),
-					middles: contrib.substring(contrib.indexOf(' ') + 1, contrib.indexOf(' ', contrib.indexOf(' ') + 1)),
-					last: contrib.substring(contrib.indexOf(' ', contrib.indexOf(' ') + 1) + 1, contrib.indexOf(":"))
-				},
-				role: contrib.substring(contrib.indexOf(":")+1)
-			}
-		})
+		if (book.contributors.length == 1 && book.contributors[0] === "") {
+			book.contributors = []
+		} else {
+			book.contributors = book.contributors.map((contrib) => {
+				return {
+					name: {
+						first: contrib.substring(0, contrib.indexOf(' ')),
+						middles: contrib.substring(contrib.indexOf(' ') + 1, contrib.indexOf(' ', contrib.indexOf(' ') + 1)),
+						last: contrib.substring(contrib.indexOf(' ', contrib.indexOf(' ') + 1) + 1, contrib.indexOf(":"))
+					},
+					role: contrib.substring(contrib.indexOf(":")+1)
+				}
+			})
+		}
 		book.originallypublished += "-01-01"
 		book.editionpublished += "-01-01"
 		fetch("/books", {

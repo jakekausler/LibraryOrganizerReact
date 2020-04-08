@@ -83,6 +83,7 @@ class Grid extends React.Component {
 					numBooks={this.state.numberOfBooks}
 					nextPage={this.nextPage}
 					prevPage={this.prevPage}
+					openBookEditor={this.openBookEditor}
 				/>
 				<GridView
 					books={this.state.books}
@@ -123,24 +124,34 @@ class Grid extends React.Component {
 		})
 	}
 
-	openBookEditor(bookid) {
-		fetch("/books/" + bookid)
-		.then(res => res.json())
-		.then((data) => {
-			data.authors = ""
-			data.contributors.forEach(a => {
-				data.authors += a.name.first + " " + a.name.middles + " " + a.name.last + ":" + a.role + "---"
+	openBookEditor(bookid=null) {
+		if (bookid) {
+			fetch("/books/" + bookid)
+			.then(res => res.json())
+			.then((data) => {
+				data.authors = ""
+				data.contributors.forEach(a => {
+					data.authors += a.name.first + " " + a.name.middles + " " + a.name.last + ":" + a.role + "---"
+				})
+				data.authors = data.authors.replace(/---/g, "\n")
+				this.setState({
+					currentBook: data
+				})
 			})
-			data.authors = data.authors.replace(/---/g, "\n")
+			.catch(console.log)
+		} else {
 			this.setState({
-				currentBook: data
+				currentBook: this.props.getBlankBook()
 			})
-		})
-		.catch(console.log)
+		}
 	}
 
 	saveBook(b, reload) {
-		this.props.saveBook(b, reload)
+		if (b.bookid) {
+			this.props.saveBook(b, reload)
+		} else {
+			this.props.addBook(b, reload)
+		}
 		this.setState({
 			currentBook: null
 		})

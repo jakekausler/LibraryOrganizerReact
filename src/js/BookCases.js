@@ -93,7 +93,7 @@ class Shelves extends React.Component {
 
     canvasClick(event, ref, idx) {
         let book = this.findBook(event, ref, idx)
-        if (book) {
+        if (!book) {
             return;
         }
         this.openBookEditor(book.bookid)
@@ -186,7 +186,6 @@ class Shelves extends React.Component {
                     hashes[case_idx][i][j] = []
                 }
             }
-            ctx.font = "10px Arial"
             y = height - caseHeights[case_idx]
             bookcase.shelves.forEach(function(shelf, shelf_idx) {
                 x = 0
@@ -196,12 +195,13 @@ class Shelves extends React.Component {
                 //todo:
                 // let wood = thisClass.woodRef.current
                 // ctx.drawImage(wood, x, y, shelf.width, caseHeights[caseIdx])
-                let ix = bookcase.paddingleft + x + bookcase.spacerheight
+                let ix = bookcase.paddingleft*4 + x + bookcase.spacerheight
                 ctx.fillRect(x, y, bookcase.spacerheight, bookcase.spacerheight + shelf.height)
-                ctx.fillRect(x + shelf.width, y, bookcase.spacerheight, bookcase.spacerheight + shelf.height)
+                ctx.fillRect(x + shelf.width + bookcase.spacerheight, y, bookcase.spacerheight, bookcase.spacerheight*2 + shelf.height)
                 ctx.fillRect(x + bookcase.spacerheight, y, shelf.width, bookcase.spacerheight)
                 if (shelf.books) {
                     shelf.books.forEach(function(book, idx) {
+                        ctx.font = Math.min(10, Math.floor(book.width/4*3)) + "px Arial"
                         let spineColor = book.highlight === undefined ? book.spinecolor : (book.highlight ? "white" : "black")
                         let textColor
                         if (book.highlight === undefined) {

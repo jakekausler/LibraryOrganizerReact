@@ -123,6 +123,8 @@ canvas {
 
 	color: var(--Secondary-Dark);
 	background-color: var(--Secondary-Light);
+
+	position: relative;
 }
 
 .filter-showhide[disabled] {
@@ -136,7 +138,10 @@ canvas {
 }
 
 .filter-nextprevious {
-	transform: rotate(-90deg)
+	transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+	position: absolute;
+    top: 50%;
+    left: 50%;
 }
 
 .filters {
@@ -282,8 +287,7 @@ canvas {
 	white-space: nowrap;
 }
 
-.grid, .filter {
-	overflow: auto;
+.grid, .filters {
 	height: auto;
 	margin-bottom: 80px;
 }
@@ -591,4 +595,10 @@ input {
 
 .stats table tr:first-child th {
 	text-align: center;
+}
+
+label.form-field-error {
+    float: right;
+    font-size: xx-small;
+    color: #D8000C;
 }

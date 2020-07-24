@@ -280,6 +280,11 @@ canvas {
 	will-change: overflow;
 }
 
+.bookcases-full-shelf {
+	width: 100%;
+	height: 100%;
+}
+
 .bookcases {
 	overflow: auto;
 	height: auto;

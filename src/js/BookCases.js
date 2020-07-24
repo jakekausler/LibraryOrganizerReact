@@ -12,18 +12,26 @@ class Shelves extends React.Component {
                 width: 0,
                 height: 0
             },
-            hashes: [],
+            bookHashes: [],
+            shelfHashes: [],
             canvasRefs: [],
+            shelfRefs: [],
             bookLocations: {},
             containerRef: React.createRef(),
             bookcasesRef: React.createRef(),
-            currentBook: null
+            currentBook: null,
+            showAllShelves: true,
+            clickedShelf: {caseid: -1, shelfid: -1}
         }
         this.loadCases = this.loadCases.bind(this)
         this.drawCanvas = this.drawCanvas.bind(this)
+        this.drawShelf = this.drawShelf.bind(this)
         this.canvasClick = this.canvasClick.bind(this)
+        this.canvasKeyPress = this.canvasKeyPress.bind(this)
         this.doBoxesIntersect = this.doBoxesIntersect.bind(this)
-        this.findBook = this.findBook.bind(this)
+        this.getClick = this.getClick.bind(this)
+        this.openShelfView = this.openShelfView.bind(this)
+        this.closeShelfView = this.closeShelfView.bind(this)
         this.openBookEditor = this.openBookEditor.bind(this)
         this.saveBook = this.saveBook.bind(this)
         this.cancelBook = this.cancelBook.bind(this)
@@ -38,9 +46,16 @@ class Shelves extends React.Component {
         let visible = this.state.currentBook === null ? 'hidden' : 'visible'
         return (
             <div className="bookcases-container" ref={this.state.containerRef}>
-                <div width={this.state.areaStyle.width} height={this.state.areaStyle.height} className="bookcases" ref={this.state.bookcasesRef}>
+                <div width={this.state.areaStyle.width} height={this.state.areaStyle.height} className={"bookcases " + (this.state.showAllShelves ? 'visible' : 'hidden')} ref={this.state.bookcasesRef}>
                     {this.state.canvasRefs.map((ref, idx) => {
                         return <canvas ref={ref} key={idx} onClick={(event) => this.canvasClick(event, ref, idx)} />
+                    })}
+                </div>
+                <div width={this.state.areaStyle.width} height={this.state.areaStyle.height} className={"bookshelves " + (this.state.showAllShelves ? 'hidden' : 'visible')} ref={this.state.bookcasesRef}>
+                    {this.state.shelfRefs.map((bookcase, bidx) => {
+                        return bookcase.map((shelf, sidx) => {
+                            return <canvas className={shelf.visible ? 'visible' : 'hidden'} ref={shelf.ref} key={bidx + "-" + sidx} onClick={(event) => this.canvasKeyPress(event)} />
+                        })
                     })}
                 </div>
                 <BookView
@@ -53,6 +68,37 @@ class Shelves extends React.Component {
                 />
             </div>
         )
+    }
+
+    openShelfView(caseId, shelfId) {
+        this.setState({
+            clickedShelf: {caseId: caseId, shelfId: shelfId},
+            shelfRefs: this.state.shelfRefs.map((bookcase, i) => {
+                return bookcase.map((shelf, j) => {
+                    if (i === caseId && j === shelfId) {
+                        shelf.visible = true;
+                        return shelf;
+                    } else {
+                        shelf.visible = false;
+                        return shelf;
+                    }
+                })
+            }),
+            showAllShelves: false
+        })
+    }
+
+    closeShelfView() {
+        this.setState({
+            clickedShelf: {caseId: -1, shelfId: -1},
+            shelfRefs: this.state.shelfRefs.map((bookcase, i) => {
+                return bookcase.map((shelf, j) => {
+                    shelf.visible = false;
+                    return shelf;
+                })
+            }),
+            showAllShelves: true
+        })
     }
 
     openBookEditor(bookid) {
@@ -92,27 +138,46 @@ class Shelves extends React.Component {
     }
 
     canvasClick(event, ref, idx) {
-        let book = this.findBook(event, ref, idx)
-        if (!book) {
-            return;
+        let values = this.getClick(event, ref, idx)
+        if (!values.book) {
+            if (!values.container) {
+                return;
+            } else {
+                this.openShelfView(values.container.caseid, values.container.shelfid)
+            }
+        } else {
+            this.openBookEditor(values.book.bookid)
         }
-        this.openBookEditor(book.bookid)
     }
 
-    findBook(event, ref, idx) {
+    canvasKeyPress(event) {
+        // if (!this.state.showAllShelves && event.key === 'Escape') {
+        if (!this.state.showAllShelves) {
+            this.closeShelfView()
+        }
+    }
+
+    getClick(event, ref, idx) {
         let rect = ref.current.getBoundingClientRect()
         let x = event.clientX - rect.left
         let y = event.clientY - rect.top
         let i = Math.floor(x / 100)
         let j = Math.floor(y / 100)
-        if (this.state.hashes[idx]) {
-            for (let b in this.state.hashes[idx][i][j]) {
-                if (x < this.state.hashes[idx][i][j][b].x + this.state.hashes[idx][i][j][b].newwidth && x > this.state.hashes[idx][i][j][b].x && y < this.state.hashes[idx][i][j][b].y + this.state.hashes[idx][i][j][b].newheight && y > this.state.hashes[idx][i][j][b].y) {
-                    return this.state.hashes[idx][i][j][b]
+        if (this.state.bookHashes[idx]) {
+            for (let b in this.state.bookHashes[idx][i][j]) {
+                if (x < this.state.bookHashes[idx][i][j][b].x + this.state.bookHashes[idx][i][j][b].newwidth && x > this.state.bookHashes[idx][i][j][b].x && y < this.state.bookHashes[idx][i][j][b].y + this.state.bookHashes[idx][i][j][b].newheight && y > this.state.bookHashes[idx][i][j][b].y) {
+                    let book = this.state.bookHashes[idx][i][j][b]
+                    return {book: book, container: null}
                 }
             }
         }
-        return null
+        for (let s in this.state.shelfHashes[idx]) {
+            let shelf = this.state.shelfHashes[idx][s]
+            if (x > shelf.x1 && x < shelf.x2 && y > shelf.y1 && y < shelf.y2) {
+                return {book: null, container: shelf}
+            }
+        }
+        return {book: null, container: null}
     }
 
     doBoxesIntersect(a, b) {
@@ -127,12 +192,85 @@ class Shelves extends React.Component {
                     canvasRefs: data.map((bookcase) => {
                         return React.createRef()
                     }),
+                    shelfRefs: data.map((bookcase) => {
+                        return bookcase.shelves.map((shelf) => {
+                            return {
+                                ref: React.createRef(),
+                                visible: false
+                            }
+                        })
+                    }),
                     cases: data
                 })
                 let height = this.drawCanvas()
                 this.state.bookcasesRef.current.scrollTo(0, height)
             })
             .catch(console.log)
+    }
+
+    drawShelf(caseid, shelfid, books) {
+        let thisClass = this
+        const canvas = thisClass.state.shelfRefs[caseid][shelfid].ref.current
+        const ctx = canvas.getContext('2d')
+        let width = window.innerWidth;
+        let height = window.innerHeight - 80;
+        canvas.width = width;
+        canvas.height = height;
+        let totalBookWidth = 0;
+        for (let b in books) {
+            totalBookWidth += books[b].width;
+            if (books[b].width <= 0) {
+                totalBookWidth += 25
+            }
+        }
+        let multiplier = 1.0 * width / totalBookWidth;
+        let actualWidth = 0
+        let x = 0;
+        let y = height;
+        for (let b in books) {
+            let book = books[b]
+            let spineColor = book.highlight === undefined ? book.spinecolor : (book.highlight ? "white" : "black")
+            let textColor
+            if (book.highlight === undefined) {
+                let converted = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(book.spinecolor)
+                let rgb = converted ? [
+                    parseInt(converted[1], 16),
+                    parseInt(converted[2], 16),
+                    parseInt(converted[3], 16)
+                ] : null
+                if (converted) {
+                    let o = Math.round(((parseInt(rgb[0], 10) * 299) + (parseInt(rgb[1], 10) * 587) + (parseInt(rgb[2], 10) * 114)) / 1000)
+                    textColor = (o > 125) ? 'black' : 'white'
+                } else {
+                    textColor = 'white'
+                }
+            } else {
+                textColor = book.highlight ? "black" : "white"
+            }
+            ctx.fillStyle = 'black'
+            let bookwidth = book.width <= 0 ? (25*multiplier) : (book.width*multiplier)
+            let bookheight = height
+            ctx.font = Math.min(72, Math.floor(bookwidth/4.0*3)) + "px Arial"
+            ctx.fillRect(x, y - bookheight, bookwidth, bookheight)
+            ctx.fillStyle = spineColor
+            ctx.fillRect(x + 1, y - bookheight, bookwidth - 2, bookheight - 2)
+            ctx.save()
+            ctx.translate(x + bookwidth / 2, y)
+            ctx.rotate(-Math.PI / 2)
+            ctx.textAlign = "left"
+            ctx.textBaseline = "middle"
+            let text = book.title
+            if (ctx.measureText(text).width > bookheight - ctx.measureText("...").width) {
+                while (ctx.measureText(text).width > bookheight - ctx.measureText("...").width && text.length > 4) {
+                    text = text.substring(0, text.length - 2)
+                }
+                text = text + "..."
+            }
+            ctx.fillStyle = textColor
+            ctx.fillText(text, 0, 0)
+            ctx.restore()
+            x += bookwidth;
+        }
     }
 
     drawCanvas() {
@@ -165,9 +303,11 @@ class Shelves extends React.Component {
                 height: (height + margin) + "px"
             }
         })
-        let hashes = []
+        let bookHashes = []
+        let shelfHashes = []
         let bookLocations = {}
         thisClass.state.cases.forEach(function(bookcase, case_idx) {
+            shelfHashes.push([])
             const canvas = thisClass.state.canvasRefs[case_idx].current
             const ctx = canvas.getContext("2d")
             canvas.width = bookcase.spacerheight * 2
@@ -178,20 +318,22 @@ class Shelves extends React.Component {
             })
             canvas.height = height
             canvas.style.margin = (margin / 2) + "px"
-            hashes.push([])
+            bookHashes.push([])
             for (let i=0; i<canvas.width/100; i+=1) {
-                hashes[case_idx].push([])
+                bookHashes[case_idx].push([])
                 for (let j=0; j<canvas.height/100; j+=1) {
-                    hashes[case_idx][i].push([])
-                    hashes[case_idx][i][j] = []
+                    bookHashes[case_idx][i].push([])
+                    bookHashes[case_idx][i][j] = []
                 }
             }
             y = height - caseHeights[case_idx]
             bookcase.shelves.forEach(function(shelf, shelf_idx) {
+                thisClass.drawShelf(case_idx, shelf_idx, shelf.books)
                 x = 0
                 if (shelf.alignment == "right") {
                     x = canvas.width - bookcase.spacerheight * 2 - shelf.width
                 }
+                shelfHashes[shelfHashes.length-1].push({x1: x + bookcase.spacerheight, x2: x + bookcase.spacerheight + shelf.width, y1: y, y2: y + shelf.height, caseid: case_idx, shelfid: shelf_idx});
                 let ix = bookcase.paddingleft + x + bookcase.spacerheight
                 ctx.fillRect(x, y, bookcase.spacerheight, bookcase.spacerheight + shelf.height)
                 ctx.fillRect(x + shelf.width + bookcase.spacerheight, y, bookcase.spacerheight, bookcase.spacerheight*2 + shelf.height)
@@ -256,7 +398,7 @@ class Shelves extends React.Component {
                                     width: bookwidth + 2,
                                     height: bookheight + 2
                                 })) {
-                                    hashes[case_idx][i][j].push({
+                                    bookHashes[case_idx][i][j].push({
                                         bookid: book.bookid,
                                         x: book.x,
                                         y: book.y,
@@ -278,7 +420,8 @@ class Shelves extends React.Component {
         })
 
         thisClass.setState({
-            hashes: hashes,
+            bookHashes: bookHashes,
+            shelfHashes: shelfHashes,
             bookLocations: bookLocations,
         })
 

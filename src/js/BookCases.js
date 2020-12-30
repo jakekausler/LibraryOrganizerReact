@@ -264,40 +264,41 @@ class Shelves extends React.Component {
         return !(a.x > b.x + b.width || a.x + a.width < b.x || a.y > b.y + b.height || a.y + a.height < b.y)
     }
 
-    // loadCases() {
-    //     fetch("/libraries/" + this.state.libraryid + "/cases")
-    //         .then(res => res.json())
-    //         .then((data) => {
-    //             this.setState({
-    //                 canvasRefs: data.map((bookcase) => {
-    //                     return React.createRef()
-    //                 }),
-    //                 shelfRefs: data.map((bookcase) => {
-    //                     return bookcase.shelves.map((shelf) => {
-    //                         return {
-    //                             ref: React.createRef(),
-    //                             visible: false
-    //                         }
-    //                     })
-    //                 }),
-    //                 cases: data
-    //             })
-    //             let height = this.drawCanvas()
-    //             this.state.bookcasesRef.current.scrollTo(0, height)
-    //         })
-    //         .catch(console.log)
-    // }
-    loadCases() {
-        fetch("/libraries/" + this.state.libraryid + "/cases/ids")
-            .then(res => res.json())
-            .then((data) => {
-                this.setState({
-                    caseImageURLs: data.map((id) => {
-                        return "/caseimages/" + id
+    loadCases(method="svg") {
+        if (method == "svg") {
+            fetch("/libraries/" + this.state.libraryid + "/cases/ids")
+                .then(res => res.json())
+                .then((data) => {
+                    this.setState({
+                        caseImageURLs: data.map((id) => {
+                            return "/caseimages/" + id
+                        })
                     })
                 })
-            })
-            .catch(console.log)
+                .catch(console.log)
+        } else {
+            fetch("/libraries/" + this.state.libraryid + "/cases")
+                .then(res => res.json())
+                .then((data) => {
+                    this.setState({
+                        canvasRefs: data.map((bookcase) => {
+                            return React.createRef()
+                        }),
+                        shelfRefs: data.map((bookcase) => {
+                            return bookcase.shelves.map((shelf) => {
+                                return {
+                                    ref: React.createRef(),
+                                    visible: false
+                                }
+                            })
+                        }),
+                        cases: data
+                    })
+                    let height = this.drawCanvas()
+                    this.state.bookcasesRef.current.scrollTo(0, height)
+                })
+                .catch(console.log)
+        }
     }
 
     drawShelf(caseid, shelfid, books) {
@@ -547,7 +548,6 @@ class Shelves extends React.Component {
 
     setZoom() {
         let thisClass = this;
-        console.log("new zoom: " + thisClass.state.zoom)
         $(".bookcase").each(function() {
             $(this).height(thisClass.state.zoom + "%")
         })
@@ -558,10 +558,6 @@ class Shelves extends React.Component {
         let thisClass = this;
         let oldX = $(".bookcases")[0].scrollLeft + $(".bookcases")[0].clientWidth / 2
         let oldY = $(".bookcases")[0].scrollTop + $(".bookcases")[0].clientHeight / 2
-        console.log("oldX: " + oldX + ", oldY: " + oldY)
-        console.log("old width: " + $(".bookcases")[0].scrollWidth)
-        console.log("old height: " + $(".bookcases")[0].scrollHeight)
-        console.log("old zoom: " + thisClass.state.zoom)
         if (thisClass.state.zoom < maxZoom) {
             thisClass.setState({
                 zoom: thisClass.state.zoom * 2
@@ -569,12 +565,6 @@ class Shelves extends React.Component {
                 thisClass.setZoom()
                 $($(".bookcases")[0]).scrollLeft(oldX * 2 - $(".bookcases")[0].clientWidth / 2)
                 $($(".bookcases")[0]).scrollTop(oldY * 2 - $(".bookcases")[0].clientHeight / 2)
-
-                let newX = $(".bookcases")[0].scrollLeft + $(".bookcases")[0].clientWidth / 2
-                let newY = $(".bookcases")[0].scrollTop + $(".bookcases")[0].clientHeight / 2
-                console.log("newX: " + newX + ", newY: " + newY)
-                console.log("new width: " + $(".bookcases")[0].scrollWidth)
-                console.log("new height: " + $(".bookcases")[0].scrollHeight)
             })
         }
     }
@@ -583,8 +573,6 @@ class Shelves extends React.Component {
         let thisClass = this;
         let oldX = $(".bookcases")[0].scrollLeft + $(".bookcases")[0].clientWidth / 2
         let oldY = $(".bookcases")[0].scrollTop + $(".bookcases")[0].clientHeight / 2
-        console.log("oldX: " + oldX + ", oldY: " + oldY)
-        console.log("old zoom: " + thisClass.state.zoom)
         if (thisClass.state.zoom > minZoom) {
             thisClass.setState({
                 zoom: this.state.zoom / 2
@@ -592,10 +580,6 @@ class Shelves extends React.Component {
                 thisClass.setZoom()
                 $($(".bookcases")[0]).scrollLeft(oldX / 2 - $(".bookcases")[0].clientWidth / 2)
                 $($(".bookcases")[0]).scrollTop(oldY / 2 - $(".bookcases")[0].clientHeight / 2)
-
-                let newX = $(".bookcases")[0].scrollLeft + $(".bookcases")[0].clientWidth / 2
-                let newY = $(".bookcases")[0].scrollTop + $(".bookcases")[0].clientHeight / 2
-                console.log("newX: " + newX + ", newY: " + newY)
             })
         }
     }
@@ -610,45 +594,29 @@ class Shelves extends React.Component {
             if (data.length < 1000) {
                 let arrowContainer = $("#bookcase-arrows")
                 let bookcasesContainer = $($(".bookcases")[0])
-                let bookcasesBox = bookcasesContainer[0].getBoundingClientRect()
 
                 arrowContainer.empty()
                 data.forEach(match => {
                     let caseX = 0
                     for (let i=0; i<match.case; i++) {
                         caseX += $($(".bookcase")[i]).width()
-                        console.log(i, $($(".bookcase")[i]).width())
                     }
+
                     let svg = $($($(".bookcase")[match.case].contentDocument).find("svg")[0])
 
                     let ratio = bookcasesContainer[0].scrollHeight / parseInt(svg.attr("height"))
 
                     let bookcase = $($(".bookcase")[match.case])
-                    let bookcaseBox = bookcase[0].getBoundingClientRect()
 
                     let book = $(bookcase[0].contentDocument).find("#book-" + match.id)
-                    let bookBox = book[0].getBoundingClientRect()
-                    // let x = book.offset().left + $($(".bookcase")[match.case]).offset().left
-                    // let y = book.offset().top + $($(".bookcase")[match.case]).offset().top
-                    // let width = parseInt(book.width())
-                    // let height = book.height()
 
-                    let x = caseX + book.attr("x") * ratio//bookBox.x + bookcaseBox.x
-                    let y = book.attr("y") * ratio//bookBox.y + bookcaseBox.y
+                    let x = caseX + book.attr("x") * ratio
+                    let y = book.attr("y") * ratio
                     let width = book.attr("width") * ratio
                     let height = book.attr("height") * ratio
 
                     let imageWidth = 40 * this.state.zoom / 100
                     let imageHeight = 40 * this.state.zoom / 100
-
-                    console.log("CaseX: " + caseX)
-                    console.log("X: " + x)
-                    console.log("Y: " + y)
-                    console.log("Ratio: " + ratio)
-                    console.log("Width: " + width)
-                    console.log("Height: " + height)
-                    console.log(match)
-                    console.log("")
 
                     let arrow = $("<div class='highlight-arrow'><img width='" + imageWidth + "' height='" + imageHeight + "' src='/web/res/Down-Arrow.png'></img></div>")
                     arrow.css("left", x + width/2 - imageWidth/2)

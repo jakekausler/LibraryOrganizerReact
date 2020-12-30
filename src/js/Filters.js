@@ -28,6 +28,7 @@ class Filters extends React.Component {
 		}
 		let nextDisabled = this.props.filters.page === (Math.ceil(this.props.numBooks/this.props.filters.numbertoget));
 		let previousDisabled = this.props.filters.page === 1;
+		let newDisabled = this.props.readOnlyLibrary;
 		let result = (
 		<div className='filters'>
 			<div className={"filter " + filterClass}>
@@ -465,7 +466,7 @@ class Filters extends React.Component {
 				<button className="filter-showhide" disabled={previousDisabled} onClick={this.props.prevPage}>
 					<div className="filter-nextprevious">Previous</div>
 				</button>
-				<button className="filter-showhide" onClick={() => this.props.openBookEditor()}>
+				<button className="filter-showhide" disabled={newDisabled} onClick={() => this.props.openBookEditor()}>
 					<div className="filter-nextprevious">New</div>
 				</button>
 			</div>

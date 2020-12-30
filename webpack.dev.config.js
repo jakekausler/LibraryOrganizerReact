@@ -6,7 +6,7 @@ module.exports = {
     main: ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000', './src/index.js']
   },
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join('/home/jakekausler/go/src/github.com/jakekausler/Library-Organizer-2.0', 'web'),
     publicPath: 'web/',
     filename: '[name].js'
   },

@@ -5,7 +5,8 @@ import "./../../node_modules/react-vis/dist/style.css"
 
 import Header from './Header'
 import Grid from './Grid'
-import Shelves from './Shelves'
+// import Shelves from './Shelves'
+import Shelves from './BookCases'
 import Stats from './Stats'
 import LoginPage from './LoginPage'
 
@@ -17,12 +18,15 @@ class App extends React.Component {
 		this.state = {
 			currentPage: 'grid',
 			pages: ['grid', 'shelves', 'stats'],
-			loggedIn: false
+			loggedIn: false,
+			casesHash: ''
 		}
 		this.changePage = this.changePage.bind(this)
         this.saveBook = this.saveBook.bind(this)
         this.removeBook = this.removeBook.bind(this)
         this.addBook = this.addBook.bind(this)
+        this.refreshCases = this.refreshCases.bind(this)
+        this.getCasesHash = this.getCasesHash.bind(this)
         this.getBlankBook = this.getBlankBook.bind(this)
         this.newPastelColor = this.newPastelColor.bind(this)
         this.HSLtoRGB = this.HSLtoRGB.bind(this)
@@ -41,7 +45,8 @@ class App extends React.Component {
 
 	componentDidMount() {
 		this.setState({
-			loggedIn: !window.location.pathname.includes('unregistered')
+			loggedIn: !window.location.pathname.includes('unregistered'),
+			casesHash: (new Date()).getTime()
 		})
 	}
 
@@ -75,7 +80,7 @@ class App extends React.Component {
 		fetch("/books", {
 			method: 'POST',
 			body: JSON.stringify(book)
-		}).then((res) => reload())
+		}).then((res) => this.refreshCases(book.library.id, reload))
 		.catch(console.log)
 	}
 
@@ -101,15 +106,29 @@ class App extends React.Component {
 		fetch("/books", {
 			method: 'PUT',
 			body: JSON.stringify(book)
+		}).then((res) => this.refreshCases(book.library.id, reload))
+		.catch(console.log)
+	}
+
+	removeBook(book, reload) {
+		fetch("/books/" + book.bookid, {
+			method: 'DELETE'
+		}).then((res) => this.refreshCases(book.library.id, reload))
+		.catch(console.log)
+	}
+
+	refreshCases(libraryid, reload) {
+		this.setState({
+			casesHash: this.state.casesHash + 1
+		})
+		fetch("/libraries/" + libraryid + "/cases", {
+			method: 'POST'
 		}).then((res) => reload())
 		.catch(console.log)
 	}
 
-	removeBook(bookid, reload) {
-		fetch("/books/" + bookid, {
-			method: 'DELETE'
-		}).then((res) => reload())
-		.catch(console.log)
+	getCasesHash() {
+		return this.state.casesHash
 	}
 
 	render() {
@@ -131,6 +150,7 @@ class App extends React.Component {
 					removeBook={this.removeBook}
 					addBook={this.addBook}
 					getBlankBook={this.getBlankBook}
+					getCasesHash={this.getCasesHash}
 				/>
 				break;
 			case this.state.pages[2]:

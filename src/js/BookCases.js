@@ -1,11 +1,17 @@
 import React from 'react'
 
 import BookView from './BookView'
+import BookcasesBar from './BookcasesBar'
+
+const minZoom = 100
+const maxZoom = 1600
 
 class Shelves extends React.Component {
+
     constructor() {
         super()
         this.state = {
+            caseImageURLs: [],
             cases: [],
             libraryid: 43,
             areaStyle: {
@@ -14,6 +20,7 @@ class Shelves extends React.Component {
             },
             bookHashes: [],
             shelfHashes: [],
+            shelfViewBookHashes: [],
             canvasRefs: [],
             shelfRefs: [],
             bookLocations: {},
@@ -21,13 +28,16 @@ class Shelves extends React.Component {
             bookcasesRef: React.createRef(),
             currentBook: null,
             showAllShelves: true,
-            clickedShelf: {caseid: -1, shelfid: -1}
+            clickedShelf: {caseid: -1, shelfid: -1},
+            readOnlyLibrary: true,
+            zoom: 100,
+            highlights: [],
+            searchValue: ""
         }
         this.loadCases = this.loadCases.bind(this)
         this.drawCanvas = this.drawCanvas.bind(this)
         this.drawShelf = this.drawShelf.bind(this)
         this.canvasClick = this.canvasClick.bind(this)
-        this.canvasKeyPress = this.canvasKeyPress.bind(this)
         this.doBoxesIntersect = this.doBoxesIntersect.bind(this)
         this.getClick = this.getClick.bind(this)
         this.openShelfView = this.openShelfView.bind(this)
@@ -36,34 +46,85 @@ class Shelves extends React.Component {
         this.saveBook = this.saveBook.bind(this)
         this.cancelBook = this.cancelBook.bind(this)
         this.removeBook = this.removeBook.bind(this)
+        this.duplicateBook = this.duplicateBook.bind(this)
+        this.onReturnFromShelf = this.onReturnFromShelf.bind(this)
+        this.setZoom = this.setZoom.bind(this)
+        this.zoomIn = this.zoomIn.bind(this)
+        this.zoomOut = this.zoomOut.bind(this)
+        this.search = this.search.bind(this)
     }
 
     componentDidMount() {
         this.loadCases()
+        this.determineReadOnly()
+        this.setZoom()
+    }
+
+    componentDidUpdate() {
+        let thisClass = this;
+        let openBookEditor = this.openBookEditor
+        $(".bookcases object").each(function() {
+            $(this).on("load", function() {
+                $(this).removeClass("bookcase-hidden")
+                $($(this)[0].contentDocument).find(".bookcase-book").each(function() {
+                    $(this).on("click", function() {
+                        openBookEditor($(this)[0].id)
+                    })
+                })
+            })
+        })
+    }
+
+    duplicateBook() {
+        let currentBook = this.state.currentBook;
+        currentBook.bookid = "";
+        currentBook.imageurl = "";
+        this.setState({
+            currentBook: currentBook
+        })
     }
 
     render() {
         let visible = this.state.currentBook === null ? 'hidden' : 'visible'
         return (
             <div className="bookcases-container" ref={this.state.containerRef}>
+                {/*
                 <div width={this.state.areaStyle.width} height={this.state.areaStyle.height} className={"bookcases " + (this.state.showAllShelves ? 'visible' : 'hidden')} ref={this.state.bookcasesRef}>
                     {this.state.canvasRefs.map((ref, idx) => {
                         return <canvas ref={ref} key={idx} onClick={(event) => this.canvasClick(event, ref, idx)} />
                     })}
                 </div>
+                <div className={"bookshelves-return " + (this.state.showAllShelves ? 'hidden' : 'visible')} onClick={(event) => this.onReturnFromShelf(event)}>Return</div>
                 <div width={this.state.areaStyle.width} height={this.state.areaStyle.height} className={"bookshelves " + (this.state.showAllShelves ? 'hidden' : 'visible')} ref={this.state.bookcasesRef}>
                     {this.state.shelfRefs.map((bookcase, bidx) => {
                         return bookcase.map((shelf, sidx) => {
-                            return <canvas className={shelf.visible ? 'visible' : 'hidden'} ref={shelf.ref} key={bidx + "-" + sidx} onClick={(event) => this.canvasKeyPress(event)} />
+                            return <canvas className={shelf.visible ? 'visible' : 'hidden'} ref={shelf.ref} key={bidx + "-" + sidx} onClick={(event) => this.canvasClick(event, shelf.ref, -1) } />
                         })
                     })}
                 </div>
+                */}
+                <div className={"bookcases " + (this.state.showAllShelves ? 'visible' : 'hidden')} ref={this.state.bookcasesRef}>
+                    <div id="bookcase-arrows">
+                    </div>
+                    <BookcasesBar
+                        search={this.search}
+                        zoomIn={this.zoomIn}
+                        zoomOut={this.zoomOut}
+                    />
+                    {this.state.caseImageURLs.map((url, idx) => {
+                        return <object style={{height: "100%"}} key={idx} className="bookcase bookcase-hidden" data={url+"?"+(this.props.getCasesHash())} type="image/svg+xml" />
+                    })}
+                </div>
+                <div className={"bookshelves " + (this.state.showAllShelves ? 'hidden' : 'visible')}>
+                </div>
                 <BookView
                     book={this.state.currentBook}
+                    readOnlyLibrary={this.state.readOnlyLibrary}
                     visible={visible}
                     saveBook={this.saveBook}
                     cancelBook={this.cancelBook}
                     removeBook={this.removeBook}
+                    duplicateBook={this.duplicateBook}
                     reload={this.loadCases}
                 />
             </div>
@@ -72,7 +133,7 @@ class Shelves extends React.Component {
 
     openShelfView(caseId, shelfId) {
         this.setState({
-            clickedShelf: {caseId: caseId, shelfId: shelfId},
+            clickedShelf: {caseid: caseId, shelfid: shelfId},
             shelfRefs: this.state.shelfRefs.map((bookcase, i) => {
                 return bookcase.map((shelf, j) => {
                     if (i === caseId && j === shelfId) {
@@ -90,7 +151,7 @@ class Shelves extends React.Component {
 
     closeShelfView() {
         this.setState({
-            clickedShelf: {caseId: -1, shelfId: -1},
+            clickedShelf: {caseid: -1, shelfid: -1},
             shelfRefs: this.state.shelfRefs.map((bookcase, i) => {
                 return bookcase.map((shelf, j) => {
                     shelf.visible = false;
@@ -118,7 +179,11 @@ class Shelves extends React.Component {
     }
 
     saveBook(b, reload) {
-        this.props.saveBook(b, reload)
+        if (b.bookid) {
+            this.props.saveBook(b, reload)
+        } else {
+            this.props.addBook(b, reload)
+        }
         this.setState({
             currentBook: null
         })
@@ -130,8 +195,8 @@ class Shelves extends React.Component {
         })
     }
 
-    removeBook(bookid, reload) {
-        this.props.removeBook(bookid, reload)
+    removeBook(book, reload) {
+        this.props.removeBook(book, reload)
         this.setState({
             currentBook: null
         })
@@ -150,60 +215,87 @@ class Shelves extends React.Component {
         }
     }
 
-    canvasKeyPress(event) {
-        // if (!this.state.showAllShelves && event.key === 'Escape') {
+    onReturnFromShelf(event) {
         if (!this.state.showAllShelves) {
             this.closeShelfView()
         }
     }
 
     getClick(event, ref, idx) {
-        let rect = ref.current.getBoundingClientRect()
-        let x = event.clientX - rect.left
-        let y = event.clientY - rect.top
-        let i = Math.floor(x / 100)
-        let j = Math.floor(y / 100)
-        if (this.state.bookHashes[idx]) {
-            for (let b in this.state.bookHashes[idx][i][j]) {
-                if (x < this.state.bookHashes[idx][i][j][b].x + this.state.bookHashes[idx][i][j][b].newwidth && x > this.state.bookHashes[idx][i][j][b].x && y < this.state.bookHashes[idx][i][j][b].y + this.state.bookHashes[idx][i][j][b].newheight && y > this.state.bookHashes[idx][i][j][b].y) {
-                    let book = this.state.bookHashes[idx][i][j][b]
-                    return {book: book, container: null}
+        if (this.state.showAllShelves) {
+            let rect = ref.current.getBoundingClientRect()
+            let x = event.clientX - rect.left
+            let y = event.clientY - rect.top
+            let i = Math.floor(x / 100)
+            let j = Math.floor(y / 100)
+            if (this.state.bookHashes[idx]) {
+                for (let b in this.state.bookHashes[idx][i][j]) {
+                    if (x < this.state.bookHashes[idx][i][j][b].x + this.state.bookHashes[idx][i][j][b].newwidth && x > this.state.bookHashes[idx][i][j][b].x && y < this.state.bookHashes[idx][i][j][b].y + this.state.bookHashes[idx][i][j][b].newheight && y > this.state.bookHashes[idx][i][j][b].y) {
+                        let book = this.state.bookHashes[idx][i][j][b]
+                        return {book: book, container: null}
+                    }
                 }
             }
-        }
-        for (let s in this.state.shelfHashes[idx]) {
-            let shelf = this.state.shelfHashes[idx][s]
-            if (x > shelf.x1 && x < shelf.x2 && y > shelf.y1 && y < shelf.y2) {
-                return {book: null, container: shelf}
+            for (let s in this.state.shelfHashes[idx]) {
+                let shelf = this.state.shelfHashes[idx][s]
+                if (x > shelf.x1 && x < shelf.x2 && y > shelf.y1 && y < shelf.y2) {
+                    return {book: null, container: shelf}
+                }
             }
+            return {book: null, container: null}
+        } else {
+            let container = {caseid: this.state.clickedShelf.caseid, shelfid: this.state.clickedShelf.shelfid}
+            let rect = ref.current.getBoundingClientRect()
+            let x = event.clientX - rect.left
+            let y = event.clientY - rect.top
+            for (let b in this.state.shelfViewBookHashes[this.state.clickedShelf.caseid][this.state.clickedShelf.shelfid]) {
+                if (x < this.state.shelfViewBookHashes[this.state.clickedShelf.caseid][this.state.clickedShelf.shelfid][b].x + this.state.shelfViewBookHashes[this.state.clickedShelf.caseid][this.state.clickedShelf.shelfid][b].width
+                 && x > this.state.shelfViewBookHashes[this.state.clickedShelf.caseid][this.state.clickedShelf.shelfid][b].x
+                 && y < this.state.shelfViewBookHashes[this.state.clickedShelf.caseid][this.state.clickedShelf.shelfid][b].y + this.state.shelfViewBookHashes[this.state.clickedShelf.caseid][this.state.clickedShelf.shelfid][b].height
+                 && y > this.state.shelfViewBookHashes[this.state.clickedShelf.caseid][this.state.clickedShelf.shelfid][b].y ) {
+                    return {book: this.state.shelfViewBookHashes[this.state.clickedShelf.caseid][this.state.clickedShelf.shelfid][b].book, container: null}
+                }
+            }
+            return {book: null, container: null}
         }
-        return {book: null, container: null}
     }
 
     doBoxesIntersect(a, b) {
         return !(a.x > b.x + b.width || a.x + a.width < b.x || a.y > b.y + b.height || a.y + a.height < b.y)
     }
 
+    // loadCases() {
+    //     fetch("/libraries/" + this.state.libraryid + "/cases")
+    //         .then(res => res.json())
+    //         .then((data) => {
+    //             this.setState({
+    //                 canvasRefs: data.map((bookcase) => {
+    //                     return React.createRef()
+    //                 }),
+    //                 shelfRefs: data.map((bookcase) => {
+    //                     return bookcase.shelves.map((shelf) => {
+    //                         return {
+    //                             ref: React.createRef(),
+    //                             visible: false
+    //                         }
+    //                     })
+    //                 }),
+    //                 cases: data
+    //             })
+    //             let height = this.drawCanvas()
+    //             this.state.bookcasesRef.current.scrollTo(0, height)
+    //         })
+    //         .catch(console.log)
+    // }
     loadCases() {
-        fetch("/libraries/" + this.state.libraryid + "/cases")
+        fetch("/libraries/" + this.state.libraryid + "/cases/ids")
             .then(res => res.json())
             .then((data) => {
                 this.setState({
-                    canvasRefs: data.map((bookcase) => {
-                        return React.createRef()
-                    }),
-                    shelfRefs: data.map((bookcase) => {
-                        return bookcase.shelves.map((shelf) => {
-                            return {
-                                ref: React.createRef(),
-                                visible: false
-                            }
-                        })
-                    }),
-                    cases: data
+                    caseImageURLs: data.map((id) => {
+                        return "/caseimages/" + id
+                    })
                 })
-                let height = this.drawCanvas()
-                this.state.bookcasesRef.current.scrollTo(0, height)
             })
             .catch(console.log)
     }
@@ -213,7 +305,7 @@ class Shelves extends React.Component {
         const canvas = thisClass.state.shelfRefs[caseid][shelfid].ref.current
         const ctx = canvas.getContext('2d')
         let width = window.innerWidth;
-        let height = window.innerHeight - 80;
+        let height = window.innerHeight - 80 - 40;
         canvas.width = width;
         canvas.height = height;
         let totalBookWidth = 0;
@@ -227,6 +319,16 @@ class Shelves extends React.Component {
         let actualWidth = 0
         let x = 0;
         let y = height;
+
+        if (this.state.shelfViewBookHashes[caseid]) {
+            if (!this.state.shelfViewBookHashes[caseid][shelfid]) {
+                this.state.shelfViewBookHashes[caseid][shelfid] = []
+            }
+        } else {
+            this.state.shelfViewBookHashes[caseid] = []
+            this.state.shelfViewBookHashes[caseid][shelfid] = []
+        }
+
         for (let b in books) {
             let book = books[b]
             let spineColor = book.highlight === undefined ? book.spinecolor : (book.highlight ? "white" : "black")
@@ -269,6 +371,10 @@ class Shelves extends React.Component {
             ctx.fillStyle = textColor
             ctx.fillText(text, 0, 0)
             ctx.restore()
+
+            //hashes
+            this.state.shelfViewBookHashes[caseid][shelfid].push({x: x, y: y-bookheight, width: bookwidth, height: bookheight, book: book})
+
             x += bookwidth;
         }
     }
@@ -427,6 +533,133 @@ class Shelves extends React.Component {
 
         return height
     }
+
+    determineReadOnly() {
+        fetch("/libraries/" + this.state.libraryid)
+            .then(res => res.json())
+            .then((data) => {
+                this.setState({
+                    readOnlyLibrary: (data.permissions & 2) !== 2
+                })
+            })
+            .catch(console.log)
+    }
+
+    setZoom() {
+        let thisClass = this;
+        console.log("new zoom: " + thisClass.state.zoom)
+        $(".bookcase").each(function() {
+            $(this).height(thisClass.state.zoom + "%")
+        })
+        thisClass.search(this.state.searchValue)
+    }
+
+    zoomIn() {
+        let thisClass = this;
+        let oldX = $(".bookcases")[0].scrollLeft + $(".bookcases")[0].clientWidth / 2
+        let oldY = $(".bookcases")[0].scrollTop + $(".bookcases")[0].clientHeight / 2
+        console.log("oldX: " + oldX + ", oldY: " + oldY)
+        console.log("old width: " + $(".bookcases")[0].scrollWidth)
+        console.log("old height: " + $(".bookcases")[0].scrollHeight)
+        console.log("old zoom: " + thisClass.state.zoom)
+        if (thisClass.state.zoom < maxZoom) {
+            thisClass.setState({
+                zoom: thisClass.state.zoom * 2
+            }, function() {
+                thisClass.setZoom()
+                $($(".bookcases")[0]).scrollLeft(oldX * 2 - $(".bookcases")[0].clientWidth / 2)
+                $($(".bookcases")[0]).scrollTop(oldY * 2 - $(".bookcases")[0].clientHeight / 2)
+
+                let newX = $(".bookcases")[0].scrollLeft + $(".bookcases")[0].clientWidth / 2
+                let newY = $(".bookcases")[0].scrollTop + $(".bookcases")[0].clientHeight / 2
+                console.log("newX: " + newX + ", newY: " + newY)
+                console.log("new width: " + $(".bookcases")[0].scrollWidth)
+                console.log("new height: " + $(".bookcases")[0].scrollHeight)
+            })
+        }
+    }
+
+    zoomOut() {
+        let thisClass = this;
+        let oldX = $(".bookcases")[0].scrollLeft + $(".bookcases")[0].clientWidth / 2
+        let oldY = $(".bookcases")[0].scrollTop + $(".bookcases")[0].clientHeight / 2
+        console.log("oldX: " + oldX + ", oldY: " + oldY)
+        console.log("old zoom: " + thisClass.state.zoom)
+        if (thisClass.state.zoom > minZoom) {
+            thisClass.setState({
+                zoom: this.state.zoom / 2
+            }, function() {
+                thisClass.setZoom()
+                $($(".bookcases")[0]).scrollLeft(oldX / 2 - $(".bookcases")[0].clientWidth / 2)
+                $($(".bookcases")[0]).scrollTop(oldY / 2 - $(".bookcases")[0].clientHeight / 2)
+
+                let newX = $(".bookcases")[0].scrollLeft + $(".bookcases")[0].clientWidth / 2
+                let newY = $(".bookcases")[0].scrollTop + $(".bookcases")[0].clientHeight / 2
+                console.log("newX: " + newX + ", newY: " + newY)
+            })
+        }
+    }
+
+    search(value) {
+        this.setState({
+            searchValue: value
+        })
+        fetch("/libraries/" + this.state.libraryid + "/search?text=" + encodeURIComponent(value))
+        .then(res => res.json())
+        .then((data) => {
+            if (data.length < 1000) {
+                let arrowContainer = $("#bookcase-arrows")
+                let bookcasesContainer = $($(".bookcases")[0])
+                let bookcasesBox = bookcasesContainer[0].getBoundingClientRect()
+
+                arrowContainer.empty()
+                data.forEach(match => {
+                    let caseX = 0
+                    for (let i=0; i<match.case; i++) {
+                        caseX += $($(".bookcase")[i]).width()
+                        console.log(i, $($(".bookcase")[i]).width())
+                    }
+                    let svg = $($($(".bookcase")[match.case].contentDocument).find("svg")[0])
+
+                    let ratio = bookcasesContainer[0].scrollHeight / parseInt(svg.attr("height"))
+
+                    let bookcase = $($(".bookcase")[match.case])
+                    let bookcaseBox = bookcase[0].getBoundingClientRect()
+
+                    let book = $(bookcase[0].contentDocument).find("#book-" + match.id)
+                    let bookBox = book[0].getBoundingClientRect()
+                    // let x = book.offset().left + $($(".bookcase")[match.case]).offset().left
+                    // let y = book.offset().top + $($(".bookcase")[match.case]).offset().top
+                    // let width = parseInt(book.width())
+                    // let height = book.height()
+
+                    let x = caseX + book.attr("x") * ratio//bookBox.x + bookcaseBox.x
+                    let y = book.attr("y") * ratio//bookBox.y + bookcaseBox.y
+                    let width = book.attr("width") * ratio
+                    let height = book.attr("height") * ratio
+
+                    let imageWidth = 40 * this.state.zoom / 100
+                    let imageHeight = 40 * this.state.zoom / 100
+
+                    console.log("CaseX: " + caseX)
+                    console.log("X: " + x)
+                    console.log("Y: " + y)
+                    console.log("Ratio: " + ratio)
+                    console.log("Width: " + width)
+                    console.log("Height: " + height)
+                    console.log(match)
+                    console.log("")
+
+                    let arrow = $("<div class='highlight-arrow'><img width='" + imageWidth + "' height='" + imageHeight + "' src='/web/res/Down-Arrow.png'></img></div>")
+                    arrow.css("left", x + width/2 - imageWidth/2)
+                    arrow.css("top", y - imageHeight)
+                    arrowContainer.append(arrow)
+                })
+            }
+        })
+        .catch(console.log)
+    }
+
 }
 
 export default Shelves

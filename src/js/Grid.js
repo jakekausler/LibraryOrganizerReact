@@ -50,7 +50,8 @@ class Grid extends React.Component {
 			books: [],
 			numberOfBooks: 0,
 			loading: false,
-			currentBook: null
+			currentBook: null,
+			readOnlyLibrary: true
 		}
 		this.updateFilters = this.updateFilters.bind(this)
 		this.loadBooks = this.loadBooks.bind(this)
@@ -58,15 +59,27 @@ class Grid extends React.Component {
 		this.saveBook = this.saveBook.bind(this)
 		this.cancelBook = this.cancelBook.bind(this)
 		this.removeBook = this.removeBook.bind(this)
+		this.duplicateBook = this.duplicateBook.bind(this)
 		this.nextPage = this.nextPage.bind(this)
 		this.prevPage = this.prevPage.bind(this)
+		this.determineReadOnly = this.determineReadOnly.bind(this)
 	}
+
+    duplicateBook() {
+    	let currentBook = this.state.currentBook;
+    	currentBook.bookid = "";
+    	currentBook.imageurl = "";
+        this.setState({
+            currentBook: currentBook
+        })
+    }
 
 	componentDidMount() {
 		this.setState({
 			loading: true
 		})
 		this.loadBooks()
+		this.determineReadOnly()
 		this.setState({
 			loading: false
 		})
@@ -78,6 +91,7 @@ class Grid extends React.Component {
 			<div className='grid-view'>
 				{this.state.loading && <div>LOADING</div>}
 				<Filters
+					readOnlyLibrary={this.state.readOnlyLibrary}
 					filters={this.state.filters}
 					updateFilters={this.updateFilters}
 					numBooks={this.state.numberOfBooks}
@@ -91,11 +105,13 @@ class Grid extends React.Component {
 					newPastelColor={this.props.newPastelColor}
 				/>
 				<BookView
+					readOnlyLibrary={this.state.readOnlyLibrary}
 					book={this.state.currentBook}
 					visible={visible}
 					saveBook={this.saveBook}
 					cancelBook={this.cancelBook}
 					removeBook={this.removeBook}
+					duplicateBook={this.duplicateBook}
 					reload={this.loadBooks}
 				/>
 			</div>
@@ -163,8 +179,8 @@ class Grid extends React.Component {
 		})
 	}
 
-	removeBook(bookid, reload) {
-		this.props.removeBook(bookid, reload)
+	removeBook(book, reload) {
+		this.props.removeBook(book, reload)
 		this.setState({
 			currentBook: null
 		})
@@ -175,6 +191,7 @@ class Grid extends React.Component {
 			filters: filters
 		})
 		this.loadBooks()
+		this.determineReadOnly()
 		setSubmitting(false)
 	}
 
@@ -185,6 +202,17 @@ class Grid extends React.Component {
 				this.setState({
 					books: data.books,
 					numberOfBooks: data.numbooks
+				})
+			})
+			.catch(console.log)
+	}
+
+	determineReadOnly() {
+		fetch("/libraries/" + this.state.filters.libraryids)
+			.then(res => res.json())
+			.then((data) => {
+				this.setState({
+					readOnlyLibrary: (data.permissions & 2) !== 2
 				})
 			})
 			.catch(console.log)

@@ -10,7 +10,6 @@ class BookView extends React.Component {
 	}
 
 	render() {
-		console.log(this.props.book)
 		if (this.props.visible==="hidden") {
 			return(<div className={"bookView " + this.props.visible}></div>)
 		}
@@ -518,7 +517,7 @@ class BookView extends React.Component {
 							>
 								<button
 									type="submit"
-									disabled={isSubmitting}
+									disabled={isSubmitting || this.props.readOnlyLibrary}
 									className="book-form-button"
 								>
 									Save
@@ -532,10 +531,19 @@ class BookView extends React.Component {
 								</button>
 								<button
 									type="button"
+									disabled={isSubmitting || this.props.readOnlyLibrary}
 									className="book-form-button"
-									onClick={() => this.props.removeBook(this.props.book.bookid, this.props.reload)}
+									onClick={() => this.props.removeBook(this.props.book, this.props.reload)}
 								>
 									Remove
+								</button>
+								<button
+									type="button"
+									disabled={isSubmitting || this.props.readOnlyLibrary}
+									className="book-form-button"
+									onClick={() => this.props.duplicateBook()}
+								>
+									Duplicate
 								</button>
 							</div>
 						</Form>

@@ -44,7 +44,6 @@ class Stats extends React.Component {
 					}),
 					total: data.total
 				})
-				console.log(data)
 			})
 			.catch(console.log)
 		}
@@ -85,7 +84,7 @@ class Stats extends React.Component {
 			<div className="stats">
 				<StatButtonBar ChangeStat={this.changeStat} />
 				{total ? <div className="totalLabel">Total: {total}</div> : ""}
-				{barChartVisible && <div className="barChart" style={{width: "100%", height: "750px"}}>
+				{barChartVisible && <div className={"barChart " + (total ? "chart-with-total" : "chart-no-total")} style={{width: "100%"}}>
 					<ResponsiveBar 
 		               data={this.state.data}
 		               indexBy="label"
@@ -97,7 +96,7 @@ class Stats extends React.Component {
 		               tooltipFormat={value => (Math.round(parseFloat(value)/parseFloat(this.state.total)*1000)/10) + "%"}
 		            />
 	            </div>}
-				{pieChartVisible && <div className="pieChart" style={{width: "100%", height: "750px"}}>
+				{pieChartVisible && <div className={"pieChart " + (total ? "chart-with-total" : "chart-no-total")} style={{width: "100%"}}>
 					<ResponsivePie 
 		               data={this.state.data}
 		               colorBy="value"
@@ -108,7 +107,7 @@ class Stats extends React.Component {
 		               tooltipFormat={value => (Math.round(parseFloat(value)/parseFloat(this.state.total)*1000)/10) + "%"}
 		            />
 	            </div>}
-				{mapChartVisible && <div className="mapChart" style={{width: "100%", height: "750px"}}>
+				{mapChartVisible && <div className={"mapChart " + (total ? "chart-with-total" : "chart-no-total")} style={{width: "100%"}}>
 		            <ResponsiveGeoMap
 				        features={[]}
 				        margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
@@ -121,7 +120,7 @@ class Stats extends React.Component {
 				        graticuleLineColor="#666666"
 				    />
 				</div>}
-				{dimensionChartVisible && <div className="dimensionChart" style={{width: "100%", height: "750px"}}>
+				{dimensionChartVisible && <div className={"dimensionChart " + (total ? "chart-with-total" : "chart-no-total")} style={{width: "100%"}}>
 					<table>
 					<tbody>
 					<tr>

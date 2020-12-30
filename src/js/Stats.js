@@ -15,6 +15,7 @@ class Stats extends React.Component {
 		}
 
         this.changeStat = this.changeStat.bind(this)
+        this.addCommas = this.addCommas.bind(this)
 	}
 
 	changeStat(newStat) {
@@ -25,7 +26,9 @@ class Stats extends React.Component {
 				this.setState({
 					current: newStat,
 					data: data,
-					total: 0
+					total: 0,
+					prefix: "",
+					postfix: ""
 				})
 			})
 			.catch(console.log)
@@ -42,11 +45,17 @@ class Stats extends React.Component {
 							label: d.label
 						}
 					}),
-					total: data.total
+					total: data.total,
+					postfix: data.postfix,
+					prefix: data.prefix
 				})
 			})
 			.catch(console.log)
 		}
+	}
+
+	addCommas(n) {
+		return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
 
 	// TODO: Publisher City Map
@@ -80,10 +89,12 @@ class Stats extends React.Component {
 			this.state.current == 'dimensions'
 		)
 		let total = this.state.total
+		let prefix = this.state.prefix
+		let postfix = this.state.postfix
 		return (
 			<div className="stats">
 				<StatButtonBar ChangeStat={this.changeStat} />
-				{total ? <div className="totalLabel">Total: {total}</div> : ""}
+				{total ? <div className="totalLabel">Total: {prefix + this.addCommas(total) + postfix}</div> : ""}
 				{barChartVisible && <div className={"barChart " + (total ? "chart-with-total" : "chart-no-total")} style={{width: "100%"}}>
 					<ResponsiveBar 
 		               data={this.state.data}
@@ -92,7 +103,7 @@ class Stats extends React.Component {
 		               padding={0.3}
 		               margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
 		               colors={{"scheme": "set3"}}
-		               labelFormat={(d) => <tspan y={ -12 }>{ d.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") }</tspan>}
+		               labelFormat={(d) => <tspan y={ -12 }>{ prefix + d.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + postfix }</tspan>}
 		               tooltipFormat={value => (Math.round(parseFloat(value)/parseFloat(this.state.total)*1000)/10) + "%"}
 		            />
 	            </div>}
@@ -104,6 +115,7 @@ class Stats extends React.Component {
 		               padding={0.3}
 		               margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
 		               colors={{"scheme": "pastel1"}}
+		               sliceLabel={d => `${prefix}${d.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}${postfix}`}
 		               tooltipFormat={value => (Math.round(parseFloat(value)/parseFloat(this.state.total)*1000)/10) + "%"}
 		            />
 	            </div>}

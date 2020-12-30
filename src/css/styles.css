@@ -701,6 +701,10 @@ input {
 	text-align: center;
 }
 
+textPath, .bookcase-book {
+	cursor: pointer;
+}
+
 .stats {
 	display: flex;
 	height: calc(100vh - 80px);

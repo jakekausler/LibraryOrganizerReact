@@ -60,6 +60,15 @@ class BookcasesBar extends React.Component {
 										-
 									</button>
 								</div>
+								<div className="cases-edit-button-container">
+									<button
+										type="button"
+										className="form-button cases-edit-button"
+										onClick={() => this.props.openShelfEditor()}
+									>
+										Edit
+									</button>
+								</div>
 							</div>
 						</Form>
 						)}

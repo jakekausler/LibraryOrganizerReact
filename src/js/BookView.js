@@ -4,6 +4,110 @@ import * as Yup from 'yup'
 
 import Checkbox from './Checkbox'
 
+const BookViewSchema = Yup.object().shape({
+	library: Yup.string()
+		.required('Required'),
+	title: Yup.string()
+		.max(255, 'Title must be less than or equal to 255 characters')
+		.required('Required'),
+	subtitle: Yup.string()
+		.max(255, 'Must be less than or equal to 255 characters'),
+	series: Yup.string()
+		.max(255, 'Must be less than or equal to 255 characters'),
+	volume: Yup.number()
+		.required('Required'),
+	authors: Yup.string()
+		.matches(/(^([^ \n:]+)? ([^ \n:]+)? ([^ \n:]+):[^ \n:]+\n?)+/, {message:'Not valid. Please ensure you are putting one author per line, each in the format [First [Middle1;Middle2;...;MiddleN ]]Last:Role', excludeEmptyString:true}),
+	publisher: Yup.object().shape({
+		publisher: Yup.string()
+			.max(255, 'Must be less than or equal to 255 characters'),
+		city: Yup.string()
+			.max(255, 'Must be less than or equal to 255 characters'),
+		state: Yup.string()
+			.max(255, 'Must be less than or equal to 255 characters'),
+		country: Yup.string()
+			.max(255, 'Must be less than or equal to 255 characters')
+	}),
+	originallypublished: Yup.string()
+		.required('Required')
+		.matches(/^[0-9][0-9][0-9][0-9]$/, "Must be a four digit year"),
+	editionpublished: Yup.string()
+		.required('Required')
+		.matches(/^[0-9][0-9][0-9][0-9]$/, "Must be a four digit year"),
+	edition: Yup.number()
+		.required('Required'),
+	isbn: Yup.string()
+		.test('validate-isbn', 'Invalid', function(value) {
+			var sum,
+	        weight,
+	        digit,
+	        check,
+	        i;
+
+	        if (!value) {
+	        	return true;
+	        }
+
+		    value = value.replace(/[^0-9X]/gi, '');
+
+		    if (value.length != 10 && value.length != 13) {
+		        return false;
+		    }
+
+		    if (value.length == 13) {
+		        sum = 0;
+		        for (i = 0; i < 12; i++) {
+		            digit = parseInt(value[i]);
+		            if (i % 2 == 1) {
+		                sum += 3*digit;
+		            } else {
+		                sum += digit;
+		            }
+		        }
+		        check = (10 - (sum % 10)) % 10;
+		        return (check == value[value.length-1]);
+		    }
+
+		    if (value.length == 10) {
+		        weight = 10;
+		        sum = 0;
+		        for (i = 0; i < 9; i++) {
+		            digit = parseInt(value[i]);
+		            sum += weight*digit;
+		            weight--;
+		        }
+		        check = 11 - (sum % 11);
+		        if (check == 10) {
+		            check = 'X';
+		        }
+		        return (check == value[value.length-1].toUpperCase());
+		    }
+		}),
+	dewey: Yup.string()
+		.required('Required')
+		.matches(/([0-9][0-9][0-9](\.[0-9]+)?)|(aFIC|bCOM|cDND)/, "Invalid"),
+	binding: Yup.string(),
+	pages: Yup.number()
+		.required('Required')
+		.min(0, 'Must be at least zero')
+		.integer('Must be an integer'),
+	width: Yup.number()
+		.required('Required')
+		.min(0, 'Must be at least zero')
+		.integer('Must be an integer'),
+	height: Yup.number()
+		.required('Required')
+		.min(0, 'Must be at least zero')
+		.integer('Must be an integer'),
+	depth: Yup.number()
+		.required('Required')
+		.min(0, 'Must be at least zero')
+		.integer('Must be an integer'),
+	weight: Yup.number()
+		.required('Required')
+		.min(0, 'Must be at least zero'),
+})
+
 class BookView extends React.Component {
 	constructor() {
 		super()
@@ -13,109 +117,6 @@ class BookView extends React.Component {
 		if (this.props.visible==="hidden") {
 			return(<div className={"bookView " + this.props.visible}></div>)
 		}
-		const BookViewSchema = Yup.object().shape({
-			library: Yup.string()
-				.required('Required'),
-			title: Yup.string()
-				.max(255, 'Title must be less than or equal to 255 characters')
-				.required('Required'),
-			subtitle: Yup.string()
-				.max(255, 'Must be less than or equal to 255 characters'),
-			series: Yup.string()
-				.max(255, 'Must be less than or equal to 255 characters'),
-			volume: Yup.number()
-				.required('Required'),
-			authors: Yup.string()
-				.matches(/(^([^ \n:]+)? ([^ \n:]+)? ([^ \n:]+):[^ \n:]+\n?)+/, {message:'Not valid. Please ensure you are putting one author per line, each in the format [First [Middle1;Middle2;...;MiddleN ]]Last:Role', excludeEmptyString:true}),
-			publisher: Yup.object().shape({
-				publisher: Yup.string()
-					.max(255, 'Must be less than or equal to 255 characters'),
-				city: Yup.string()
-					.max(255, 'Must be less than or equal to 255 characters'),
-				state: Yup.string()
-					.max(255, 'Must be less than or equal to 255 characters'),
-				country: Yup.string()
-					.max(255, 'Must be less than or equal to 255 characters')
-			}),
-			originallypublished: Yup.string()
-				.required('Required')
-				.matches(/^[0-9][0-9][0-9][0-9]$/, "Must be a four digit year"),
-			editionpublished: Yup.string()
-				.required('Required')
-				.matches(/^[0-9][0-9][0-9][0-9]$/, "Must be a four digit year"),
-			edition: Yup.number()
-				.required('Required'),
-			isbn: Yup.string()
-				.test('validate-isbn', 'Invalid', function(value) {
-					var sum,
-			        weight,
-			        digit,
-			        check,
-			        i;
-
-			        if (!value) {
-			        	return true;
-			        }
-
-				    value = value.replace(/[^0-9X]/gi, '');
-
-				    if (value.length != 10 && value.length != 13) {
-				        return false;
-				    }
-
-				    if (value.length == 13) {
-				        sum = 0;
-				        for (i = 0; i < 12; i++) {
-				            digit = parseInt(value[i]);
-				            if (i % 2 == 1) {
-				                sum += 3*digit;
-				            } else {
-				                sum += digit;
-				            }
-				        }
-				        check = (10 - (sum % 10)) % 10;
-				        return (check == value[value.length-1]);
-				    }
-
-				    if (value.length == 10) {
-				        weight = 10;
-				        sum = 0;
-				        for (i = 0; i < 9; i++) {
-				            digit = parseInt(value[i]);
-				            sum += weight*digit;
-				            weight--;
-				        }
-				        check = 11 - (sum % 11);
-				        if (check == 10) {
-				            check = 'X';
-				        }
-				        return (check == value[value.length-1].toUpperCase());
-				    }
-				}),
-			dewey: Yup.string()
-				.required('Required')
-				.matches(/([0-9][0-9][0-9](\.[0-9]+)?)|(aFIC|bCOM|cDND)/, "Invalid"),
-			binding: Yup.string(),
-			pages: Yup.number()
-				.required('Required')
-				.min(0, 'Must be at least zero')
-				.integer('Must be an integer'),
-			width: Yup.number()
-				.required('Required')
-				.min(0, 'Must be at least zero')
-				.integer('Must be an integer'),
-			height: Yup.number()
-				.required('Required')
-				.min(0, 'Must be at least zero')
-				.integer('Must be an integer'),
-			depth: Yup.number()
-				.required('Required')
-				.min(0, 'Must be at least zero')
-				.integer('Must be an integer'),
-			weight: Yup.number()
-				.required('Required')
-				.min(0, 'Must be at least zero'),
-		})
 		return (
 			<div className={"bookView " + this.props.visible}>
 				<Formik

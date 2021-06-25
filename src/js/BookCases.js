@@ -2,6 +2,7 @@ import React from 'react'
 
 import BookView from './BookView'
 import BookcasesBar from './BookcasesBar'
+import ShelfEditor from './ShelfEditor'
 
 const minZoom = 100
 const maxZoom = 1600
@@ -18,7 +19,8 @@ class Shelves extends React.Component {
             readOnlyLibrary: true,
             zoom: 100,
             highlights: [],
-            searchValue: ""
+            searchValue: "",
+            showShelfEditor: false
         }
         this.loadCases = this.loadCases.bind(this)
         this.openBookEditor = this.openBookEditor.bind(this)
@@ -30,6 +32,9 @@ class Shelves extends React.Component {
         this.zoomIn = this.zoomIn.bind(this)
         this.zoomOut = this.zoomOut.bind(this)
         this.search = this.search.bind(this)
+        this.openShelfEditor = this.openShelfEditor.bind(this)
+        this.saveShelfEditor = this.saveShelfEditor.bind(this)
+        this.closeShelfEditor = this.closeShelfEditor.bind(this)
     }
 
     componentDidMount() {
@@ -69,7 +74,8 @@ class Shelves extends React.Component {
     }
 
     render() {
-        let visible = this.state.currentBook === null ? 'hidden' : 'visible'
+        let bookEditorVisible = this.state.currentBook === null ? 'hidden' : 'visible'
+        let shelfEditorVisible = this.state.showShelfEditor ? 'visible' : 'hidden'
         return (
             <div className="bookcases-container">
                 <div className={"bookcases"}>
@@ -79,6 +85,7 @@ class Shelves extends React.Component {
                         search={this.search}
                         zoomIn={this.zoomIn}
                         zoomOut={this.zoomOut}
+                        openShelfEditor={this.openShelfEditor}
                     />
                     {this.state.caseImageURLs.map((url, idx) => {
                         return <object style={{height: "100%"}} key={idx} className="bookcase bookcase-hidden" data={url+"?"+(this.props.getCasesHash())} type="image/svg+xml" />
@@ -87,15 +94,41 @@ class Shelves extends React.Component {
                 <BookView
                     book={this.state.currentBook}
                     readOnlyLibrary={this.state.readOnlyLibrary}
-                    visible={visible}
+                    visible={bookEditorVisible}
                     saveBook={this.saveBook}
                     cancelBook={this.cancelBook}
                     removeBook={this.removeBook}
                     duplicateBook={this.duplicateBook}
                     reload={this.loadCases}
                 />
+                <ShelfEditor
+                    visible={shelfEditorVisible}
+                    saveShelfEditor={this.saveShelfEditor}
+                    closeShelfEditor={this.closeShelfEditor}
+                    libraryid={this.state.libraryid}
+                    readOnlyLibrary={this.state.readOnlyLibrary}
+                />
             </div>
         )
+    }
+
+    openShelfEditor() {
+        this.setState({
+            showShelfEditor: true
+        })
+    }
+
+    saveShelfEditor(cases) {
+        console.log(cases)
+        this.setState({
+            showShelfEditor: false
+        })
+    }
+
+    closeShelfEditor() {
+        this.setState({
+            showShelfEditor: false
+        })
     }
 
     openBookEditor(bookid) {

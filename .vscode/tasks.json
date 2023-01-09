@@ -1,0 +1,13 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "buildDev",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: buildDev",
+			"detail": "rm -rf dist && webpack --mode development --config webpack.server.config.js && webpack --mode development --config webpack.dev.config.js"
+		}
+	]
+}

@@ -18,6 +18,7 @@ const BookViewSchema = Yup.object().shape({
 		.required('Required'),
 	authors: Yup.string()
 		.matches(/(^([^ \n:]+)? ([^ \n:]+)? ([^ \n:]+):[^ \n:]+\n?)+/, {message:'Not valid. Please ensure you are putting one author per line, each in the format [First [Middle1;Middle2;...;MiddleN ]]Last:Role', excludeEmptyString:true}),
+	notes: Yup.string(),
 	publisher: Yup.object().shape({
 		publisher: Yup.string()
 			.max(255, 'Must be less than or equal to 255 characters'),
@@ -85,7 +86,7 @@ const BookViewSchema = Yup.object().shape({
 		}),
 	dewey: Yup.string()
 		.required('Required')
-		.matches(/([0-9][0-9][0-9](\.[0-9]+)?)|(aFIC|bCOM|cDND)/, "Invalid"),
+		.matches(/([0-9][0-9][0-9](\.[0-9]+)?)|(aFIC|bGEO|cDND)/, "Invalid"),
 	binding: Yup.string(),
 	pages: Yup.number()
 		.required('Required')
@@ -234,6 +235,17 @@ class BookView extends React.Component {
 												className="form-field-long"
 												component="textarea"
 												name="authors"
+											>
+											</Field>
+										</div>
+										<div className="book-form-field-container">
+											<label className="form-field-label">
+												Notes
+											</label>
+											<Field
+												className="form-field-long"
+												component="textarea"
+												name="notes"
 											>
 											</Field>
 										</div>
@@ -450,8 +462,8 @@ class BookView extends React.Component {
 											<Field
 												className="form-radio"
 												type="checkbox"
-												name="isread"
-												checked={values.isread}
+												name="userread"
+												checked={values.userread}
 												component={Checkbox}
 											>
 											</Field>
@@ -484,7 +496,7 @@ class BookView extends React.Component {
 											>
 											</Field>
 										</div>
-										<div className="book-form-field-container">
+										{/*<div className="book-form-field-container">
 											<label className="book-form-radio-label">
 												Reading
 											</label>
@@ -496,7 +508,7 @@ class BookView extends React.Component {
 												component={Checkbox}
 											>
 											</Field>
-										</div>
+										</div>*/}
 										<div className="book-form-field-container">
 											<label className="book-form-radio-label">
 												Shipping

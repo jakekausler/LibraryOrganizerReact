@@ -25,8 +25,8 @@ class Grid extends React.Component {
 				isbn:'',
 				isloaned:'no',
 				isowned:'yes',
-				isread:'both',
-				isreading:'no',
+				userread:'both',
+				isreading:'both',
 				isreference:'both',
 				isshipping:'no',
 				libraryids:43,
@@ -34,6 +34,10 @@ class Grid extends React.Component {
 				page:1,
 				sortmethod:'dewey',
 				text:'',
+				searchusingtitle: true,
+				searchusingsubtitle: false,
+				searchusingseries: false,
+				searchusingauthor: false,
 				toage:'',
 				toar:'',
 				todewey:'',
@@ -51,7 +55,8 @@ class Grid extends React.Component {
 			numberOfBooks: 0,
 			loading: false,
 			currentBook: null,
-			readOnlyLibrary: true
+			readOnlyLibrary: true,
+			selectedBookIds: new Set()
 		}
 		this.updateFilters = this.updateFilters.bind(this)
 		this.loadBooks = this.loadBooks.bind(this)
@@ -63,6 +68,9 @@ class Grid extends React.Component {
 		this.nextPage = this.nextPage.bind(this)
 		this.prevPage = this.prevPage.bind(this)
 		this.determineReadOnly = this.determineReadOnly.bind(this)
+		this.removeBooks = this.removeBooks.bind(this)
+		this.toggleSelected = this.toggleSelected.bind(this)
+		this.isBookSelected = this.isBookSelected.bind(this)
 	}
 
     duplicateBook() {
@@ -73,6 +81,22 @@ class Grid extends React.Component {
             currentBook: currentBook
         })
     }
+
+    toggleSelected(bookid) {
+		let newSelectedBookIds = this.state.selectedBookIds;
+		if (newSelectedBookIds.has(bookid)) {
+			newSelectedBookIds.delete(bookid);
+		} else {
+			newSelectedBookIds.add(bookid);
+		}
+		this.setState({
+			selectedBookIds: newSelectedBookIds
+		});
+	}
+
+	isBookSelected(bookid) {
+		return this.state.selectedBookIds.has(bookid)
+	}
 
 	componentDidMount() {
 		this.setState({
@@ -98,11 +122,17 @@ class Grid extends React.Component {
 					nextPage={this.nextPage}
 					prevPage={this.prevPage}
 					openBookEditor={this.openBookEditor}
+					selectedBookIds={this.state.selectedBookIds}
+					removeBooks={this.removeBooks}
+					reload={this.loadBooks}
 				/>
 				<GridView
 					books={this.state.books}
 					openBookEditor={this.openBookEditor}
+					reload={this.loadBooks}
 					newPastelColor={this.props.newPastelColor}
+					toggleSelected={this.toggleSelected}
+					isBookSelected={this.isBookSelected}
 				/>
 				<BookView
 					readOnlyLibrary={this.state.readOnlyLibrary}
@@ -186,6 +216,10 @@ class Grid extends React.Component {
 		})
 	}
 
+	removeBooks(bookids, reload) {
+		this.props.removeBooks(bookids, reload)
+	}
+
 	updateFilters(filters, setSubmitting) {
 		this.setState({
 			filters: filters
@@ -201,7 +235,8 @@ class Grid extends React.Component {
 			.then((data) => {
 				this.setState({
 					books: data.books,
-					numberOfBooks: data.numbooks
+					numberOfBooks: data.numbooks,
+					selectedBookIds: new Set()
 				})
 			})
 			.catch(console.log)

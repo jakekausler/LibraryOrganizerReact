@@ -1,6 +1,16 @@
 import React from 'react'
 import {Formik, Form, Field, ErrorMessage} from 'formik'
 
+const Checkbox = ({field}) => {
+	return (
+		<input
+			className="form-radio"
+			type="checkbox"
+			{...field}
+		/>
+	);
+};
+
 class Filters extends React.Component {
 	constructor() {
 		super()
@@ -29,6 +39,7 @@ class Filters extends React.Component {
 		let nextDisabled = this.props.filters.page === (Math.ceil(this.props.numBooks/this.props.filters.numbertoget));
 		let previousDisabled = this.props.filters.page === 1;
 		let newDisabled = this.props.readOnlyLibrary;
+		let removeDisabled = this.props.readOnlyLibrary;
 		let result = (
 		<div className='filters'>
 			<div className={"filter " + filterClass}>
@@ -56,12 +67,12 @@ class Filters extends React.Component {
 						setFieldValue
 					}) => (
 						<Form>
-							<button
+{/*							<button
 								className='form-button'
 								type="button"
 							>
 								Choose Libraries
-							</button>
+							</button>*/}
 							<div
 								className="form-field-container"
 							>
@@ -77,10 +88,46 @@ class Filters extends React.Component {
 									name="text"
 								/>
 							</div>
+							<div className="form-field-container filter-container-bottom-bar">
+								{/*<label
+									className="form-checkbox-group-label"
+									htmlFor="searchusing"
+								>
+									Search Using
+								</label>*/}
+								<label>
+									<Field
+										type="checkbox"
+										name="searchusingtitle"
+										component={Checkbox}
+									/>Title
+								</label>
+								<label>
+									<Field
+										type="checkbox"
+										name="searchusingsubtitle"
+										component={Checkbox}
+									/>Subtitle
+								</label>
+								<label>
+									<Field
+										type="checkbox"
+										name="searchusingseries"
+										component={Checkbox}
+									/>Series
+								</label>
+								<label>
+									<Field
+										type="checkbox"
+										name="searchusingauthor"
+										component={Checkbox}
+									/>Author
+								</label>
+							</div>
 							<div className="form-radio-group">
 								<label
 									className="form-radio-group-label"
-									htmlFor="isread"
+									htmlFor="userread"
 								>
 									Is Read
 								</label>
@@ -88,30 +135,30 @@ class Filters extends React.Component {
 									<input
 										className="form-radio"
 										type="radio"
-										name="isread"
+										name="userread"
 										value="yes"
-										checked={values.isread === "yes"}
-										onChange={() => setFieldValue("isread", "yes")}
+										checked={values.userread === "yes"}
+										onChange={() => setFieldValue("userread", "yes")}
 									/>Yes
 								</label>
 								<label>
 									<input
 										className="form-radio"
 										type="radio"
-										name="isread"
+										name="userread"
 										value="no"
-										checked={values.isread === "no"}
-										onChange={() => setFieldValue("isread", "no")}
+										checked={values.userread === "no"}
+										onChange={() => setFieldValue("userread", "no")}
 									/>No
 								</label>
 								<label>
 									<input
 										className="form-radio"
 										type="radio"
-										name="isread"
+										name="userread"
 										value="both"
-										checked={values.isread === "both"}
-										onChange={() => setFieldValue("isread", "both")}
+										checked={values.userread === "both"}
+										onChange={() => setFieldValue("userread", "both")}
 									/>Both
 								</label>
 							</div>
@@ -305,7 +352,7 @@ class Filters extends React.Component {
 									/>Both
 								</label>
 							</div>
-							<div className="form-radio-group">
+							{/*<div className="form-radio-group">
 								<label
 									className="form-radio-group-label"
 									htmlFor="isreading"
@@ -342,7 +389,7 @@ class Filters extends React.Component {
 										onChange={() => setFieldValue("isreading", "both")}
 									/>Both
 								</label>
-							</div>
+							</div>*/}
 							<div className="form-radio-group">
 								<label
 									className="form-radio-group-label"
@@ -465,6 +512,9 @@ class Filters extends React.Component {
 				</button>
 				<button className="filter-showhide" disabled={previousDisabled} onClick={this.props.prevPage}>
 					<div className="filter-nextprevious">Previous</div>
+				</button>
+				<button className="filter-showhide" disabled={removeDisabled || this.props.selectedBookIds.size == 0} onClick={() => this.props.removeBooks(Array.from(this.props.selectedBookIds), this.props.reload)}>
+					<div className="filter-nextprevious filter-remove">{"Remove " + this.props.selectedBookIds.size + " Book" + (this.props.selectedBookIds.size == 1 ? "" : "s")}</div>
 				</button>
 				<button className="filter-showhide" disabled={newDisabled} onClick={() => this.props.openBookEditor()}>
 					<div className="filter-nextprevious">New</div>

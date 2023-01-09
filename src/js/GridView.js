@@ -16,6 +16,8 @@ class GridView extends React.Component {
 					key={book.bookid}
 					openBookEditor={this.props.openBookEditor}
 					newPastelColor={this.props.newPastelColor}
+					isSelected={this.props.isBookSelected(book.bookid)}
+					toggleSelected={this.props.toggleSelected}
 				/>
 			)
 		})

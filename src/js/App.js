@@ -2,10 +2,13 @@ import React from 'react'
 
 import './../css/styles.css'
 import "./../../node_modules/react-vis/dist/style.css"
+import "react-confirm-alert/src/react-confirm-alert.css"
+
+import { confirmAlert } from 'react-confirm-alert';
 
 import Header from './Header'
 import Grid from './Grid'
-// import Shelves from './Shelves'
+import Priority from './Priority'
 import Shelves from './BookCases'
 import Stats from './Stats'
 import LoginPage from './LoginPage'
@@ -17,7 +20,7 @@ class App extends React.Component {
 		super()
 		this.state = {
 			currentPage: 'grid',
-			pages: ['grid', 'shelves', 'stats'],
+			pages: ['grid', 'priority', 'shelves', 'stats'],
 			loggedIn: false,
 			casesHash: ''
 		}
@@ -117,6 +120,24 @@ class App extends React.Component {
 		.catch(console.log)
 	}
 
+	removeBooks(bookids, reload) {
+		confirmAlert({
+			title: 'Warning',
+			message: 'Are you sure you want to remove ' + bookids.length + ' book' + (bookids.length == 1 ? '' : 's'),
+			buttons: [{
+				label: 'Yes',
+				onClick: () => {
+					fetch('/books', {
+						method: 'DELETE',
+						body: JSON.stringify(bookids)
+					}).then(() => reload());
+				}
+			}, {
+				label: 'No'
+			}]
+		});
+	}
+
 	refreshCases(libraryid, reload) {
 		this.setState({
 			casesHash: this.state.casesHash + 1
@@ -139,12 +160,18 @@ class App extends React.Component {
 				mainContent = <Grid
 					saveBook={this.saveBook}
 					removeBook={this.removeBook}
+					removeBooks={this.removeBooks}
 					addBook={this.addBook}
 					getBlankBook={this.getBlankBook}
 					newPastelColor={this.newPastelColor}
 				/>
 				break;
 			case this.state.pages[1]:
+				mainContent = <Priority
+					newPastelColor={this.newPastelColor}
+				/>
+				break;
+			case this.state.pages[2]:
 				mainContent = <Shelves
 					saveBook={this.saveBook}
 					removeBook={this.removeBook}
@@ -153,7 +180,7 @@ class App extends React.Component {
 					getCasesHash={this.getCasesHash}
 				/>
 				break;
-			case this.state.pages[2]:
+			case this.state.pages[3]:
 				mainContent = <Stats />
 				break;
 			}
